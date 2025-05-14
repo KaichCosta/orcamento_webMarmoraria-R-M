@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>Orçamento RM</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <h1>ORÇAMENTO RM</h1>
+    <div class="form-grid" id="form">
+        <div>
+            <label>Cliente</label>
+            <input type="text" id="cliente">
+        </div>
+        <div>
+            <label>Valor m²</label>
+            <input type="number" id="valor">
+        </div>
+        <div>
+            <label>Comprimento</label>
+            <input type="number" step="0.01" id="comprimento">
+        </div>
+        <div>
+            <label>Largura</label>
+            <input type="number" step="0.01" id="largura">
+        </div>
+        <div>
+            <label>Produto</label>
+            <input type="text" id="produto">
+        </div>
+        <div>
+            <label>Material</label>
+            <select id="material">
+            <option>Preto Escovado</option>
+            <option>Branco Siena</option>
+            <option>Verde Ubatuba</option>
+            </select>
+        </div>
+        <div>
+            <label>Mão de Obra</label>
+            <input type="number" id="mao_obra">
+        </div>
+        <div>
+            <label>Cuba</label>
+            <input type="number" id="cuba">
+        </div>
+        <div>
+            <label>Frete</label>
+            <input type="number" id="frete">
+        </div>
+        <div>
+            <label>Quantidade</label>
+            <input type="number" id="quantidade" value="1">
+        </div>
+        <div>
+            <label>Desconto (%)</label>
+            <input type="number" id="desconto" value="5">
+        </div>
+        <div>
+            <label>&nbsp;</label>
+            <button class="add-btn" onclick="adicionarItem()">ADICIONAR ITEM</button>
+        </div>
+    </div>
+
+    <div class="items" id="lista-itens"></div>
+
+    <script src="scripts.js"></script>
+</body>
+</html>
