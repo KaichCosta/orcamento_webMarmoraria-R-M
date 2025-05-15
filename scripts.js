@@ -25,7 +25,7 @@ function adicionarItem() {
     const quantidade = parseInt(document.getElementById('quantidade').value) || 0;
     const frete = parseFloat(document.getElementById('frete').value) || 0;
     const desconto = parseFloat(document.getElementById('desconto').value) || 0;
-    
+
     const metro = comprimento * largura;
     const totalAprazo = (((valor * metro + mao_obra + cuba) * quantidade) + frete ).toFixed(2);
     const descontoValor = totalAprazo * (desconto / 100);
@@ -44,3 +44,18 @@ function adicionarItem() {
     `;
     document.getElementById('lista-itens').appendChild(card);
 }
+
+let precos = {};
+
+fetch('materiais.json')
+    .then(res => res.json())
+    .then(data => {
+        precos = data;
+    });
+
+    document.getElementById('material').addEventListener('change', function () {
+    const materialSelecionado = this.value;
+    const precoMetro = precos[materialSelecionado] || 0;
+    document.getElementById('valor').value = precoMetro;
+    calcularTotal();
+});
