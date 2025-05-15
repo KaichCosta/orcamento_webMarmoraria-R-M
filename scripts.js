@@ -12,9 +12,12 @@ function adicionarItem() {
     const desconto = parseFloat(document.getElementById('desconto').value);
 
     const metro = comprimento * largura;
-    const total = ((valor * metro + maoObra + cuba + frete) * quantidade).toFixed(2);
+    const totalCalculado = (((valor * metro + maoObra + cuba) * quantidade) + frete ).toFixed(2);
+    const total = totalCalculado.toFixed(2);
+    document.getElementById('total').value = total.toFixed(2);
+
     const descontoValor = total * (desconto / 100);
-    const totalFinal = (total - descontoValor).toFixed(2);
+    const totalAvista = (total - descontoValor).toFixed(2);
 
     const card = document.createElement('div');
     card.className = 'item-card';
@@ -24,7 +27,21 @@ function adicionarItem() {
         <strong>Produto:</strong> ${produto}<br>
         <strong>Material:</strong> ${material}<br>
         <strong>M²:</strong> ${metro.toFixed(2)}<br>
-        <strong>Total:</strong> R$ ${totalFinal}
+        <strong>Total:</strong> R$ ${totalAvista}
     `;
     document.getElementById('lista-itens').appendChild(card);
+}
+
+function calcularTotal() {
+    const valor = parseFloat(document.getElementById('valor').value) || 0;
+    const comprimento = parseFloat(document.getElementById('comprimento').value) || 0;
+    const largura = parseFloat(document.getElementById('largura').value) || 0;
+    const maoObra = parseFloat(document.getElementById('maoObra').value) || 0;
+    const cuba = parseFloat(document.getElementById('cuba').value) || 0;
+    const quantidade = parseInt(document.getElementById('quantidade').value) || 1;
+    const frete = parseFloat(document.getElementById('frete').value) || 0;
+
+    const metro = comprimento * largura;
+    const total = (((valor * metro + maoObra + cuba) * quantidade) + frete);
+    document.getElementById('total').value = `R$ ${total.toFixed(2)}`;
 }

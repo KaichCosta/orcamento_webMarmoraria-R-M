@@ -1,6 +1,16 @@
+:root{
+    --corfundo: #cacacb;
+    --corfundodiv: #f5f5f5;
+    --corcontraste: black;
+    --cordestaque: rgb(129, 0, 0);
+    --corbotão: rgb(241, 2, 2);
+    --fontepadrao:, Arial, Verdana, sans-serif;
+    --fontedestaque: Verdana, sans-serif;
+}
+
 body {
     font-family: sans-serif;
-    background-color: #858585;
+    background-color: var(--corfundo);
     padding: 20px;
 }
 
@@ -9,7 +19,8 @@ h1 {
     font-size: 32px;
     padding: 0px;
     margin-bottom: 10px;
-    color: rgb(179, 0, 0);
+    color: var(--cordestaque);
+    font-family: var(--fontedestaque);
     text-shadow: 2px 3px 4px black;
 }
 
@@ -18,7 +29,7 @@ h1 {
     grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
     gap: 16px;
     margin-bottom: 20px;
-    background: #f5f5f5;
+    background: var(--corfundodiv);
     padding: 20px;
     border-radius: 10px;
 }
@@ -27,26 +38,27 @@ label {
     font-size: 0.9rem;
     display: block;
     margin-bottom: 4px;
+    font-family: var(--fontepadrao);
 }
 
 input, select {
     width: 100%;
     padding: 8px;
-    border: 1px solid #aaa;
-    border-radius: 5px;
+    border: 2px solid var(--cordestaque);
+    border-radius: 8px;
 }
 
 button {
     padding: 10px 16px;
     font-weight: bold;
     border: none;
-    border-radius: 5px;
+    border-radius: 8px;
     cursor: pointer;
 }
 
 .add-btn {
-    background-color: yellow;
-    color: black;
+    background-color: var(--corbotão);
+    color: var(--corcontraste);
 }
 
 .items {
@@ -66,7 +78,7 @@ button {
     position: absolute;
     top: 10px;
     right: 10px;
-    background: red;
+    background: var(--corbotão);
     color: white;
     border: none;
     padding: 4px 8px;
