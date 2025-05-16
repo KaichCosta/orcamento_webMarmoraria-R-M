@@ -73,6 +73,8 @@ button {
 
 .items {
     margin-top: 30px;
+    min-width: 80px;
+    max-width: 158px;
 }
 
 .item-card {
@@ -82,6 +84,8 @@ button {
     border-radius: 10px;
     box-shadow: 3px 3px 6px rgba(0, 0, 0, 0.685);
     position: relative;
+    min-width: 90px;
+    max-width: 178px;
 }
 
 .remove-btn {
@@ -98,6 +102,23 @@ button {
 }
 
 .remove-btn:hover {
+    background-color: var(--cordestaque);
+}
+
+.edit-btn {
+    position: absolute;
+    top: 142px;
+    right: 10px;
+    background: var(--corbotão);
+    color: white;
+    border: none;
+    padding: 4px 8px;
+    border-radius: 4px;
+    cursor: pointer;
+    box-shadow: 3px 1px 3px rgba(0, 0, 0, 0.685);
+}
+
+.edit-btn:hover {
     background-color: var(--cordestaque);
 }
 

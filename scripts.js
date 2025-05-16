@@ -31,15 +31,34 @@ function adicionarItem() {
     const descontoValor = totalAprazo * (desconto / 100);
     const totalAvista = (totalAprazo - descontoValor);
 
+    const dadosItem = {
+        cliente,
+        produto,
+        material,
+        valor,
+        comprimento,
+        largura,
+        mao_obra,
+        cuba,
+        frete,
+        quantidade,
+        desconto
+    };
+
     const card = document.createElement('div');
     card.className = 'item-card';
+
+    // Salva os dados como atributo no card (transformado em JSON)
+    card.dataset.item = JSON.stringify(dadosItem);
+
     card.innerHTML = `
         <button class="remove-btn" onclick="this.parentElement.remove()">X</button>
+        <button class="edit-btn" onclick="editarItem(this)">Editar</button>
         <strong>Cliente:</strong> ${cliente}<br>
         <strong>Produto:</strong> ${produto}<br>
         <strong>Material:</strong> ${material}<br>
         <strong>M²:</strong> ${metro.toFixed(2)}<br>
-        <strong>Total a prazo:</strong> R$ ${totalAprazo}
+        <strong>Total a prazo:</strong> R$ ${totalAprazo}<br>
         <strong>Total a vista:</strong> R$ ${totalAvista}
     `;
     document.getElementById('lista-itens').appendChild(card);
@@ -75,3 +94,26 @@ fetch('materiais.json')
 
     calcularTotal();
 });
+
+function editarItem(botao) {
+    const card = botao.parentElement;
+    const dados = JSON.parse(card.dataset.item);
+
+    // Preenche os campos com os dados do card
+    document.getElementById('cliente').value = dados.cliente;
+    document.getElementById('produto').value = dados.produto;
+    document.getElementById('material').value = dados.material;
+    document.getElementById('valor').value = dados.valor;
+    document.getElementById('comprimento').value = dados.comprimento;
+    document.getElementById('largura').value = dados.largura;
+    document.getElementById('mao_obra').value = dados.mao_obra;
+    document.getElementById('cuba').value = dados.cuba;
+    document.getElementById('frete').value = dados.frete;
+    document.getElementById('quantidade').value = dados.quantidade;
+    document.getElementById('desconto').value = dados.desconto;
+
+    // Remove o card da lista (vai ser refeito quando clicar em "Adicionar Item")
+    card.remove();
+
+    calcularTotal();
+}
