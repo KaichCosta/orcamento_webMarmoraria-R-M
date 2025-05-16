@@ -85,3 +85,9 @@ button {
     border-radius: 4px;
     cursor: pointer;
 }
+
+footer p{
+    color: var(--cordestaque);
+    text-align: center;
+    font-size: 0.8em;
+}

@@ -45,17 +45,34 @@ function adicionarItem() {
     document.getElementById('lista-itens').appendChild(card);
 }
 
-let precos = {};
+let materiais = {};
 
 fetch('materiais.json')
-    .then(res => res.json())
+    .then(response => response.json())
     .then(data => {
-        precos = data;
-    });
+        materiais = data;
+    
+        const selecionarMaterial = document.getElementById('material');
+        Object.keys(materiais).forEach(nome => {
+            const option = document.createElement('option');
+            option.value = nome;
+            option.textContent = nome;
+            selecionarMaterial.appendChild(option);
+        })
+    })
+    .catch(error => console.error('Erro ao carregar materiais:', error));
 
+    // Atualiza o valor do m² automaticamente ao selecionar um material
     document.getElementById('material').addEventListener('change', function () {
     const materialSelecionado = this.value;
-    const precoMetro = precos[materialSelecionado] || 0;
-    document.getElementById('valor').value = precoMetro;
+    const valorMetro = materiais[materialSelecionado];
+
+    const inputValor = document.getElementById('valor');
+    if (valorMetro !== null && valorMetro !== undefined) {
+        inputValor.value = valorMetro;
+    } else {
+        inputValor.value = '';
+    }
+
     calcularTotal();
 });
