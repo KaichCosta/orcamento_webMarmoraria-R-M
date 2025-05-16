@@ -52,12 +52,11 @@ fetch('materiais.json')
     .then(data => {
         materiais = data;
     
-        const selecionarMaterial = document.getElementById('material');
+        const datalist = document.getElementById('lista-materiais');
         Object.keys(materiais).forEach(nome => {
             const option = document.createElement('option');
             option.value = nome;
-            option.textContent = nome;
-            selecionarMaterial.appendChild(option);
+            datalist.appendChild(option);
         })
     })
     .catch(error => console.error('Erro ao carregar materiais:', error));

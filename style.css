@@ -4,6 +4,7 @@
     --corcontraste: black;
     --cordestaque: rgb(129, 0, 0);
     --corbotão: rgb(241, 2, 2);
+
     --fontepadrao:, Arial, Verdana, sans-serif;
     --fontedestaque: Verdana, sans-serif;
 }
@@ -32,6 +33,7 @@ h1 {
     background: var(--corfundodiv);
     padding: 20px;
     border-radius: 10px;
+    box-shadow: 3px 3px 6px rgba(0, 0, 0, 0.685);
 }
 
 label {
@@ -45,8 +47,9 @@ input, select {
     width: 100%;
     padding: 8px;
     border: 2px solid var(--cordestaque);
-    border-radius: 8px;
+    border-radius: 10px;
 }
+
 
 button {
     padding: 10px 16px;
@@ -57,9 +60,16 @@ button {
 }
 
 .add-btn {
+
     background-color: var(--corbotão);
-    color: var(--corcontraste);
+    color: white;
+    box-shadow: 3px 1px 3px rgba(0, 0, 0, 0.685);
 }
+    
+.add-btn:hover {
+    background-color: var(--cordestaque);
+}   
+
 
 .items {
     margin-top: 30px;
@@ -69,8 +79,8 @@ button {
     background-color: #fff;
     padding: 15px;
     margin-bottom: 15px;
-    border: 1px solid #ccc;
-    border-radius: 8px;
+    border-radius: 10px;
+    box-shadow: 3px 3px 6px rgba(0, 0, 0, 0.685);
     position: relative;
 }
 
@@ -84,10 +94,15 @@ button {
     padding: 4px 8px;
     border-radius: 4px;
     cursor: pointer;
+    box-shadow: 3px 1px 3px rgba(0, 0, 0, 0.685);
+}
+
+.remove-btn:hover {
+    background-color: var(--cordestaque);
 }
 
 footer p{
     color: var(--cordestaque);
     text-align: center;
-    font-size: 0.8em;
+    font-size: 0.8rem;
 }

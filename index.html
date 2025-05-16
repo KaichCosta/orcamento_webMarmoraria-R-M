@@ -32,7 +32,8 @@
         </div>
         <div>
             <label>Material</label>
-            <select id="material"></select>
+            <input list="lista-materiais" id="material" placeholder="Digite ou escolha" oninput="atualizarValorMaterial()">
+            <datalist id="lista-materiais"></datalist>
         </div>
         <div>
             <label>Mão de Obra</label>
