@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
     <title>Orçamento RM</title>
     <link rel="stylesheet" href="style.css">
-    <link rel="shortcut icon" href="imagens/icone.png" type="image/x-icon">
+    <link rel="shortcut icon" href="imagens/icone1.png" type="image/x-icon">
 </head>
 <body>
     <h1>ORÇAMENTO RM</h1>
@@ -15,37 +15,38 @@
             <input type="text" id="cliente">
         </div>
         <div>
-            <label>Valor m²</label>
-            <input type="number" id="valor" min="0" oninput="calcularTotal()">
-        </div>
-        <div>
-            <label>Comprimento</label>
-            <input type="number" step="0.01" id="comprimento" min="0" oninput="calcularTotal()">
-        </div>
-        <div>
-            <label>Largura</label>
-            <input type="number" step="0.01" id="largura" min="0" oninput="calcularTotal()">
-        </div>
-        <div>
-            <label>Produto</label>
-            <input type="text" id="produto">
-        </div>
-        <div>
             <label>Material</label>
             <input list="lista-materiais" id="material" placeholder="Digite ou escolha" oninput="atualizarValorMaterial()">
             <datalist id="lista-materiais"></datalist>
         </div>
         <div>
+            <label>Valor m²</label>
+            <input type="number" id="valor" min="0" placeholder="Digite" oninput="calcularTotal()">
+        </div>
+        <div>
+            <label>Comprimento</label>
+            <input type="number" step="0.01" id="comprimento" min="0" placeholder="Digite" oninput="calcularTotal()">
+        </div>
+        <div>
+            <label>Largura</label>
+            <input type="number" step="0.01" id="largura" min="0" placeholder="Digite" oninput="calcularTotal()">
+        </div>
+        <div>
+            <label>Produto</label>
+            <input type="text" id="produto" placeholder="Digite">
+        </div>
+        
+        <div>
             <label>Mão de Obra</label>
-            <input type="number" id="mao_obra" min="0" oninput="calcularTotal()">
+            <input type="number" id="mao_obra" min="0" placeholder="Digite" oninput="calcularTotal()">
         </div>
         <div>
             <label>Cuba</label>
-            <input type="number" id="cuba" min="0" oninput="calcularTotal()">
+            <input type="number" id="cuba" min="0" placeholder="Digite" oninput="calcularTotal()">
         </div>
         <div>
             <label>Frete</label>
-            <input type="number" id="frete" min="0" oninput="calcularTotal()">
+            <input type="number" id="frete" min="0" placeholder="Digite" oninput="calcularTotal()">
         </div>
         <div>
             <label>Quantidade</label>
@@ -56,7 +57,7 @@
             <input type="text" id="total" readonly value="R$ 0.00">
         </div>
         <div>
-            <label>Desconto (%)</label>
+            <label>Desconto a Vista(%)</label>
             <input type="number" id="desconto" min="0" value="5">
         </div>
         <div>

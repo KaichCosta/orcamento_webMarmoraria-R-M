@@ -13,6 +13,10 @@ body {
     font-family: sans-serif;
     background-color: var(--corfundo);
     padding: 20px;
+    background-image: url(imagens/logo-marmoraria-fundo-transparente.png);
+    background-repeat: no-repeat;
+    background-position: right right;
+    background-size: 178px;
 }
 
 h1 {
@@ -91,7 +95,7 @@ button {
 
 .remove-btn {
     position: absolute;
-    top: 10px;
+    top: 3px;
     right: 10px;
     background: var(--corbotão);
     color: white;
@@ -108,7 +112,6 @@ button {
 
 .edit-btn {
     position: absolute;
-    top: 142px;
     right: 10px;
     background: var(--corbotão);
     color: white;
@@ -117,14 +120,20 @@ button {
     border-radius: 4px;
     cursor: pointer;
     box-shadow: 3px 1px 3px rgba(0, 0, 0, 0.685);
+    bottom: 0;
+    margin-bottom: 3px;
 }
 
 .edit-btn:hover {
     background-color: var(--cordestaque);
+    
 }
 
-footer p{
+footer {
+    position: fixed;
+    bottom: 0;
     color: var(--cordestaque);
     text-align: center;
     font-size: 0.8rem;
+    width: 90%;
 }
