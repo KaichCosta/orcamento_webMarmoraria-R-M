@@ -15,7 +15,7 @@ body {
     padding: 20px;
     background-image: url(imagens/logo-marmoraria-fundo-transparente.png);
     background-repeat: no-repeat;
-    background-position: right right;
+    background-position: left left;
     background-size: 178px;
 }
 
@@ -77,20 +77,19 @@ button {
 
 
 .items {
-    margin-top: 30px;
-    min-width: 80px;
-    max-width: 158px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
 }
 
 .item-card {
     background-color: #fff;
-    padding: 15px;
+    padding: 1rem;
     margin-bottom: 15px;
     border-radius: 10px;
     box-shadow: 3px 3px 6px rgba(0, 0, 0, 0.685);
     position: relative;
-    min-width: 90px;
-    max-width: 178px;
+    width: 120px;
 }
 
 .remove-btn {
@@ -128,6 +127,9 @@ button {
     background-color: var(--cordestaque);
     
 }
+
+
+
 
 footer {
     position: fixed;
