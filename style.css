@@ -32,14 +32,15 @@ h1 {
 .form-grid {
     margin: 0 auto;
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
-    gap: 16px;
+    grid-template-columns: repeat(auto-fit, minmax(160px, auto));
+    gap: 0.8rem;
+    grid-auto-flow: row;
     margin-bottom: 20px;
     background: var(--corfundodiv);
     padding: 20px;
     border-radius: 10px;
     box-shadow: 3px 3px 6px rgba(0, 0, 0, 0.685);
-    max-width: 980px;
+    max-width: 380px;
 }
 
 label {
@@ -56,23 +57,17 @@ input, select {
     border-radius: 10px;
 }
 
-#cliente{
+#cliente, #material, #produto{
+    width: 150px;
+}
+
+#valor, #comprimento, #largura, #mao_obra, #cuba, #frete, #quantidade, #desconto{
     width: 50px;
-}#material{
-    width: ;
 }
-#valor{
-    width: ;
+
+#total{
+    width: 100px;
 }
-#comprimento
-#largura
-#produto
-#mao_obra
-#cuba
-#frete
-#quantidade
-#total
-#desconto
 
 button {
     padding: 10px 16px;
