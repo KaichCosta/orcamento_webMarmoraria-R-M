@@ -22,74 +22,62 @@ body {
 h1 {
     text-align: center;
     font-size: 32px;
-    padding: 0px;
+    padding: 50px 0px 0px 0px;
     margin-bottom: 10px;
     color: var(--cordestaque);
     font-family: var(--fontedestaque);
     text-shadow: 2px 3px 4px black;
 }
 
-.form-grid {
-    display: grid;
-    grid-template-areas:
-        "cliente     material        ."
-        "valor       comprimento     largura"
-        "produto     mao-obra        cuba"
-        "frete       quantidade      total"
-        "desconto    desconto        botao";
-    gap: 16px;
+.formulario {
     background: var(--corfundodiv);
-    padding: 20px;
+    padding: 5px;
     border-radius: 10px;
-    max-width: 980px;
-    margin: 0 auto;
-    grid-auto-flow: row;
-    margin-bottom: 20px;
+    min-width: 310px;
+    max-width: 580px;
+    margin: 10px auto;
+    /*margin-bottom: 20px;*/
     box-shadow: 3px 3px 6px rgba(0, 0, 0, 0.685);
 }
 
-/* Define o espaço para cada campo */
-.campo-cliente       { grid-area: cliente; }
-.campo-material      { grid-area: material; }
-.campo-valor         { grid-area: valor; }
-.campo-comprimento   { grid-area: comprimento; }
-.campo-largura       { grid-area: largura; }
-.campo-produto       { grid-area: produto; }
-.campo-mao-obra      { grid-area: mao-obra; }
-.campo-cuba          { grid-area: cuba; }
-.campo-frete         { grid-area: frete; }
-.campo-quantidade    { grid-area: quantidade; }
-.campo-total         { grid-area: total; }
-.campo-desconto      { grid-area: desconto; }
-.campo-botao         { grid-area: botao; }
-
-/* Estilo geral dos campos */
-.campo label {
-    display: block;
+.linha {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
     font-weight: bold;
     font-size: 0.9rem;
-    margin-bottom: 4px;
+    margin-bottom: 1rem;
     font-family: var(--fontepadrao);
 }
 
+.campo {
+    display: flex;
+    flex-direction: column;
+}
+
+.campo label {
+    font-weight: bold;
+    margin-bottom: 4px;
+}
 input, select {
     display: inline-block;
     width: 100%;
-    padding: 8px;
+    padding: 7px;
     border: 2px solid var(--cordestaque);
     border-radius: 10px;
+    margin: 0px;
 }
 
 #cliente, #material, #produto{
-    width: 150px;
+    width: 134px;
 }
 
 #valor, #comprimento, #largura, #mao_obra, #cuba, #frete, #quantidade, #desconto{
-    width: 50px;
+    width: 45px;
 }
 
 #total{
-    width: 100px;
+    width: 85px;
 }
 
 button {
@@ -101,7 +89,6 @@ button {
 }
 
 .add-btn {
-
     background-color: var(--corbotão);
     color: white;
     box-shadow: 3px 1px 3px rgba(0, 0, 0, 0.685);
