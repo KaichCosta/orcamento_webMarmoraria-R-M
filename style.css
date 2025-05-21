@@ -9,12 +9,20 @@
     --fontedestaque: Verdana, sans-serif;
 }
 
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
 body {
     display: flex;
     min-height: 100vh;
+    justify-content: center;
+    align-items: flex-start;
     font-family: sans-serif;
     background-color: rgb(167, 167, 167);
-    padding: 0px;
+    padding: 1rem;
     background-image: url(imagens/logo-marmoraria-fundo-transparente.png);
     background-repeat: no-repeat;
     background-position: left left;
@@ -46,6 +54,7 @@ h1 {
     border-radius: 10px;
     min-width: 324px;
     max-width: 350px;
+    width: 100%;
     margin: 0px 0px 10px 10px;
     box-shadow: 3px 3px 6px rgba(0, 0, 0, 0.685);
 }
