@@ -30,27 +30,50 @@ h1 {
 }
 
 .form-grid {
-    margin: 0 auto;
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(160px, auto));
-    gap: 0.8rem;
-    grid-auto-flow: row;
-    margin-bottom: 20px;
+    grid-template-areas:
+        "cliente     material        ."
+        "valor       comprimento     largura"
+        "produto     mao-obra        cuba"
+        "frete       quantidade      total"
+        "desconto    desconto        botao";
+    gap: 16px;
     background: var(--corfundodiv);
     padding: 20px;
     border-radius: 10px;
+    max-width: 980px;
+    margin: 0 auto;
+    grid-auto-flow: row;
+    margin-bottom: 20px;
     box-shadow: 3px 3px 6px rgba(0, 0, 0, 0.685);
-    max-width: 380px;
 }
 
-label {
-    font-size: 0.9rem;
+/* Define o espaço para cada campo */
+.campo-cliente       { grid-area: cliente; }
+.campo-material      { grid-area: material; }
+.campo-valor         { grid-area: valor; }
+.campo-comprimento   { grid-area: comprimento; }
+.campo-largura       { grid-area: largura; }
+.campo-produto       { grid-area: produto; }
+.campo-mao-obra      { grid-area: mao-obra; }
+.campo-cuba          { grid-area: cuba; }
+.campo-frete         { grid-area: frete; }
+.campo-quantidade    { grid-area: quantidade; }
+.campo-total         { grid-area: total; }
+.campo-desconto      { grid-area: desconto; }
+.campo-botao         { grid-area: botao; }
+
+/* Estilo geral dos campos */
+.campo label {
     display: block;
+    font-weight: bold;
+    font-size: 0.9rem;
     margin-bottom: 4px;
     font-family: var(--fontepadrao);
 }
 
 input, select {
+    display: inline-block;
     width: 100%;
     padding: 8px;
     border: 2px solid var(--cordestaque);
