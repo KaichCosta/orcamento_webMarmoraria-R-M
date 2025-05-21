@@ -10,13 +10,24 @@
 }
 
 body {
+    display: flex;
+    min-height: 100vh;
     font-family: sans-serif;
-    background-color: var(--corfundo);
-    padding: 20px;
+    background-color: rgb(167, 167, 167);
+    padding: 0px;
     background-image: url(imagens/logo-marmoraria-fundo-transparente.png);
     background-repeat: no-repeat;
     background-position: left left;
     background-size: 178px;
+}
+
+.fundo {
+    background-color: var(--corfundo);
+    box-shadow: 3px 3px 6px rgba(0, 0, 0, 0.685);
+    border-radius: 10px;
+    min-width: 354px;
+    max-width: 800px;
+
 }
 
 h1 {
@@ -33,10 +44,9 @@ h1 {
     background: var(--corfundodiv);
     padding: 5px;
     border-radius: 10px;
-    min-width: 310px;
-    max-width: 580px;
-    margin: 10px auto;
-    /*margin-bottom: 20px;*/
+    min-width: 324px;
+    max-width: 350px;
+    margin: 0px 0px 10px 10px;
     box-shadow: 3px 3px 6px rgba(0, 0, 0, 0.685);
 }
 
