@@ -8,6 +8,7 @@
     <link rel="shortcut icon" href="imagens/icone1.png" type="image/x-icon">
 </head>
 <body>
+    <p id="creditos">Feito por © 2025 Kaích Costa para Marmoraria R&M CNPJ - 32.504.738/0001-82</p>
     <div class="fundo">
         <h1>ORÇAMENTO RM</h1>
         
@@ -75,7 +76,10 @@
             </div>
 
             <div class="linha linha5">
-                
+                <div class="campo">
+                    <label for="total_vista">Total a Vista</label>
+                    <input type="text" id="total_vista" readonly value="R$ 0.00">
+                </div>
                 <div class="campo">
                     <label>&nbsp;</label>
                     <button class="add-btn" onclick="adicionarItem()">ADICIONAR ITEM</button>
@@ -85,7 +89,7 @@
         <div class="items" id="lista-itens"></div>
     </div>    
     
-    <footer><p>Feito por © 2025 Kaích Costa para Marmoraria R&M CNPJ - 32.504.738/0001-82</p></footer>
+    
     <script src="scripts.js"></script>
 </body>
 </html>

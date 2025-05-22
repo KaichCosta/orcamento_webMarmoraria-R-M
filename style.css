@@ -29,6 +29,16 @@ body {
     background-size: 178px;
 }
 
+#creditos {
+    position: absolute;
+    padding-top: 5px;
+    color: var(--cordestaque);
+    text-align: center;
+    font-size: 0.6rem;
+    font-weight: 400;
+    width: 90%;
+}
+
 .fundo {
     background-color: var(--corfundo);
     box-shadow: 3px 3px 6px rgba(0, 0, 0, 0.685);
@@ -42,7 +52,7 @@ body {
 h1 {
     text-align: center;
     font-size: 32px;
-    padding: 23px 0px 0px 0px;
+    padding: 35px 0px 0px 0px;
     margin-bottom: 10px;
     color: var(--cordestaque);
     font-family: var(--fontedestaque);
@@ -91,6 +101,10 @@ input, select {
     margin: 0px;
 }
 
+input:hover {
+    border-color: var(--corcontraste);
+}
+
 #cliente, #material, #produto{
     width: 134px;
 }
@@ -99,7 +113,7 @@ input, select {
     width: 45px;
 }
 
-#total{
+#total, #total_vista{
     width: 85px;
 }
 
@@ -135,7 +149,9 @@ button {
     border-radius: 10px;
     box-shadow: 3px 3px 6px rgba(0, 0, 0, 0.685);
     position: relative;
-    width: 120px;
+    min-width: 324px;
+    max-width: 350px;
+    width: 330px;
 }
 
 .remove-btn {
@@ -175,13 +191,3 @@ button {
 }
 
 
-
-
-footer {
-    position: fixed;
-    bottom: 0;
-    color: var(--cordestaque);
-    text-align: center;
-    font-size: 0.8rem;
-    width: 90%;
-}

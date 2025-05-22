@@ -6,10 +6,13 @@ function calcularTotal() {
     const cuba = parseFloat(document.getElementById('cuba').value) || 0;
     const quantidade = parseInt(document.getElementById('quantidade').value) || 1;
     const frete = parseFloat(document.getElementById('frete').value) || 0;
-
+    const desconto = parseFloat(document.getElementById('desconto').value) || 0;
     const metro = comprimento * largura;
     const total = (((valor * metro + mao_obra + cuba) * quantidade) + frete);
     document.getElementById('total').value = `R$ ${total.toFixed(2)}`;
+    const descontoValor = total * (desconto / 100);
+    const total_vista = (total - descontoValor);
+    document.getElementById('total_vista').value = `R$ ${total_vista.toFixed(2)}`;
 }
 
 function adicionarItem() {
