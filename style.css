@@ -33,15 +33,16 @@ body {
     background-color: var(--corfundo);
     box-shadow: 3px 3px 6px rgba(0, 0, 0, 0.685);
     border-radius: 10px;
-    min-width: 354px;
-    max-width: 800px;
+    min-width: 375px;
+    min-height: 500px;
+    width: 800px;
 
 }
 
 h1 {
     text-align: center;
     font-size: 32px;
-    padding: 50px 0px 0px 0px;
+    padding: 23px 0px 0px 0px;
     margin-bottom: 10px;
     color: var(--cordestaque);
     font-family: var(--fontedestaque);
@@ -49,13 +50,16 @@ h1 {
 }
 
 .formulario {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
     background: var(--corfundodiv);
-    padding: 5px;
+    padding: 10px;
     border-radius: 10px;
     min-width: 324px;
     max-width: 350px;
     width: 100%;
-    margin: 0px 0px 10px 10px;
+    margin: 0 auto 10px auto;
     box-shadow: 3px 3px 6px rgba(0, 0, 0, 0.685);
 }
 
