@@ -29,19 +29,30 @@ body {
     background-size: 178px;
 }
 
+#creditos {
+    position: absolute;
+    padding-top: 5px;
+    color: var(--cordestaque);
+    text-align: center;
+    font-size: 0.6rem;
+    font-weight: 400;
+    width: 90%;
+}
+
 .fundo {
     background-color: var(--corfundo);
     box-shadow: 3px 3px 6px rgba(0, 0, 0, 0.685);
     border-radius: 10px;
     min-width: 375px;
-    max-width: 800px;
+    min-height: 500px;
+    width: 800px;
 
 }
 
 h1 {
     text-align: center;
     font-size: 32px;
-    padding: 50px 0px 0px 0px;
+    padding: 35px 0px 0px 0px;
     margin-bottom: 10px;
     color: var(--cordestaque);
     font-family: var(--fontedestaque);
@@ -49,8 +60,11 @@ h1 {
 }
 
 .formulario {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
     background: var(--corfundodiv);
-    padding: 5px;
+    padding: 10px;
     border-radius: 10px;
     min-width: 324px;
     max-width: 350px;
@@ -87,16 +101,20 @@ input, select {
     margin: 0px;
 }
 
+input:hover {
+    border-color: var(--corcontraste);
+}
+
 #cliente, #material, #produto{
-    width: 134px;
+    width: 135px;
 }
 
 #valor, #comprimento, #largura, #mao_obra, #cuba, #frete, #quantidade, #desconto{
-    width: 45px;
+    width: 55px;
 }
 
-#total{
-    width: 85px;
+#total, #total_vista{
+    width: 100px;
 }
 
 button {
@@ -105,6 +123,16 @@ button {
     border: none;
     border-radius: 8px;
     cursor: pointer;
+}
+
+.add-group-btn {
+    background-color: var(--corfundo);
+    color: rgb(0, 0, 0);
+    box-shadow: 3px 1px 3px rgba(0, 0, 0, 0.685);
+}
+    
+.add-btn:hover {
+    background-color: var(--cordestaque);
 }
 
 .add-btn {
@@ -118,22 +146,37 @@ button {
 }   
 
 
-.items {
+.itens-grupo {
     display: flex;
     flex-wrap: wrap;
     gap: 1rem;
 }
 
-.item-card {
+.grupo-card {
     background-color: #fff;
     padding: 1rem;
     margin-bottom: 15px;
     border-radius: 10px;
     box-shadow: 3px 3px 6px rgba(0, 0, 0, 0.685);
     position: relative;
-    width: 120px;
+    width: 170px;
 }
 
+@media (min-width: 600px) {
+    .grupo-card {
+        width: 700px;
+        display: flex;
+        justify-content: space-between;
+        align-items: flex-start;
+        gap: 1rem;
+        margin: 0 auto;
+    }
+
+    .item-cards p {
+        margin: 0;
+        flex: 1;
+    }
+}
 .remove-btn {
     position: absolute;
     top: 3px;
@@ -141,7 +184,7 @@ button {
     background: var(--corbotão);
     color: white;
     border: none;
-    padding: 4px 8px;
+    padding: 1px 5px;
     border-radius: 4px;
     cursor: pointer;
     box-shadow: 3px 1px 3px rgba(0, 0, 0, 0.685);
@@ -168,13 +211,4 @@ button {
 .edit-btn:hover {
     background-color: var(--cordestaque);
     
-}
-
-footer {
-    position: fixed;
-    bottom: 0;
-    color: var(--cordestaque);
-    text-align: center;
-    font-size: 0.8rem;
-    width: 90%;
 }
