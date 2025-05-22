@@ -15,7 +15,7 @@ function calcularTotal() {
     document.getElementById('total_vista').value = `R$ ${total_vista.toFixed(2)}`;
 }
 
-function adicionarItem() {
+function adicionar_novo_orcamento() {
     const cliente = document.getElementById('cliente').value;
     const produto = document.getElementById('produto').value;
     const material = document.getElementById('material').value;
@@ -57,12 +57,12 @@ function adicionarItem() {
     card.innerHTML = `
         <button class="remove-btn" onclick="this.parentElement.remove()">X</button>
         <button class="edit-btn" onclick="editarItem(this)">Editar</button>
-        <strong>Cliente:</strong> ${cliente}<br>
-        <strong>Produto:</strong> ${produto}<br>
-        <strong>Material:</strong> ${material}<br>
-        <strong>M²:</strong> ${metro.toFixed(2)}<br>
-        <strong>Total a prazo:</strong> R$ ${totalAprazo}<br>
-        <strong>Total a vista:</strong> R$ ${totalAvista}
+        <p><strong>Cliente:</strong> ${cliente}</p>
+        <p><strong>Produto:</strong> ${produto}</p>
+        <p><strong>Material:</strong> ${material}</p>
+        <p><strong>M²:</strong> ${metro.toFixed(2)}</p>
+        <p><strong>Total a prazo:</strong> R$ ${totalAprazo}</p>
+        <p><strong>Total à vista:</strong> R$ ${totalAvista.toFixed(2)}</p>
     `;
     document.getElementById('lista-itens').appendChild(card);
 }

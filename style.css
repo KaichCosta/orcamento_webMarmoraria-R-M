@@ -110,7 +110,7 @@ input:hover {
 }
 
 #valor, #comprimento, #largura, #mao_obra, #cuba, #frete, #quantidade, #desconto{
-    width: 45px;
+    width: 55px;
 }
 
 #total, #total_vista{
@@ -123,6 +123,16 @@ button {
     border: none;
     border-radius: 8px;
     cursor: pointer;
+}
+
+.add-group-btn {
+    background-color: var(--corfundo);
+    color: rgb(0, 0, 0);
+    box-shadow: 3px 1px 3px rgba(0, 0, 0, 0.685);
+}
+    
+.add-btn:hover {
+    background-color: var(--cordestaque);
 }
 
 .add-btn {
@@ -149,11 +159,24 @@ button {
     border-radius: 10px;
     box-shadow: 3px 3px 6px rgba(0, 0, 0, 0.685);
     position: relative;
-    min-width: 324px;
-    max-width: 350px;
-    width: 330px;
+    width: 170px;
 }
 
+@media (min-width: 600px) {
+    .item-card {
+        width: 700px;
+        display: flex;
+        justify-content: space-between;
+        align-items: flex-start;
+        gap: 1rem;
+        margin: 0 auto;
+    }
+
+    .item-card p {
+        margin: 0;
+        flex: 1;
+    }
+}
 .remove-btn {
     position: absolute;
     top: 3px;
@@ -161,7 +184,7 @@ button {
     background: var(--corbotão);
     color: white;
     border: none;
-    padding: 4px 8px;
+    padding: 1px 5px;
     border-radius: 4px;
     cursor: pointer;
     box-shadow: 3px 1px 3px rgba(0, 0, 0, 0.685);
