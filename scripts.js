@@ -16,7 +16,8 @@ function calcularTotal() {
 }
 
 function adicionarAoGrupo() {
-    const cliente = document.getElementById('cliente').value;
+    const cliente = document.getElementById('cliente').value.trim();
+    const clienteID = cliente.replace(/\s+/g, "_");
     const produto = document.getElementById('produto').value;
     const material = document.getElementById('material').value;
     const valor = parseFloat(document.getElementById('valor').value) || 0;
@@ -37,28 +38,31 @@ function adicionarAoGrupo() {
     document.getElementById('total').value = `R$ ${totalAprazo.toFixed(2)}`;
     document.getElementById('total_vista').value = `R$ ${totalAvista.toFixed(2)}`;
 
-    // PROS GRUPOS:
-
-    let grupo = grupos.find(g => g.cliente === cliente);
-    if (!grupo) {
-        grupo = { cliente, itens: [] };
-        grupos.push(grupo);
-        criarGrupoVisual(grupo);
-    }
-
     const novoItem = {
         produto,
         material,
         metro,
-        totalAprazo,
-        totalAvista,
         comprimento,
         largura,
-        quantidade
+        quantidade,
+        mao_obra,
+        cuba,
+        frete,
+        desconto,
+        totalAprazo,
+        totalAvista
     };
 
-    grupo.itens.push(novoItem);
-    atualizarGrupoVisual(grupo);
+    let grupo = grupos.find(g => g.cliente === cliente);
+
+    if (!grupo) {
+        grupo = { cliente, itens: [novoItem] };
+        grupos.push(grupo);
+        criarGrupoVisual(grupo);
+    } else {
+        grupo.itens.push(novoItem);
+        atualizarGrupoVisual(grupo);
+    }
 }
 
 let materiais = {};
@@ -117,58 +121,43 @@ function editarItem(botao) {
 
 let grupos = [];
 
-function adicionarAoGrupo() {
-    const cliente = document.getElementById('cliente').value;
-    const produto = document.getElementById('produto').value;
-    const material = document.getElementById('material').value;
-    const valor = parseFloat(document.getElementById('valor').value) || 0;
-    const comprimento = parseFloat(document.getElementById('comprimento').value) || 0;
-    const largura = parseFloat(document.getElementById('largura').value) || 0;
-
-    const metro = comprimento * largura;
-    const totalItem = valor * metro;
-
-    let grupo = grupos.find(g => g.cliente === cliente);
-
-    if (!grupo) {
-        grupo = {
-        cliente,
-        itens: [],
-        };
-        grupos.push(grupo);
-        criarGrupoVisual(grupo);
-    }
-
-    const novoItem = { produto, material, metro, total: totalItem };
-    grupo.itens.push(novoItem);
-
-    atualizarGrupoVisual(grupo);
-}
-
 function criarGrupoVisual(grupo) {
     const container = document.getElementById('grupo-orcamentos');
-    const div = document.createElement('div');
-    div.className = 'grupo-card';
-    div.id = `grupo-${grupo.cliente}`;
+    const clienteID = grupo.cliente.replace(/\s+/g, "_");
+    let grupoDiv = document.getElementById(`grupo-${clienteID}`);
 
-    div.innerHTML = `
-        <h3>Orçamento de: ${grupo.cliente}</h3>
-        <div class="itens-grupo"></div>
-        <button class="save-btn" onclick="salvarOrcamento('${grupo.cliente}')">Salvar Orçamento</button>
-    `;
 
-    container.appendChild(div);
+    if (!grupoDiv) {
+        grupoDiv = document.createElement('div');
+        grupoDiv.className = 'grupo-card';
+        grupoDiv.id = `grupo-${grupo.cliente.replace(/\s+/g, "_")}`;
+
+        grupoDiv.innerHTML = `
+            <h3>Orçamento de: ${grupo.cliente}</h3>
+            <div class="itens-grupo"></div>
+            <button class="save-btn" onclick="salvarOrcamento('${grupo.cliente}')">Salvar Orçamento</button>
+        `;
+
+        container.appendChild(grupoDiv);
+        setTimeout(() => atualizarGrupoVisual(grupo), 0);
+    } else {
+        atualizarGrupoVisual(grupo);
+    }
 }
 
 function atualizarGrupoVisual(grupo) {
-    const grupoDiv = document.querySelector(`#grupo-${grupo.cliente} .itens-grupo`);
-    grupoDiv.innerHTML = ''; // limpa para recriar
+    const clienteID = grupo.cliente.replace(/\s+/g, "_");
+    const grupoDiv = document.querySelector(`#grupo-${clienteID} .itens-grupo`);
 
-    grupo.itens.forEach(item => {
+    grupoDiv.innerHTML = ''; 
+
+    grupo.itens.forEach((item, index) => {
         const card = document.createElement('div');
         card.className = 'item-card';
+        card.dataset.item = JSON.stringify(item);
+
         card.innerHTML = `
-            <button class="remove-btn" onclick="this.parentElement.remove()">X</button>
+            <button class="remove-btn" onclick="removerItem('${grupo.cliente}', ${index})">X</button>
             <button class="edit-btn" onclick="editarItem(this)">Editar</button>
             <p><strong>Produto:</strong> ${item.produto}</p>
             <p><strong>Material:</strong> ${item.material}</p>
@@ -179,6 +168,36 @@ function atualizarGrupoVisual(grupo) {
         grupoDiv.appendChild(card);
     });
 }
+
+function removerItem(cliente, index) {
+    // Acha o grupo no array
+    const grupo = grupos.find(g => g.cliente === cliente);
+    if (!grupo) return;
+
+    // Remove o item do array
+    grupo.itens.splice(index, 1);
+
+    // Atualiza a visualização
+    if (grupo.itens.length === 0) {
+        // Remove o grupo inteiro da interface
+        const clienteID = cliente.replace(/\s+/g, "_");
+        const grupoDiv = document.getElementById(`grupo-${clienteID}`);
+
+        if (grupoDiv) {
+            grupoDiv.remove();
+        }
+
+        // Remove do array de grupos também
+        const indexGrupo = grupos.findIndex(g => g.cliente === cliente);
+        if (indexGrupo !== -1) {
+            grupos.splice(indexGrupo, 1);
+        }
+    } else {
+        // Só atualiza a visualização se ainda tiver itens
+        atualizarGrupoVisual(grupo);
+    }
+}
+
 
 function salvarOrcamento(cliente) {
     const grupo = grupos.find(g => g.cliente === cliente);

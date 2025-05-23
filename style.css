@@ -212,3 +212,8 @@ button {
     background-color: var(--cordestaque);
     
 }
+
+.vai-sumir {
+    font-size: 1em;
+    text-align: end;
+}
