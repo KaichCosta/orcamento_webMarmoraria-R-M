@@ -133,7 +133,7 @@ function criarGrupoVisual(grupo) {
         grupoDiv.id = `grupo-${grupo.cliente.replace(/\s+/g, "_")}`;
 
         grupoDiv.innerHTML = `
-            <h3>Orçamento de: ${grupo.cliente}</h3>
+            <h2>Orçamento de: ${grupo.cliente}</h2>
             <div class="itens-grupo"></div>
             <button class="save-btn" onclick="salvarOrcamento('${grupo.cliente}')">Salvar Orçamento</button>
         `;
@@ -162,7 +162,7 @@ function atualizarGrupoVisual(grupo) {
             <p><strong>Produto:</strong> ${item.produto}</p>
             <p><strong>Material:</strong> ${item.material}</p>
             <p><strong>M²:</strong> ${item.metro.toFixed(2)}</p>
-            <p><strong>Total a prazo:</strong> R$ ${item.totalAprazo}</p>
+            <p><strong>Total a prazo:</strong> R$ ${item.totalAprazo.toFixed(2)}</p>
             <p><strong>Total à vista:</strong> R$ ${item.totalAvista.toFixed(2)}</p>
         `;
         grupoDiv.appendChild(card);

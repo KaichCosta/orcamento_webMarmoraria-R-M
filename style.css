@@ -45,7 +45,7 @@ body {
     border-radius: 10px;
     min-width: 375px;
     min-height: 500px;
-    width: 800px;
+    width: 500px;
 
 }
 
@@ -99,6 +99,7 @@ input, select {
     border: 2px solid var(--cordestaque);
     border-radius: 10px;
     margin: 0px;
+    font-size: 13px;
 }
 
 input:hover {
@@ -110,7 +111,7 @@ input:hover {
 }
 
 #valor, #comprimento, #largura, #mao_obra, #cuba, #frete, #quantidade, #desconto{
-    width: 55px;
+    width: 60px;
 }
 
 #total, #total_vista{
@@ -145,32 +146,46 @@ button {
     background-color: var(--cordestaque);
 }   
 
-
-.itens-grupo {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 1rem;
+h2{
+    font-size: 1em;
 }
-
-.grupo-card {
-    background-color: #fff;
+.grupo-card {/*grupo maior onde fica o botão de salvar e o h2*/
+    display: flex;
+    flex-direction: column;
+    background-color: var(--corfundo);
     padding: 1rem;
     margin-bottom: 15px;
     border-radius: 10px;
     box-shadow: 3px 3px 6px rgba(0, 0, 0, 0.685);
     position: relative;
-    width: 170px;
+    width: 324px;
 }
 
 @media (min-width: 600px) {
     .grupo-card {
-        width: 700px;
+        width: 500px;
         display: flex;
         justify-content: space-between;
         align-items: flex-start;
         gap: 1rem;
         margin: 0 auto;
     }
+
+.itens-grupo {/*isso aqui é onde fica produto, valor*/
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: row;
+    gap: 1rem;
+    background-color: azure;
+    padding: 1rem;
+    margin-bottom: 15px;
+    border-radius: 10px;
+    box-shadow: 3px 3px 6px rgba(0, 0, 0, 0.685);
+    position: relative;
+    /*max-width: 330px;
+    width: 210px;*/
+    width: 100%;
+}
 
     .item-cards p {
         margin: 0;
@@ -214,6 +229,6 @@ button {
 }
 
 .vai-sumir {
+    position: absolute;
     font-size: 1em;
-    text-align: end;
 }
