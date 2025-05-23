@@ -100,23 +100,20 @@ function editarItem(botao) {
     const card = botao.parentElement;
     const dados = JSON.parse(card.dataset.item);
 
-    // Preenche os campos com os dados do card
-    document.getElementById('cliente').value = dados.cliente;
-    document.getElementById('produto').value = dados.produto;
-    document.getElementById('material').value = dados.material;
-    document.getElementById('valor').value = dados.valor;
-    document.getElementById('comprimento').value = dados.comprimento;
-    document.getElementById('largura').value = dados.largura;
-    document.getElementById('mao_obra').value = dados.mao_obra;
-    document.getElementById('cuba').value = dados.cuba;
-    document.getElementById('frete').value = dados.frete;
-    document.getElementById('quantidade').value = dados.quantidade;
-    document.getElementById('desconto').value = dados.desconto;
+    document.getElementById('cliente').value = dados.cliente || '';
+    document.getElementById('produto').value = dados.produto || '';
+    document.getElementById('material').value = dados.material || '';
+    document.getElementById('valor').value = dados.valor || '';
+    document.getElementById('comprimento').value = dados.comprimento || '';
+    document.getElementById('largura').value = dados.largura || '';
+    document.getElementById('mao_obra').value = dados.mao_obra || '';
+    document.getElementById('cuba').value = dados.cuba || '';
+    document.getElementById('frete').value = dados.frete || '';
+    document.getElementById('quantidade').value = dados.quantidade || '';
+    document.getElementById('desconto').value = dados.desconto || '';
 
-    // Remove o card da lista (vai ser refeito quando clicar em "Adicionar Item")
     card.remove();
-
-    calcularTotal();
+    calcularTotal?.();
 }
 
 let grupos = [];
@@ -134,9 +131,11 @@ function criarGrupoVisual(grupo) {
 
         grupoDiv.innerHTML = `
             <h2>Orçamento de: ${grupo.cliente}</h2>
+            <button class="remove-btn" onclick="removerGrupo('${grupo.cliente}')">X</button>
             <div class="itens-grupo"></div>
             <button class="save-btn" onclick="salvarOrcamento('${grupo.cliente}')">Salvar Orçamento</button>
         `;
+
 
         container.appendChild(grupoDiv);
         setTimeout(() => atualizarGrupoVisual(grupo), 0);
@@ -154,6 +153,9 @@ function atualizarGrupoVisual(grupo) {
     grupo.itens.forEach((item, index) => {
         const card = document.createElement('div');
         card.className = 'item-card';
+
+        card.dataset.index = index;
+        card.dataset.cliente = grupo.cliente;
         card.dataset.item = JSON.stringify(item);
 
         card.innerHTML = `
@@ -198,6 +200,18 @@ function removerItem(cliente, index) {
     }
 }
 
+function removerGrupo(cliente) {
+    const clienteID = cliente.replace(/\s+/g, "_");
+
+    // Remove da lista de grupos
+    grupos = grupos.filter(g => g.cliente !== cliente);
+
+    // Remove do DOM
+    const grupoCard = document.getElementById(`grupo-${clienteID}`);
+    if (grupoCard) {
+        grupoCard.remove();
+    }
+}
 
 function salvarOrcamento(cliente) {
     const grupo = grupos.find(g => g.cliente === cliente);
