@@ -147,20 +147,20 @@ function criarGrupoVisual(grupo) {
 function atualizarGrupoVisual(grupo) {
     const clienteID = grupo.cliente.replace(/\s+/g, "_");
     const grupoDiv = document.querySelector(`#grupo-${clienteID} .itens-grupo`);
-
+    console.log(grupoDiv)
     grupoDiv.innerHTML = ''; 
 
     grupo.itens.forEach((item, index) => {
         const card = document.createElement('div');
         card.className = 'item-card';
 
-        card.dataset.index = index;
-        card.dataset.cliente = grupo.cliente;
+        //card.dataset.index = index;
+        //card.dataset.cliente = grupo.cliente;
         card.dataset.item = JSON.stringify(item);
 
         card.innerHTML = `
-            <button class="remove-btn" onclick="removerItem('${grupo.cliente}', ${index})">X</button>
-            <button class="edit-btn" onclick="editarItem(this)">Editar</button>
+            <button class="remove-btn" data-cliente="${grupo.cliente}" data-index="${index}" onclick="removerItemBtn(this)">X</button>
+            <button class="edit-btn" data-cliente="${grupo.cliente}" data-index="${index}" onclick="editarItemBtn(this)">Editar</button>
             <p><strong>Produto:</strong> ${item.produto}</p>
             <p><strong>Material:</strong> ${item.material}</p>
             <p><strong>M²:</strong> ${item.metro.toFixed(2)}</p>

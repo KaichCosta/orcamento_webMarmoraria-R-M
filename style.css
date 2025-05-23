@@ -176,7 +176,7 @@ h2{
     flex-wrap: wrap;
     flex-direction: row;
     gap: 1rem;
-    background-color: azure;
+    background-color: var(--cordestaque);
     padding: 1rem;
     margin-bottom: 15px;
     border-radius: 10px;
@@ -187,10 +187,26 @@ h2{
     width: 100%;
 }
 
-    .item-cards p {
-        margin: 0;
-        flex: 1;
-    }
+.item-card {
+    /*display: flex;
+    flex-wrap: wrap;
+    flex-direction: row;
+    gap: 1rem;*/
+    background-color: var(--corfundodiv);
+    padding: 1rem;
+    margin-bottom: 15px;
+    border-radius: 10px;
+    box-shadow: 3px 3px 6px rgba(0, 0, 0, 0.685);
+    position: relative;
+    max-width: 330px;
+    width: 210px;
+
+}
+
+.item-cards p {
+    margin: 0;
+    flex: 1;
+}
 }
 .remove-btn {
     position: absolute;
