@@ -171,7 +171,7 @@ h2{
         margin: 0 auto;
     }
 
-.itens-grupo {/*isso aqui é onde fica produto, valor*/
+.itens-grupo {/*isso aqui é onde fica os produtos, valores (item-card)*/
     display: flex;
     flex-wrap: wrap;
     flex-direction: row;
@@ -182,16 +182,12 @@ h2{
     border-radius: 10px;
     box-shadow: 3px 3px 6px rgba(0, 0, 0, 0.685);
     position: relative;
-    /*max-width: 330px;
-    width: 210px;*/
-    width: 100%;
+    max-width: 480px;
+    min-width: 230px;
+    /*width: 100%;*/
 }
 
 .item-card {
-    /*display: flex;
-    flex-wrap: wrap;
-    flex-direction: row;
-    gap: 1rem;*/
     background-color: var(--corfundodiv);
     padding: 1rem;
     margin-bottom: 15px;

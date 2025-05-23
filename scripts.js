@@ -213,6 +213,16 @@ function removerGrupo(cliente) {
     }
 }
 
+function removerItemBtn(botao) {
+    const cliente = botao.dataset.cliente;
+    const index = parseInt(botao.dataset.index, 10);
+    removerItem(cliente, index);
+}
+
+function editarItemBtn(botao) {
+    editarItem(botao);
+}
+
 function salvarOrcamento(cliente) {
     const grupo = grupos.find(g => g.cliente === cliente);
     if (grupo) {
