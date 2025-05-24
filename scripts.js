@@ -39,8 +39,10 @@ function adicionarAoGrupo() {
     document.getElementById('total_vista').value = `R$ ${totalAvista.toFixed(2)}`;
 
     const novoItem = {
+        cliente,
         produto,
         material,
+        valor,
         metro,
         comprimento,
         largura,
@@ -54,15 +56,14 @@ function adicionarAoGrupo() {
     };
 
     let grupo = grupos.find(g => g.cliente === cliente);
-
     if (!grupo) {
-        grupo = { cliente, itens: [novoItem] };
+        grupo = { cliente: cliente, itens: [] };
         grupos.push(grupo);
-        criarGrupoVisual(grupo);
-    } else {
-        grupo.itens.push(novoItem);
-        atualizarGrupoVisual(grupo);
+        criarGrupoVisual(grupo); // Só cria se for novo
     }
+
+    grupo.itens.push(novoItem);
+    atualizarGrupoVisual(grupo); // Sempre atualiza
 }
 
 let materiais = {};
@@ -112,9 +113,21 @@ function editarItem(botao) {
     document.getElementById('quantidade').value = dados.quantidade || '';
     document.getElementById('desconto').value = dados.desconto || '';
 
-    card.remove();
+    // Remove o item da lista original
+    const cliente = dados.cliente;
+    const grupo = grupos.find(g => g.cliente === cliente);
+    const index = grupo.itens.findIndex(i =>
+        JSON.stringify(i) === JSON.stringify(dados)
+    );
+
+    if (index !== -1) {
+        grupo.itens.splice(index, 1);
+        atualizarGrupoVisual(grupo);
+    }
+
     calcularTotal?.();
 }
+
 
 let grupos = [];
 
