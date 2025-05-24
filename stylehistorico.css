@@ -1,0 +1,93 @@
+:root{
+    --corfundo: #cacacb;
+    --corfundodiv: #f5f5f5;
+    --corcontraste: black;
+    --cordestaque: rgb(129, 0, 0);
+    --corbotão: rgb(241, 2, 2);
+
+    --fontepadrao:, Arial, Verdana, sans-serif;
+    --fontedestaque: Verdana, sans-serif;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+.grupo-card {/*grupo maior onde fica o botão de salvar e o h2*/
+    display: flex;
+    flex-direction: column;
+    background-color: var(--corfundodiv);
+    padding: 10px;
+    margin-bottom: 15px;
+    border-radius: 10px;
+    box-shadow: 3px 3px 6px rgba(0, 0, 0, 0.685);
+    position: relative;
+}
+
+@media (min-width: 600px) {
+    .grupo-card {
+        width: 500px;
+        display: flex;
+        justify-content: space-between;
+        align-items: flex-start;
+        gap: 0.5rem;
+        margin: 0 auto;
+    }
+}
+.itens-grupo {/*isso aqui é onde fica os produtos, valores (item-card) cor vermelha*/
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+    background-color: var(--cordestaque);
+    padding: 1rem;
+    margin-bottom: 15px;
+    border-radius: 10px;
+    box-shadow: 3px 3px 6px rgba(0, 0, 0, 0.685);
+    position: relative;
+    max-width: 480px;
+    min-width: 130px;
+    /*width: 100%;*/
+}
+
+.item-card {
+    background-color: #fff;
+    padding: 1rem;
+    border-radius: 10px;
+    box-shadow: 3px 3px 6px rgba(0, 0, 0, 0.685);
+    position: relative;
+    max-width: 330px;
+    gap: 0.5rem;
+    width: 210px;
+
+}
+
+.item-cards p {
+    margin: 0;
+    flex: 1;
+}
+@media (max-width: 430px) {
+    .grupo-card {
+        min-width: 324px;
+        max-width: 350px;
+        width: 100%;
+        margin: 0 auto;
+        padding: 10px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        margin: 0 auto 10px auto;
+    }
+
+    /*.itens-grupo {
+
+        width: 160px;
+
+    }*/
+
+    .item-card {
+        width: 140px;
+        max-width: 100%;
+    }
+}

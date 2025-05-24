@@ -238,8 +238,14 @@ function editarItemBtn(botao) {
 
 function salvarOrcamento(cliente) {
     const grupo = grupos.find(g => g.cliente === cliente);
-    if (grupo) {
-        localStorage.setItem(`orcamento-${cliente}`, JSON.stringify(grupo));
-        alert(`Orçamento de ${cliente} salvo com sucesso!`);
-    }
+    if (!grupo) return;
+
+    // Salva o grupo individualmente
+    localStorage.setItem(`orcamento-${cliente}`, JSON.stringify(grupo));
+
+    // Salva todos os grupos no array principal
+    localStorage.setItem('gruposOrcamento', JSON.stringify(grupos));
+
+    alert(`Orçamento de ${cliente} salvo com sucesso!`);
 }
+
