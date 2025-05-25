@@ -10,33 +10,43 @@
     <div id="historico-container"></div>
 
     <script>
-        window.onload = function() {
-        const container = document.getElementById("historico-container");
-        const gruposSalvos = localStorage.getItem("gruposOrcamento");
+        window.onload = function () {
+            const container = document.getElementById("historico-container");
+            const dadosSalvos = localStorage.getItem("gruposOrcamento");
 
-        if (gruposSalvos) {
-            const grupos = JSON.parse(gruposSalvos);
-            grupos.forEach(grupo => {
-            const grupoDiv = document.createElement("div");
-            grupoDiv.className = "grupo-card";
-            grupoDiv.innerHTML = `
-                <h2>Cliente: ${grupo.cliente}</h2>
-                ${grupo.itens.map(item => `
-                <div>
-                    <p><strong>Produto:</strong> ${item.produto}</p>
-                    <p><strong>Material:</strong> ${item.material}</p>
-                    <p><strong>Total a prazo:</strong> R$ ${item.totalAprazo.toFixed(2)}</p>
-                    <p><strong>Total à vista:</strong> R$ ${item.totalAvista.toFixed(2)}</p>
-                    <hr/>
-                </div>
-                `).join('')}
-            `;
-            container.appendChild(grupoDiv);
-            });
-        } else {
-            container.innerHTML = "<p>Nenhum orçamento salvo.</p>";
-        }
+            if (dadosSalvos) {
+                const grupos = JSON.parse(dadosSalvos);
+
+                if (grupos.length === 0) {
+                    container.innerHTML = "<p>Nenhum orçamento salvo.</p>";
+                    return;
+                }
+
+                grupos.forEach(grupo => {
+                    const grupoDiv = document.createElement("div");
+                    grupoDiv.className = "grupo-card";
+
+                    grupoDiv.innerHTML = `
+                        <h2>Cliente: ${grupo.cliente}</h2>
+                        ${grupo.itens.map(item => `
+                            <div class="item-card">
+                                <p><strong>Produto:</strong> ${item.produto}</p>
+                                <p><strong>Material:</strong> ${item.material}</p>
+                                <p><strong>Total a prazo:</strong> R$ ${item.totalAprazo.toFixed(2)}</p>
+                                <p><strong>Total à vista:</strong> R$ ${item.totalAvista.toFixed(2)}</p>
+                                <hr/>
+                            </div>
+                        `).join('')}
+                    `;
+
+                    container.appendChild(grupoDiv);
+                });
+            } else {
+                container.innerHTML = "<p>Nenhum orçamento salvo.</p>";
+            }
         };
     </script>
+    <button class="limpar-btn" onclick="localStorage.removeItem('gruposOrcamento'); location.reload();">Limpar histórico</button>
+
 </body>
 </html>
