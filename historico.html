@@ -10,7 +10,6 @@
     <div id="historico-container">
         <button class="limpar-btn" onclick="localStorage.removeItem('gruposOrcamento'); location.reload();">Limpar histórico</button>
     </div>
-
     <script>
         window.onload = function () {
             const container = document.getElementById("historico-container");
@@ -30,13 +29,14 @@
 
                     grupoDiv.innerHTML = `
                         <h2>Cliente: ${grupo.cliente}</h2>
+                        <h3><strong></strong> ${grupo.dataHora || 'Data não disponível'}</h3>
                         ${grupo.itens.map(item => `
                             <div class="item-card">
                                 <p><strong>Produto:</strong> ${item.produto}</p>
                                 <p><strong>Material:</strong> ${item.material}</p>
                                 <p><strong>Total a prazo:</strong> R$ ${item.totalAprazo.toFixed(2)}</p>
                                 <p><strong>Total à vista:</strong> R$ ${item.totalAvista.toFixed(2)}</p>
-                                <button onclick='editarItemHistorico(${JSON.stringify(item)}, "${grupo.cliente}")'>Editar Item</button>
+                                <button class="edit-item-btn" onclick='editarItemHistorico(${JSON.stringify(item)}, "${grupo.cliente}")'>Editar Item</button>
                                 <hr/>
                             </div>
                         `).join('')}
@@ -60,6 +60,15 @@
 
             // Redireciona para a página de edição
             window.location.href = 'index.html';
+        }
+
+        function mostrarAlerta(mensagem) {
+            document.getElementById("alert-msg").textContent = mensagem;
+            document.getElementById("alert-custom").style.display = "flex";
+        }
+
+        function fecharAlerta() {
+            document.getElementById("alert-custom").style.display = "none";
         }
 
     </script>

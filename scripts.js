@@ -237,16 +237,39 @@ function editarItemBtn(botao) {
 }
 
 function salvarOrcamento(cliente) {
-    const grupo = grupos.find(g => g.cliente === cliente);
-    if (!grupo) return;
+    if (!cliente) {
+        mostrarAlerta("Informe o nome do cliente para salvar o orçamento.");
+        return;
+    }
 
-    // Salva o grupo individualmente
-    localStorage.setItem(`orcamento-${cliente}`, JSON.stringify(grupo));
+    // Carrega grupos existentes
+    let gruposSalvos = JSON.parse(localStorage.getItem('gruposOrcamento')) || [];
 
-    // Salva todos os grupos no array principal
-    localStorage.setItem('gruposOrcamento', JSON.stringify(grupos));
+    // Verifica se o grupo já existe
+    const indiceExistente = gruposSalvos.findIndex(g => g.cliente === cliente);
 
-    alert(`Orçamento de ${cliente} salvo com sucesso!`);
+    const grupoAtual = grupos.find(g => g.cliente === cliente);
+
+    if (!grupoAtual) {
+        mostrarAlerta("Grupo atual não encontrado.");
+        return;
+    }
+
+    const dataHoraAtual = new Date().toLocaleString("pt-BR");
+
+    if (indiceExistente !== -1) {
+        grupoAtual.dataHora = dataHoraAtual;
+        // Substitui o grupo existente
+        gruposSalvos[indiceExistente] = grupoAtual;
+    } else {
+        grupoAtual.dataHora = dataHoraAtual;
+        // Adiciona novo grupo
+        gruposSalvos.push(grupoAtual);
+    }
+
+    // Salva de volta no localStorage
+    localStorage.setItem('gruposOrcamento', JSON.stringify(gruposSalvos));
+    mostrarAlerta(`Orçamento de ${cliente} salvo com sucesso!`);
 }
 
 window.onload = function () {
@@ -269,3 +292,12 @@ window.onload = function () {
         localStorage.removeItem('itemEmEdicao');
     }
 };
+
+function mostrarAlerta(mensagem) {
+    document.getElementById("alert-msg").textContent = mensagem;
+    document.getElementById("alert-custom").style.display = "flex";
+}
+
+function fecharAlerta() {
+    document.getElementById("alert-custom").style.display = "none";
+}
