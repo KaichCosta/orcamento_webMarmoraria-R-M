@@ -144,9 +144,25 @@ button:hover {
 }
     
 .add-btn:hover {
-    background-color: var(--cordestaque);
-    animation-duration: 0.5s;
+    background-color: var(--cordestaque); 
 }   
+
+.historico-link {
+
+    padding: 10px 16px;
+    font-weight: bold;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+    background-color: var(--corbotão);
+    color: white;
+    box-shadow: 3px 1px 3px rgba(0, 0, 0, 0.685);
+    text-decoration: none;
+}
+
+.historico-link:hover {
+    background-color: var(--cordestaque);
+}    
 
 h2{
     font-size: 1em;
