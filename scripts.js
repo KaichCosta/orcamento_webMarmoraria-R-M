@@ -249,3 +249,23 @@ function salvarOrcamento(cliente) {
     alert(`Orçamento de ${cliente} salvo com sucesso!`);
 }
 
+window.onload = function () {
+    const itemSalvo = localStorage.getItem('itemEmEdicao');
+    if (itemSalvo) {
+        const dados = JSON.parse(itemSalvo);
+
+        document.getElementById('cliente').value = dados.cliente || '';
+        document.getElementById('produto').value = dados.produto || '';
+        document.getElementById('material').value = dados.material || '';
+        document.getElementById('valor').value = dados.valor || '';
+        document.getElementById('comprimento').value = dados.comprimento || '';
+        document.getElementById('largura').value = dados.largura || '';
+        document.getElementById('mao_obra').value = dados.mao_obra || '';
+        document.getElementById('cuba').value = dados.cuba || '';
+        document.getElementById('frete').value = dados.frete || '';
+        document.getElementById('quantidade').value = dados.quantidade || '';
+        document.getElementById('desconto').value = dados.desconto || '';
+
+        localStorage.removeItem('itemEmEdicao');
+    }
+};
