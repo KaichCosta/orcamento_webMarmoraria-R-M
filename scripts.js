@@ -273,6 +273,7 @@ function salvarOrcamento(cliente) {
 }
 
 window.onload = function () {
+    fecharAlerta();
     const itemSalvo = localStorage.getItem('itemEmEdicao');
     if (itemSalvo) {
         const dados = JSON.parse(itemSalvo);
