@@ -32,6 +32,7 @@
                         <h3><strong></strong> ${grupo.dataHora || 'Data não disponível'}</h3>
                         ${grupo.itens.map(item => `
                             <div class="item-card">
+                                <button class="remove-btn" data-cliente="${grupo.cliente}" data-index="${index}" onclick="removerItemBtn(this)">X</button>
                                 <p><strong>Produto:</strong> ${item.produto}</p>
                                 <p><strong>Material:</strong> ${item.material}</p>
                                 <p><strong>Total a prazo:</strong> R$ ${item.totalAprazo.toFixed(2)}</p>
@@ -69,6 +70,31 @@
 
         function fecharAlerta() {
             document.getElementById("alert-custom").style.display = "none";
+        }
+
+        function salvarGruposNoStorage() {
+            localStorage.setItem("grupos", JSON.stringify(grupos));
+}
+
+        function removerItemBtn(botao) {
+            const cliente = botao.dataset.cliente;
+            const index = parseInt(botao.dataset.index);
+
+            const grupo = grupos.find(g => g.cliente === cliente);
+            if (!grupo || !grupo.itens[index]) return;
+
+            // Remove o item do array
+            grupo.itens.splice(index, 1);
+
+            // Se o grupo não tiver mais itens, remove o grupo inteiro
+            if (grupo.itens.length === 0) {
+                const grupoIndex = grupos.findIndex(g => g.cliente === cliente);
+                if (grupoIndex !== -1) grupos.splice(grupoIndex, 1);
+            }
+
+            // Atualiza o localStorage e a interface
+            salvarGruposNoStorage();
+            atualizarGrupoVisual(grupo);
         }
 
     </script>
