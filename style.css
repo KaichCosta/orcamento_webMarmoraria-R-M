@@ -169,42 +169,43 @@ h2{
     padding: 0px;
 }
 .grupo-card {/*grupo maior onde fica o botão de salvar e o h2*/
+    max-width: 500px;
+    width: 100%;
     display: flex;
     flex-direction: column;
     background-color: var(--corfundodiv);
     padding: 10px;
     margin-bottom: 15px;
     border-radius: 10px;
+    box-sizing: border-box;
     box-shadow: 3px 3px 6px rgba(0, 0, 0, 0.685);
     position: relative;
 }
 
 @media (min-width: 600px) {
     .grupo-card {
-        width: 500px;
-        display: flex;
-        justify-content: space-between;
-        align-items: flex-start;
-        gap: 0.5rem;
+        align-items: center;
         margin: 0 auto;
     }
 }
+
 .itens-grupo {/*isso aqui é onde fica os produtos, valores (item-card) cor vermelha*/
+    box-sizing: border-box;
     display: flex;
     flex-wrap: wrap;
+    max-width: 468px;
     gap: 1rem;
     background-color: var(--cordestaque);
     padding: 1rem;
     margin-bottom: 15px;
     border-radius: 10px;
     box-shadow: 3px 3px 6px rgba(0, 0, 0, 0.685);
-    position: relative;
-    max-width: 480px;
-    min-width: 130px;
-    /*width: 100%;*/
 }
 
+
 .item-card {
+    word-break: break-word;
+    overflow-wrap: break-word;
     background-color: #fff;
     padding: 1rem;
     border-radius: 10px;
@@ -213,7 +214,8 @@ h2{
     max-width: 330px;
     gap: 0.5rem;
     width: 210px;
-
+    font-size: 0.9rem;
+    padding: 6px 5px;
 }
 
 .item-cards p {
@@ -226,9 +228,6 @@ h2{
         max-width: 350px;
         width: 100%;
         margin: 0 auto;
-        padding: 10px;
-        display: flex;
-        flex-direction: column;
         align-items: center;
         margin: 0 auto 10px auto;
     }
@@ -236,8 +235,8 @@ h2{
     /*.itens-grupo {
 
         width: 160px;
-
     }*/
+    
 
     .item-card {
         width: 140px;
