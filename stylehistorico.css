@@ -42,6 +42,7 @@ hr {
     position: relative;
     width: 380px;
     margin: 0 auto;
+    
 }
 .grupo-card {/*grupo onde está o produto, material*/
     display: flex;
@@ -53,6 +54,11 @@ hr {
     box-shadow: 3px 3px 6px rgba(0, 0, 0, 0.685);
     position: relative;
     width: 300px;
+    
+}
+
+.item-card {
+    position: relative;
 }
 
 @media (min-width: 600px) {
@@ -93,6 +99,7 @@ h2 {
     padding: 0px;
     background-color: var(--corfundo);
     border-radius: 10px;
+    
 }
 
 h3 {
@@ -125,13 +132,14 @@ button:hover {
 
 .remove-btn {
     position: absolute;
-    top: 3px;
-    right: 10px;
+    top: 0px;
+    right: 0px;
     background: var(--corbotão);
     color: white;
     border: none;
     padding: 1px 5px;
     border-radius: 4px;
+    z-index: 10;
 }
 
 .edit-item-btn {

@@ -23,9 +23,9 @@ window.onload = function () {
 // função para renderizar os grupos (melhor para organizar o código)
 function renderizarGrupos() {
     const container = document.getElementById("historico-container");
-    // Limpa o conteúdo atual do container antes de adicionar os novos cards
-    // Mantém o botão de limpar histórico
-    const limparBtn = container.querySelector('.limpar-btn');
+    const limparBtn = container.querySelector('.limpar-btn'); // Pega o botão existente
+
+    // Limpa o conteúdo atual do container, mantendo o botão de limpar
     container.innerHTML = '';
     container.appendChild(limparBtn); // Adiciona o botão de volta
 
@@ -34,31 +34,36 @@ function renderizarGrupos() {
         return;
     }
 
-    grupos.forEach((grupo, grupoIndex) => { // Adicione grupoIndex para usar no data-grupo-index
+    grupos.forEach((grupo, grupoIndex) => {
         const grupoDiv = document.createElement("div");
         grupoDiv.className = "grupo-card";
-        grupoDiv.setAttribute('data-grupo-index', grupoIndex); // Adicione um atributo para identificar o grupo
+        grupoDiv.setAttribute('data-grupo-index', grupoIndex);
 
         grupoDiv.innerHTML = `
             <h2>Cliente: ${grupo.cliente}</h2>
             <h3><strong></strong> ${grupo.dataHora || 'Data não disponível'}</h3>
-        
-            ${grupo.itens.map((item, itemIndex) => `
-                <div class="item-card">
-                    <button class="remove-btn" data-grupo-index="${grupoIndex}" data-item-index="${itemIndex}" onclick="removerItemBtn(this)">X</button>
-                    <p><strong>Produto:</strong> ${item.produto}</p>
-                    <p><strong>Material:</strong> ${item.material}</p>
-                    <p><strong>Total a prazo:</strong> R$ ${item.totalAprazo.toFixed(2)}</p>
-                    <p><strong>Total à vista:</strong> R$ ${item.totalAvista.toFixed(2)}</p>
-                    <button class="edit-item-btn" onclick='editarItemHistorico(${JSON.stringify(item)}, "${grupo.cliente}")'>Editar Item</button>
-                    <hr/>
-                </div>
-            `).join('')}
         `;
-        container.appendChild(grupoDiv);
+
+        // Agora, iteramos sobre os itens para criar os cards individuais
+        grupo.itens.forEach((item, itemIndex) => {
+            const itemCardDiv = document.createElement("div");
+            itemCardDiv.className = "item-card"; // Classe para estilizar o item
+
+            itemCardDiv.innerHTML = `
+                <button class="remove-btn" data-grupo-index="${grupoIndex}" data-item-index="${itemIndex}" onclick="removerItemBtn(this)">X</button>
+                <p><strong>Produto:</strong> ${item.produto}</p>
+                <p><strong>Material:</strong> ${item.material}</p>
+                <p><strong>Total a prazo:</strong> R$ ${item.totalAprazo.toFixed(2)}</p>
+                <p><strong>Total à vista:</strong> R$ ${item.totalAvista.toFixed(2)}</p>
+                <button class="edit-item-btn" onclick='editarItemHistorico(${JSON.stringify(item)}, "${grupo.cliente}")'>Editar Item</button>
+                <hr/>
+            `;
+            grupoDiv.appendChild(itemCardDiv); // Adiciona o card do item dentro do grupoDiv
+        });
+
+        container.appendChild(grupoDiv); // Adiciona o grupoDiv (com seus itens) ao container principal
     });
 }
-
 
 function editarItemHistorico(item, cliente) {
     const dadosParaEditar = {
