@@ -1,4 +1,5 @@
 :root{
+    --corfundoletra: #868686;
     --corfundo: #cacacb;
     --corfundodiv: #f5f5f5;
     --corcontraste: black;
@@ -22,7 +23,7 @@ h1 {
     margin-bottom: 10px;
     color: var(--cordestaque);
     font-family: var(--fontedestaque);
-    text-shadow: 2px 3px 4px black;
+    text-shadow: 2px 3px 4px rgb(75, 0, 0);
 }
 hr {
     height: 2px;
@@ -40,9 +41,9 @@ hr {
     border-radius: 10px;
     box-shadow: 3px 3px 6px rgba(0, 0, 0, 0.685);
     position: relative;
-    width: 380px;
-    margin: 0 auto;
-    
+    width: 100%;
+    max-width: 380px;
+    margin: 0 auto
 }
 .grupo-card {/*grupo onde está o produto, material*/
     display: flex;
@@ -53,12 +54,33 @@ hr {
     border-radius: 10px;
     box-shadow: 3px 3px 6px rgba(0, 0, 0, 0.685);
     position: relative;
-    width: 300px;
-    
+    min-width: 280px; /* Largura mínima para o card não ficar muito apertado */
 }
 
 .item-card {
     position: relative;
+    padding: 10px; /* Um padding para dar espaço dentro do item */
+    margin-bottom: 10px
+}
+
+h2 {
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    font-size: 1.3em;
+    padding: 0px;
+    color: var(--corbotão);
+    text-shadow: 1px 2px 1px rgba(0, 0, 0, 0.527);
+    /*background-color: var(--corfundoletra);*/
+    border-radius: 7px 7px 0px 0px;
+}
+
+h3 {
+    font-family: var(--fontepadrao);
+    font-size: 0.9em;
+    color: var(--corbotão);
+    text-shadow: 1px 2px 1px rgba(0, 0, 0, 0.212);
+    padding: 0px;
+    border-radius: 0px 0px 7px 7px;
+    /*background-color: var(--corfundoletra);*/
 }
 
 @media (min-width: 600px) {
@@ -70,43 +92,31 @@ hr {
     }
 }
 
-@media (max-width: 430px) {
+@media (max-width: 480px) {
     #historico-container {
-        width: 580px;
+        width: 95%; /* Garante que ocupe a largura da tela em mobile */
+        padding: 0.8rem; /* Ajusta o padding para telas menores */
+        gap: 0.8rem;
     }
     .grupo-card {
-        width: 460px;
-        margin: 0 auto;
-        display: flex;
-        align-items: center;
-        margin: 0 auto 10px auto;
+        width: 100%; /* Garante que ocupe toda a largura disponível */
+        margin-bottom: 10px;
     }
-
-    /*.itens-grupo {
-
-        width: 160px;
-
-    }*/
 
     .item-card {
-        width: 140px;
-        max-width: 100%;
+        width: 100%; /* Item card ocupa 100% do grupo */
+        padding: 8px;
+    }
+
+    h2 {
+        font-size: 1em; /* Ajusta o tamanho da fonte do cliente */
+    }
+
+    h3 {
+        font-size: 0.8em; /* Ajusta o tamanho da fonte da data/hora */
     }
 }
 
-h2 {
-    font-size: 1.5em;
-    padding: 0px;
-    background-color: var(--corfundo);
-    border-radius: 10px;
-    
-}
-
-h3 {
-    font-family: 'Courier New', Courier, monospace;
-    font-size: 0.9em;
-    padding: 0px;
-}
 button {
     padding: 10px 16px;
     font-weight: bold;
@@ -132,9 +142,8 @@ button:hover {
 
 .remove-btn {
     position: absolute;
-    top: 0px;
     right: 0px;
-    background: var(--corbotão);
+    background-color: var(--corbotão);
     color: white;
     border: none;
     padding: 1px 5px;
