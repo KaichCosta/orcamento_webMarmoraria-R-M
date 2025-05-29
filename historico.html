@@ -7,10 +7,40 @@
     </head>
     <body>
     <h1>Histórico de Orçamentos</h1>
+
+    <div id="filtro-resumo-painel">
+        <h2>Filtros e Resumos</h2>
+
+        <div class="filtro-controles">
+            <label for="filtro-cliente">Filtrar por Cliente:</label>
+            <select id="filtro-cliente">
+                <option value="todos">Todos os Clientes</option>
+                </select>
+
+            <label for="filtro-material">Filtrar por Material:</label>
+            <select id="filtro-material">
+                <option value="todos">Todos os Materiais</option>
+                </select>
+
+            <label for="filtro-produto">Filtrar por Produto:</label>
+            <select id="filtro-produto">
+                <option value="todos">Todos os Produtos</option>
+                </select>
+
+            <button id="aplicar-filtros-btn">Aplicar Filtros</button>
+        </div>
+
+        <div class="resumo-totais">
+            <h3>Totais Agregados:</h3>
+            <p><strong>Total de M²:</strong> <span id="total-m2">0.00</span></p>
+            <p><strong>Total a Prazo:</strong> R$ <span id="total-aprazo">0.00</span></p>
+            <p><strong>Total à Vista:</strong> R$ <span id="total-avista">0.00</span></p>
+        </div>
+    </div>
+
     <div id="historico-container">
         <button class="limpar-btn" onclick="localStorage.removeItem('gruposOrcamento'); location.reload();">Limpar histórico</button>
     </div>
-
     <script src="historico.js"></script>
 
 </body>

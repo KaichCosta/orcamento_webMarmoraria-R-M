@@ -23,7 +23,7 @@ h1 {
     margin-bottom: 10px;
     color: var(--cordestaque);
     font-family: var(--fontedestaque);
-    text-shadow: 2px 3px 4px rgb(75, 0, 0);
+    text-shadow: 2px 3px 4px rgba(71, 0, 0, 0.589);
 }
 hr {
     height: 2px;
