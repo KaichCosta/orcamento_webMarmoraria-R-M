@@ -38,7 +38,7 @@ hr {
     gap: 1rem;
     background-color: var(--corfundo);
     padding: 1rem;
-    border-radius: 10px;
+    border-radius: 0px 0px 10px 10px;
     box-shadow: 3px 3px 6px rgba(0, 0, 0, 0.685);
     position: relative;
     width: 100%;
@@ -83,6 +83,38 @@ h3 {
     /*background-color: var(--corfundoletra);*/
 }
 
+#filtro-resumo-painel {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+    background-color: var(--corfundo);
+    padding: 1rem;
+    border-radius: 10px 10px 0px 0px;
+    box-shadow: 3px 3px 6px rgba(0, 0, 0, 0.685);
+    position: relative;
+    width: 100%;
+    max-width: 380px;
+    margin: 0 auto
+}
+
+.filtro-controles {
+    text-align: center;
+}
+
+label {
+    background-color: var(--corfundodiv);
+    padding: 3px;
+    border-radius: 5px;
+}
+select {
+    border-radius: 10px;
+    padding: 3px;
+}
+
+#aplicar-filtros-btn{
+    padding: 3px;
+    margin-top: 5px;
+}
 @media (min-width: 600px) {
     .grupo-card {
         justify-content: space-between;
@@ -93,7 +125,7 @@ h3 {
 }
 
 @media (max-width: 480px) {
-    #historico-container {
+    #historico-container #filto-resumo-painel {
         width: 95%; /* Garante que ocupe a largura da tela em mobile */
         padding: 0.8rem; /* Ajusta o padding para telas menores */
         gap: 0.8rem;
