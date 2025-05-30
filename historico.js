@@ -120,14 +120,14 @@ function popularFiltros() {
  */
 
 function calcularEExibirTotais(dados) {
+    console.log("--- calcularEExibirTotais: Iniciando com", dados.length, "grupos ---");
     let totalM2 = 0;
     let totalAprazo = 0;
     let totalAvista = 0;
 
-    dados.forEach(grupo => {
-        grupo.itens.forEach(item => {
-            // Assumindo que 'm2' existe no item. Se for outra propriedade, ajuste aqui.
-            // Se 'm2' não existir, ou for opcional, adicione uma verificação: item.m2 || 0
+    dados.forEach((grupo, grupoIdx) => {
+        grupo.itens.forEach((item, itemIdx) => {
+            console.log(`Grupo ${grupoIdx}, Item ${itemIdx}: item.m2 =`, item.m2, `(Tipo: ${typeof item.m2})`);
             totalM2 += parseFloat(item.m2 || 0); // Converta para número e some
             totalAprazo += parseFloat(item.totalAprazo || 0);
             totalAvista += parseFloat(item.totalAvista || 0);
