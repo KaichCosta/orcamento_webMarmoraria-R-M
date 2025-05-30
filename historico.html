@@ -10,9 +10,8 @@
     <h1>Histórico de Orçamentos</h1>
 
     <div id="filtro-resumo-painel">
-        <h2>Filtros e Resumos</h2>
-
         <div class="filtro-controles">
+            <h2>Filtros e Resumos</h2>
             <label for="filtro-cliente">Filtrar por Cliente:</label>
             <select id="filtro-cliente">
                 <option value="todos">Todos os Clientes</option>
@@ -29,14 +28,14 @@
                 </select>
 
             <button id="aplicar-filtros-btn">Aplicar Filtros</button>
+            <div class="resumo-totais">
+                <h3>Totais Agregados:</h3>
+                <p><strong>Total de M²:</strong> <span id="total-m2">0.00</span></p>
+                <p><strong>Total a Prazo:</strong> R$ <span id="total-aprazo">0.00</span></p>
+                <p><strong>Total à Vista:</strong> R$ <span id="total-avista">0.00</span></p>
+            </div>    
         </div>
 
-        <div class="resumo-totais">
-            <h3>Totais Agregados:</h3>
-            <p><strong>Total de M²:</strong> <span id="total-m2">0.00</span></p>
-            <p><strong>Total a Prazo:</strong> R$ <span id="total-aprazo">0.00</span></p>
-            <p><strong>Total à Vista:</strong> R$ <span id="total-avista">0.00</span></p>
-        </div>
     </div>
 
     <div id="historico-container">
