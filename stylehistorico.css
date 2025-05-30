@@ -104,6 +104,9 @@ h3 {
     background-color: var(--corfundodiv);
 }   
 
+option {
+    color: black;
+}
 .resumo-totais h2 {
     font-size: 1.5em;
 }
@@ -169,7 +172,7 @@ select {
 button {
     padding: 10px 16px;
     font-weight: bold;
-    border: none;
+    color: white;
     border-radius: 10px;
     cursor: pointer;
     box-shadow: 3px 1px 3px rgba(0, 0, 0, 0.685);
@@ -201,7 +204,7 @@ button:hover {
 }
 
 .edit-item-btn {
-    background-color: var(--corfundo);
+    background-color: var(--corfundoletra);
     padding: 1px 10px;
     box-shadow: 3px 1px 3px rgba(0, 0, 0, 0.685);
     position: relative;
