@@ -88,7 +88,7 @@ h3 {
 
     flex-wrap: wrap;
     gap: 1rem;
-    background-color: var(--cordestaque);
+    background-color: var(--corfundo);
     padding: 1rem;
     border-radius: 10px 10px 0px 0px;
     box-shadow: 3px 3px 6px rgba(0, 0, 0, 0.685);
