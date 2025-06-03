@@ -1,4 +1,4 @@
-:root {
+:root{
     --corfundoletra: #868686;
     --corfundo: #cacacb;
     --corfundodiv: #f5f5f5;
@@ -10,32 +10,20 @@
     --fontedestaque: Verdana, sans-serif;
 }
 
-/* Reset básico */
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
 }
 
-body {
-    font-family: var(--fontepadrao);
-    background-color: #f0f0f0; /* Um fundo leve para a página inteira */
-    color: var(--corcontraste);
-    display: flex; /* NOVO: Transforma o body em um container flex */
-    flex-direction: column; /* NOVO: Empilha os filhos verticalmente */
-    align-items: center; /* NOVO: Centraliza os filhos horizontalmente */
-    min-height: 100vh; /* Garante que o body ocupe a altura total da viewport */
-}
-
 h1 {
     text-align: center;
     font-size: 2em;
     padding: 35px 0px 0px 0px;
-    margin-bottom: 20px; /* Aumentei um pouco para separar do painel de filtros */
+    margin-bottom: 10px;
     color: var(--cordestaque);
     font-family: var(--fontedestaque);
-    text-shadow: 2px 3px 4px black;
-    width: 100%; /* Garante que o h1 ocupe a largura total para text-align: center funcionar */
+    text-shadow: 2px 3px 4px rgba(71, 0, 0, 0.589);
 }
 hr {
     height: 2px;
@@ -44,180 +32,163 @@ hr {
     margin: 0 auto;
     width: 282px;
 }
-
-/* Estilos para o painel de filtros e resumos */
-#filtro-resumo-painel {
-    background-color: var(--corfundodiv); /* Cor de fundo da div de cards */
-    padding: 1.5rem;
-    margin: 20px auto; /* Centraliza e adiciona margem */
-    border-radius: 10px;
-    box-shadow: 3px 3px 6px rgba(0, 0, 0, 0.685);
-    max-width: 700px; /* Largura máxima para o painel */
-    width: 95%; /* Ocupa a maior parte da tela */
-    display: flex;
-    flex-direction: column;
-    gap: 1.5rem;
-}
-
-#filtro-resumo-painel h2 {
-    text-align: center;
-    color: var(--cordestaque);
-    font-size: 1.8em;
-    margin-bottom: 1rem;
-    font-family: var(--fontedestaque);
-}
-
-.filtro-controles {
-    display: flex; /* Garante que é um container flexbox */
-    flex-wrap: wrap; /* Permite que os itens quebrem para a próxima linha */
-    justify-content: center; /* Centraliza os itens horizontalmente dentro do container flex */
-    align-items: flex-end; /* Mantém o alinhamento na parte inferior, como no seu design anterior */
-    gap: 1rem; /* Mantém o espaçamento entre os itens */
-
-    /* Suas propriedades existentes */
-    border-radius: 10px;
-    padding: 5px;
-    background-color: var(--corfundodiv);
-}
-
-.filtro-grupo {
-    display: flex;
-    flex-direction: column;
-    gap: 0.3rem;
-    flex: 1; /* Permite que os grupos de filtro cresçam */
-    min-width: 150px; /* Largura mínima para cada grupo de filtro */
-}
-
-.filtro-controles label {
-    font-weight: bold;
-    color: var(--corcontraste);
-    margin-bottom: 5px;
-}
-
-.filtro-controles select {
-    padding: 8px 12px;
-    border: 1px solid var(--corfundo);
-    border-radius: 5px;
-    background-color: white;
-    font-size: 1em;
-    color: var(--corcontraste);
-    width: 100%; /* Ocupa a largura total do seu grupo */
-    box-shadow: inset 1px 1px 3px rgba(0, 0, 0, 0.1);
-}
-
-#aplicar-filtros-btn {
-    background-color: var(--corbotão);
-    color: white;
-    padding: 10px 20px;
-    border: none;
-    border-radius: 10px;
-    cursor: pointer;
-    font-weight: bold;
-    box-shadow: 3px 1px 3px rgba(0, 0, 0, 0.685);
-    transition: background-color 0.3s ease;
-    align-self: flex-end; /* Alinha o botão na parte inferior do flex container */
-}
-
-#aplicar-filtros-btn:hover {
-    background-color: var(--cordestaque);
-}
-
-.resumo-totais {
-    background-color: var(--corfundo); /* Cor de fundo do container principal */
-    padding: 1rem;
-    border-radius: 8px;
-    box-shadow: inset 1px 1px 5px rgba(0, 0, 0, 0.2);
-    margin-top: 1rem;
-}
-
-.resumo-totais h3 {
-    font-size: 1.2em;
-    color: var(--cordestaque);
-    margin-bottom: 0.8rem;
-    text-align: center;
-    background-color: transparent; /* Garante que não tenha background extra */
-    border-radius: 0; /* Garante que não tenha border-radius extra */
-    padding: 0; /* Garante que não tenha padding extra */
-}
-
-.resumo-totais p {
-    font-size: 1em;
-    margin-bottom: 0.5rem;
-    color: var(--corcontraste);
-    display: flex;
-    justify-content: space-between; /* Alinha o texto e o valor */
-    padding: 0 10px; /* Padding interno */
-}
-
-.resumo-totais p strong {
-    color: var(--corcontraste);
-}
-
-/* Estilos existentes para #historico-container e .grupo-card (ajustados para responsividade) */
-#historico-container {
+#historico-container {/*isso aqui é fundo mesmo, onde fica o grupo card cor cinza*/
     display: flex;
     flex-wrap: wrap;
     gap: 1rem;
     background-color: var(--corfundo);
     padding: 1rem;
-    border-radius: 10px;
+    border-radius: 0px 0px 10px 10px;
     box-shadow: 3px 3px 6px rgba(0, 0, 0, 0.685);
     position: relative;
-    width: 95%;
-    max-width: 400px; /* Mantém a largura máxima para o container principal */
-    margin: 20px auto; /* Adiciona margem superior para separar do painel de filtros */
+    width: 100%;
+    max-width: 380px;
+    margin: 0 auto
 }
-
-.grupo-card {
+.grupo-card {/*grupo onde está o produto, material*/
     display: flex;
     flex-direction: column;
     background-color: var(--corfundodiv);
     padding: 10px;
-    margin-bottom: 15px; /* Mantém o espaçamento entre os grupos */
+    margin-bottom: 15px;
     border-radius: 10px;
     box-shadow: 3px 3px 6px rgba(0, 0, 0, 0.685);
     position: relative;
-    width: 100%; /* Ocupa 100% da largura do seu #historico-container */
-    max-width: 380px; /* Limite o tamanho do card em tablets maiores */
-    margin: 0 auto; /* Centraliza cada grupo-card dentro do container */
+    min-width: 280px; /* Largura mínima para o card não ficar muito apertado */
 }
 
 .item-card {
     position: relative;
-    padding: 10px;
-    margin-bottom: 10px;
-    border: 1px solid #eee;
-    border-radius: 5px;
-    background-color: #f9f9f9;
-    width: 100%;
+    padding: 10px; /* Um padding para dar espaço dentro do item */
+    margin-bottom: 10px
 }
 
-/* ... SEU CÓDIGO DE H2, H3, BUTTONS (limpar-btn, remove-btn, edit-item-btn) ... */
-
 h2 {
-    font-size: 1.5em;
-    padding: 10px; /* Ajustado para ter padding */
-    background-color: var(--corfundo);
+    text-align: center;
+    font-family: system-ui, -apple-system, 'BlinkMacSystemFont', 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    font-size: 1.3em;
+    padding: 0px;
+    color: var(--corbotão);
+    text-shadow: 1px 2px 1px rgba(0, 0, 0, 0.527);
+    /*background-color: var(--corfundoletra);*/
     border-radius: 7px 7px 0px 0px;
-    width: 100%; /* Garante que ocupe a largura total */
 }
 
 h3 {
-    font-family: 'Courier New', Courier, monospace;
+    font-family: var(--fontepadrao);
     font-size: 0.9em;
-    padding: 10px; /* Ajustado para ter padding */
+    color: var(--corbotão);
+    text-shadow: 1px 2px 1px rgba(0, 0, 0, 0.212);
+    padding: 0px;
     border-radius: 0px 0px 7px 7px;
-    background-color: var(--corfundo);
-    width: 100%; /* Garante que ocupe a largura total */
+    /*background-color: var(--corfundoletra);*/
+}
+
+#filtro-resumo-painel {
+
+    flex-wrap: wrap;
+    gap: 1rem;
+    background-color: var(--cordestaque);
+    padding: 1rem;
+    border-radius: 10px 10px 0px 0px;
+    box-shadow: 3px 3px 6px rgba(0, 0, 0, 0.685);
+    position: relative;
+    width: 100%;
+    max-width: 380px;
+    margin: 0 auto
+}
+
+.filtro-controles {
+    justify-content: center; /* Centraliza os itens horizontalmente dentro do container flex */
+    gap: 1rem;
+    text-align: center;
+    border-radius: 10px;
+    padding: 5px;
+    background-color: var(--corfundodiv);
+}   
+
+option {
+    color: black;
+}
+.resumo-totais h2 {
+    font-size: 1.5em;
+}
+
+.resumo-totais h3 {
+    font-size: 1.3em;
+    text-align: left;
+}
+
+label {
+    background-color: var(--corfundodiv);
+    padding: 3px;
+    border-radius: 5px;
+}
+select {
+    border-radius: 10px;
+    padding: 3px;
+}
+
+#aplicar-filtros-btn{
+    padding: 3px;
+    text-align: right;
+    background-color: var(--corbotão);
+    margin: 8px 0px;
+}
+
+.resumo-totais {
+    text-align: left;
+}
+@media (min-width: 600px) {
+    .grupo-card {
+        justify-content: space-between;
+        align-items: flex-start;
+        gap: 0.5rem;
+        margin: 0 auto;
+    }
+}
+
+@media (max-width: 480px) {
+    #historico-container #filto-resumo-painel {
+        width: 95%; /* Garante que ocupe a largura da tela em mobile */
+        padding: 0.8rem; /* Ajusta o padding para telas menores */
+        gap: 0.8rem;
+    }
+    .grupo-card {
+        width: 100%; /* Garante que ocupe toda a largura disponível */
+        margin-bottom: 10px;
+    }
+
+    .item-card {
+        width: 100%; /* Item card ocupa 100% do grupo */
+        padding: 8px;
+    }
+
+    h2 {
+        font-size: 1em; /* Ajusta o tamanho da fonte do cliente */
+    }
+
+    h3 {
+        font-size: 0.8em; /* Ajusta o tamanho da fonte da data/hora */
+    }
+}
+
+button {
+    padding: 10px 16px;
+    font-weight: bold;
+    color: white;
+    border-radius: 10px;
+    cursor: pointer;
+    box-shadow: 3px 1px 3px rgba(0, 0, 0, 0.685);
 }
 
 .limpar-btn {
     background-color: var(--corbotão);
     color: white;
     box-shadow: 3px 1px 3px rgba(0, 0, 0, 0.685);
-    align-self: center;
-    margin-bottom: 1rem;
-    width: fit-content;
+    position: relative;
+    margin: 0 auto;
+    display: flex;
 }
     
 button:hover {
@@ -227,9 +198,8 @@ button:hover {
 
 .remove-btn {
     position: absolute;
-    top: 3px;
-    right: 10px;
-    background: var(--corbotão);
+    right: 0px;
+    background-color: var(--corbotão);
     color: white;
     border: none;
     padding: 1px 5px;
@@ -238,118 +208,16 @@ button:hover {
 }
 
 .edit-item-btn {
-    background-color: var(--corfundo);
+    background-color: var(--corfundoletra);
     padding: 1px 10px;
     box-shadow: 3px 1px 3px rgba(0, 0, 0, 0.685);
-    display: block;
-    margin: 10px auto 0 auto;
-    width: fit-content;
-    max-width: 100%;
+    position: relative;
+    left: 70pt;
+    bottom: 4pt;
+    margin: 0 auto;
+    display: flex;
 }
 
-/* Media Queries para Responsividade (ajustadas para o novo painel) */
-
-/* Para telas menores que 600px (smartphones) */
-@media (max-width: 599px) {
-    #filtro-resumo-painel {
-        padding: 1rem;
-        gap: 1rem;
-    }
-    .filtro-controles {
-        flex-direction: column; /* Empilha os filtros verticalmente em telas pequenas */
-        align-items: stretch; /* Estica os itens para preencher a largura */
-    }
-    .filtro-grupo {
-        min-width: unset; /* Remove largura mínima para adaptar-se */
-        width: 100%;
-    }
-    #aplicar-filtros-btn {
-        width: 100%; /* Botão ocupa largura total */
-    }
-    .resumo-totais p {
-        font-size: 0.9em;
-        padding: 0 5px;
-    }
-
-    /* Ajustes para os cards de orçamento em telas pequenas */
-    #historico-container {
-        width: 95%;
-        padding: 0.8rem;
-        gap: 0.8rem;
-    }
-    .grupo-card {
-        width: 100%;
-        margin-bottom: 10px;
-    }
-    .item-card {
-        width: 100%;
-        padding: 8px;
-    }
-    h2 {
-        font-size: 1.3em;
-    }
-    h3 {
-        font-size: 0.8em;
-    }
-    .remove-btn {
-        top: 5px;
-        right: 5px;
-        padding: 0px 4px;
-        font-size: 0.8em;
-    }
-    .edit-item-btn {
-        width: 90%;
-        margin-top: 8px;
-        padding: 5px 10px;
-        font-size: 0.9em;
-    }
-    hr {
-        width: 90%;
-    }
-}
-
-/* Para telas maiores que 600px (tablets e desktops) */
-@media (min-width: 600px) {
-    #filtro-resumo-painel {
-        flex-direction: row; /* Coloca controles e totais lado a lado */
-        justify-content: space-between;
-        align-items: flex-start;
-        flex-wrap: wrap; /* Permite quebra de linha se necessário */
-    }
-    .filtro-controles {
-        flex: 2; /* Ocupa mais espaço */
-        justify-content: flex-start;
-    }
-    .resumo-totais {
-        flex: 1; /* Ocupa menos espaço */
-        min-width: 250px; /* Garante uma largura mínima */
-        margin-top: 0; /* Remove margem superior */
-    }
-    .resumo-totais p {
-        flex-direction: column; /* Empilha o label e o valor */
-        align-items: flex-start;
-    }
-    .resumo-totais p strong {
-        margin-bottom: 3px;
-    }
-
-    /* Ajustes para os cards de orçamento em telas maiores */
-    #historico-container {
-        justify-content: center; /* Centraliza os cards */
-    }
-    .grupo-card {
-        flex-basis: calc(50% - 0.5rem); /* Tenta 2 colunas */
-        min-width: 280px;
-        margin: 0; /* Remove margem automática que pode atrapalhar o flexbox */
-    }
-}
-
-/* Ajuste para telas muito grandes (opcional, se quiser 3 colunas ou mais) */
-@media (min-width: 992px) {
-    #historico-container {
-        max-width: 900px; /* Aumenta a largura máxima para 3 colunas */
-    }
-    .grupo-card {
-        flex-basis: calc(33.333% - 0.67rem); /* Tenta 3 colunas (ajuste o gap conforme necessário) */
-    }
+alert {
+    color: whitesmoke;
 }

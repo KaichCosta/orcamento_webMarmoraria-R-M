@@ -1,0 +1,412 @@
+:root {
+    --corfundoletra: #868686; /* Cinza médio */
+    --corfundo: #cacacb; /* Cinza claro */
+    --corfundodiv: #f5f5f5; /* Quase branco */
+    --corcontraste: black; /* Preto */
+    --cordestaque: rgb(129, 0, 0); /* Vermelho escuro / Vinho */
+    --corbotão: rgb(241, 2, 2); /* Vermelho vivo */
+
+    --fontepadrao: 'Inter', Arial, sans-serif; /* Sugestão de fonte moderna */
+    --fontedestaque: 'Inter', Verdana, sans-serif; /* Sugestão de fonte moderna */
+
+    /* Novas variáveis para sombras e transições, para consistência */
+    --sombra-leve: 0 4px 8px rgba(0, 0, 0, 0.1);
+    --sombra-media: 0 6px 12px rgba(0, 0, 0, 0.15);
+    --transicao-padrao: all 0.3s ease-in-out;
+}
+
+/* Importa a fonte Inter do Google Fonts para um visual mais moderno */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap');
+
+/* Reset básico */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: var(--fontepadrao);
+    background-color: #f0f0f0; /* Fundo suave para a página */
+    color: var(--corcontraste);
+    display: flex;
+    flex-direction: column;
+    align-items: center; /* Centraliza o conteúdo principal */
+    min-height: 100vh; /* Garante que o body ocupe a altura total da viewport */
+    padding: 20px; /* Padding geral para não colar nas bordas da tela */
+}
+
+/* Cabeçalho Moderno */
+.header-moderno {
+    width: 100%;
+    max-width: 800px; /* Limita a largura do cabeçalho */
+    text-align: center;
+    margin-bottom: 30px;
+    padding: 20px 0;
+}
+
+.header-moderno h1 {
+    font-size: 2.8em;
+    color: var(--cordestaque);
+    font-family: var(--fontedestaque);
+    text-shadow: var(--sombra-leve); /* Sombra mais suave */
+    margin: 0; /* Remove margem extra do h1 */
+}
+
+/* Painel de Filtros e Resumos */
+#filtro-resumo-painel-moderno {
+    background-color: var(--corfundodiv);
+    padding: 2rem;
+    margin-bottom: 30px;
+    border-radius: 12px; /* Bordas mais arredondadas */
+    box-shadow: var(--sombra-media); /* Sombra mais destacada para o painel */
+    max-width: 800px;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+    border: 1px solid var(--corfundo); /* Borda sutil */
+}
+
+#filtro-resumo-painel-moderno h2 {
+    text-align: center;
+    color: var(--cordestaque);
+    font-size: 1.8em;
+    margin-bottom: 1rem;
+    font-family: var(--fontedestaque);
+    font-weight: 600; /* Um pouco mais de peso */
+}
+
+.filtro-controles-moderno {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+    justify-content: center;
+    align-items: flex-end;
+}
+
+.filtro-grupo-moderno {
+    display: flex;
+    flex-direction: column;
+    gap: 0.3rem;
+    flex: 1;
+    min-width: 180px; /* Aumentei um pouco a largura mínima */
+}
+
+.filtro-controles-moderno label {
+    font-weight: 600; /* Mais peso */
+    color: var(--corcontraste);
+    font-size: 0.95em;
+}
+
+.filtro-controles-moderno select {
+    padding: 10px 15px;
+    border: 1px solid var(--corfundo);
+    border-radius: 8px; /* Mais arredondado */
+    background-color: white;
+    font-size: 1em;
+    color: var(--corcontraste);
+    width: 100%;
+    box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.08); /* Sombra interna sutil */
+    transition: var(--transicao-padrao);
+}
+
+.filtro-controles-moderno select:focus {
+    border-color: var(--cordestaque);
+    outline: none;
+    box-shadow: 0 0 0 3px rgba(129, 0, 0, 0.2); /* Foco sutil */
+}
+
+#aplicar-filtros-btn-moderno {
+    background-color: var(--corbotão);
+    color: white;
+    padding: 12px 25px; /* Padding maior */
+    border: none;
+    border-radius: 8px; /* Mais arredondado */
+    cursor: pointer;
+    font-weight: 700; /* Mais peso */
+    box-shadow: var(--sombra-leve);
+    transition: var(--transicao-padrao);
+    align-self: flex-end;
+}
+
+#aplicar-filtros-btn-moderno:hover {
+    background-color: var(--cordestaque);
+    box-shadow: var(--sombra-media);
+    transform: translateY(-2px); /* Efeito de "levantar" */
+}
+
+.resumo-totais-moderno {
+    background-color: var(--corfundo);
+    padding: 1.5rem;
+    border-radius: 10px;
+    box-shadow: inset 0 2px 5px rgba(0, 0, 0, 0.1); /* Sombra interna mais forte */
+    margin-top: 1.5rem;
+    border: 1px solid rgba(0, 0, 0, 0.05); /* Borda bem sutil */
+}
+
+.resumo-totais-moderno h3 {
+    font-size: 1.4em;
+    color: var(--cordestaque);
+    margin-bottom: 1rem;
+    text-align: center;
+    font-weight: 600;
+}
+
+.resumo-totais-moderno p {
+    font-size: 1.1em;
+    margin-bottom: 0.7rem;
+    color: var(--corcontraste);
+    display: flex;
+    justify-content: space-between;
+    padding: 0 15px;
+    border-bottom: 1px dashed rgba(0, 0, 0, 0.1); /* Linha tracejada sutil */
+    padding-bottom: 0.5rem;
+}
+.resumo-totais-moderno p:last-child {
+    margin-bottom: 0;
+    border-bottom: none; /* Remove a linha do último item */
+}
+
+.resumo-totais-moderno p strong {
+    color: var(--corcontraste);
+    font-weight: 600;
+}
+
+/* Container principal dos cards de orçamento */
+#historico-container-moderno {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px; /* Espaçamento entre os cards */
+    width: 100%;
+    max-width: 1200px; /* Permite mais colunas em telas grandes */
+    margin-bottom: 50px;
+    justify-content: center; /* Centraliza os cards */
+}
+
+/* Estilo do Grupo de Orçamento (Card principal) */
+.grupo-card-moderno {
+    background-color: white; /* Fundo branco para os cards */
+    padding: 20px;
+    border-radius: 12px;
+    box-shadow: var(--sombra-media); /* Sombra para destacar o card */
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    flex-basis: calc(33.333% - 14px); /* Tenta 3 colunas em telas grandes */
+    min-width: 300px; /* Largura mínima para o card */
+    flex-grow: 1; /* Permite que cresça para preencher espaço */
+    transition: var(--transicao-padrao);
+    border: 1px solid rgba(0, 0, 0, 0.05); /* Borda sutil */
+}
+
+.grupo-card-moderno:hover {
+    transform: translateY(-5px); /* Efeito de "levantar" ao passar o mouse */
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2); /* Sombra mais forte no hover */
+}
+
+.grupo-card-moderno h2 {
+    font-size: 1.6em;
+    color: var(--cordestaque);
+    margin-bottom: 5px;
+    font-weight: 700;
+    text-align: left; /* Alinha à esquerda */
+    background-color: transparent; /* Remove background do h2 */
+    padding: 0; /* Remove padding do h2 */
+    border-radius: 0; /* Remove border-radius do h2 */
+    width: auto; /* Permite que ocupe o espaço necessário */
+}
+
+.grupo-card-moderno h3 {
+    font-family: var(--fontepadrao); /* Usa a fonte padrão */
+    font-size: 0.9em;
+    color: var(--corfundoletra); /* Cinza médio para a data */
+    margin-bottom: 15px;
+    font-weight: 400;
+    text-align: left; /* Alinha à esquerda */
+    background-color: transparent; /* Remove background do h3 */
+    padding: 0; /* Remove padding do h3 */
+    border-radius: 0; /* Remove border-radius do h3 */
+    width: auto; /* Permite que ocupe o espaço necessário */
+}
+
+/* Estilo do Item Individual dentro do Grupo */
+.item-card-moderno {
+    background-color: var(--corfundodiv); /* Fundo mais claro para o item */
+    padding: 15px;
+    margin-bottom: 15px;
+    border-radius: 8px;
+    box-shadow: inset 0 1px 4px rgba(0, 0, 0, 0.08); /* Sombra interna */
+    position: relative;
+    border: 1px solid var(--corfundo); /* Borda sutil */
+}
+
+.item-card-moderno:last-child {
+    margin-bottom: 0; /* Remove margem do último item */
+}
+
+.item-card-moderno p {
+    font-size: 0.95em;
+    margin-bottom: 5px;
+    line-height: 1.4;
+}
+
+.item-card-moderno p strong {
+    color: var(--corcontraste);
+    font-weight: 600;
+}
+
+/* Botões */
+button {
+    padding: 10px 16px;
+    font-weight: bold;
+    border: none;
+    border-radius: 8px; /* Mais arredondado */
+    cursor: pointer;
+    box-shadow: var(--sombra-leve);
+    transition: var(--transicao-padrao);
+}
+
+button:hover {
+    background-color: var(--cordestaque);
+    color: white;
+    box-shadow: var(--sombra-media);
+    transform: translateY(-1px);
+}
+
+.limpar-btn-moderno {
+    background-color: var(--corbotão);
+    color: white;
+    padding: 12px 25px;
+    margin-top: 30px;
+    align-self: center; /* Centraliza o botão no main flex */
+    width: fit-content; /* Ajusta a largura ao conteúdo */
+}
+
+.remove-btn-moderno {
+    position: absolute;
+    top: 10px; /* Ajustado para melhor visual */
+    right: 10px; /* Ajustado para melhor visual */
+    background: var(--corbotão);
+    color: white;
+    border: none;
+    padding: 5px 9px; /* Padding maior para facilitar o clique */
+    border-radius: 50%; /* Botão redondo */
+    font-size: 0.8em;
+    line-height: 1; /* Garante que o X fique centralizado */
+    box-shadow: var(--sombra-leve);
+    transition: var(--transicao-padrao);
+}
+
+.remove-btn-moderno:hover {
+    background-color: var(--cordestaque);
+    transform: scale(1.1); /* Efeito de "aumentar" */
+}
+
+.edit-item-btn-moderno {
+    background-color: var(--corfundo);
+    color: var(--corcontraste);
+    padding: 8px 15px;
+    margin-top: 10px;
+    display: block;
+    width: fit-content;
+    margin-left: auto; /* Alinha o botão à direita */
+    border-radius: 8px;
+    box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.1);
+}
+
+.edit-item-btn-moderno:hover {
+    background-color: var(--corfundoletra); /* Cor de hover diferente */
+    color: white;
+}
+
+/* Rodapé */
+.footer-moderno {
+    width: 100%;
+    max-width: 800px;
+    text-align: center;
+    padding: 20px 0;
+    margin-top: auto; /* Empurra o rodapé para o final da página */
+    color: var(--corfundoletra);
+    font-size: 0.9em;
+}
+
+
+/* Media Queries para Responsividade */
+
+/* Para telas menores que 768px (smartphones e tablets pequenos) */
+@media (max-width: 767px) {
+    body {
+        padding: 15px;
+    }
+
+    .header-moderno h1 {
+        font-size: 2.2em;
+    }
+
+    #filtro-resumo-painel-moderno {
+        padding: 1.2rem;
+        gap: 1rem;
+    }
+
+    .filtro-controles-moderno {
+        flex-direction: column; /* Empilha os filtros verticalmente */
+        align-items: stretch; /* Estica para preencher a largura */
+    }
+
+    .filtro-grupo-moderno {
+        min-width: unset;
+        width: 100%;
+    }
+
+    #aplicar-filtros-btn-moderno {
+        width: 100%;
+        align-self: stretch; /* Estica o botão */
+    }
+
+    .resumo-totais-moderno {
+        padding: 1rem;
+    }
+
+    .resumo-totais-moderno h3 {
+        font-size: 1.1em;
+    }
+
+    .resumo-totais-moderno p {
+        font-size: 0.9em;
+        padding: 0 10px;
+    }
+
+    .grupo-card-moderno {
+        flex-basis: 100%; /* Cada grupo ocupa 100% da largura */
+        min-width: unset;
+        padding: 15px;
+    }
+
+    .item-card-moderno {
+        padding: 12px;
+    }
+
+    .remove-btn-moderno {
+        top: 8px;
+        right: 8px;
+        padding: 4px 8px;
+    }
+
+    .edit-item-btn-moderno {
+        width: 100%; /* Botão de edição ocupa a largura total */
+        margin-left: 0;
+        text-align: center;
+    }
+}
+
+/* Para telas entre 768px e 1199px (tablets e laptops) */
+@media (min-width: 768px) and (max-width: 1199px) {
+    #historico-container-moderno {
+        gap: 15px;
+    }
+    .grupo-card-moderno {
+        flex-basis: calc(50% - 10px); /* Tenta 2 colunas */
+        min-width: 320px;
+    }
+}
