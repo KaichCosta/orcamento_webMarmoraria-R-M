@@ -7,8 +7,8 @@ function calcularTotal() {
     const quantidade = parseInt(document.getElementById('quantidade').value) || 1;
     const frete = parseFloat(document.getElementById('frete').value) || 0;
     const desconto = parseFloat(document.getElementById('desconto').value) || 0;
-    const metro = comprimento * largura;
-    const total = (((valor * metro + mao_obra + cuba) * quantidade) + frete);
+    const m2 = comprimento * largura;
+    const total = (((valor * m2 + mao_obra + cuba) * quantidade) + frete);
     document.getElementById('total').value = `R$ ${total.toFixed(2)}`;
     const descontoValor = total * (desconto / 100);
     const total_vista = (total - descontoValor);
@@ -29,12 +29,12 @@ function adicionarAoGrupo() {
     const quantidade = parseInt(document.getElementById('quantidade').value) || 1;
     const desconto = parseFloat(document.getElementById('desconto').value) || 0;
 
-    const metro = comprimento * largura;
-    const totalAprazo = ((valor * metro + mao_obra + cuba) * quantidade) + frete;
+    const m2 = comprimento * largura;
+    const totalAprazo = ((valor * m2 + mao_obra + cuba) * quantidade) + frete;
     const descontoValor = totalAprazo * (desconto / 100);
     const totalAvista = totalAprazo - descontoValor;
 
-    // Atualiza campos na interface
+    // Atualiza campos na interface metro
     document.getElementById('total').value = `R$ ${totalAprazo.toFixed(2)}`;
     document.getElementById('total_vista').value = `R$ ${totalAvista.toFixed(2)}`;
 
@@ -43,7 +43,7 @@ function adicionarAoGrupo() {
         produto,
         material,
         valor,
-        metro,
+        m2,
         comprimento,
         largura,
         quantidade,
@@ -85,11 +85,11 @@ fetch('materiais.json')
     // Atualiza o valor do m² automaticamente ao selecionar um material
     document.getElementById('material').addEventListener('change', function () {
     const materialSelecionado = this.value;
-    const valorMetro = materiais[materialSelecionado];
+    const valorM2 = materiais[materialSelecionado];
 
     const inputValor = document.getElementById('valor');
-    if (valorMetro !== null && valorMetro !== undefined) {
-        inputValor.value = valorMetro;
+    if (valorM2 !== null && valorM2 !== undefined) {
+        inputValor.value = valorM2;
     } else {
         inputValor.value = '';
     }
@@ -176,7 +176,7 @@ function atualizarGrupoVisual(grupo) {
             <button class="edit-btn" data-cliente="${grupo.cliente}" data-index="${index}" onclick="editarItemBtn(this)">Editar</button>
             <p><strong>Produto:</strong> ${item.produto}</p>
             <p><strong>Material:</strong> ${item.material}</p>
-            <p><strong>M²:</strong> ${item.metro.toFixed(2)}</p>
+            <p><strong>M²:</strong> ${item.m2.toFixed(2)}</p>
             <p><strong>Total a prazo:</strong> R$ ${item.totalAprazo.toFixed(2)}</p>
             <p><strong>Total à vista:</strong> R$ ${item.totalAvista.toFixed(2)}</p>
         `;
