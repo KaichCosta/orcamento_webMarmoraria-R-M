@@ -12,20 +12,26 @@
     <div id="filtro-resumo-painel">
         <div class="filtro-controles">
             <h2>Filtros e Resumos</h2>
-            <label for="filtro-cliente">Filtrar por Cliente:</label>
-            <select id="filtro-cliente">
-                <option value="todos">Todos os Clientes</option>
-                </select><br>
-
-            <label for="filtro-material">Filtrar por Material:</label>
-            <select id="filtro-material">
-                <option value="todos">Todos os Materiais</option>
-                </select><br>
-
-            <label for="filtro-produto">Filtrar por Produto:</label>
-            <select id="filtro-produto">
-                <option value="todos">Todos os Produtos</option>
+            <div class="filtro-grupo">
+                <label for="filtro-cliente">Cliente:</label>
+                <select id="filtro-cliente">
+                    <option value="todos">Todos os Clientes</option>
                 </select>
+            </div>
+
+            <div class="filtro-grupo">
+                <label for="filtro-material">Material:</label>
+                <select id="filtro-material">
+                    <option value="todos">Todos os Materiais</option>>
+                </select>
+            </div>
+
+            <div class="filtro-grupo">
+                <label for="filtro-produto">Produto:</label>
+                <select id="filtro-produto">
+                    <option value="todos">Todos os Produtos</option>
+                </select>
+            </div>
                 <!--<button id="aplicar-filtros-btn">Aplicar Filtros</button>-->
             <div class="resumo-totais">
                 <h3>Totais Agregados:</h3>

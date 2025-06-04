@@ -8,6 +8,8 @@
 
     --fontepadrao: Arial, Verdana, sans-serif;
     --fontedestaque: Verdana, sans-serif;
+
+    --transicao-padrao: all 0.3s ease-in-out;
 }
 
 * {
@@ -26,7 +28,7 @@ h1 {
     text-shadow: 2px 3px 4px rgba(71, 0, 0, 0.589);
 }
 hr {
-    height: 2px;
+    height: 0px;
     background-color: var(--cordestaque);
     border: none;
     margin: 0 auto;
@@ -54,15 +56,27 @@ hr {
     border-radius: 10px;
     box-shadow: 3px 3px 6px rgba(0, 0, 0, 0.685);
     position: relative;
+    border: 2px solid rgba(0, 0, 0, 0.150);
+    transition: var(--transicao-padrao);
     min-width: 280px; /* Largura mínima para o card não ficar muito apertado */
 }
 
 .item-card {
     position: relative;
     padding: 10px; /* Um padding para dar espaço dentro do item */
-    margin-bottom: 10px
+    margin-bottom: 10px;
+    background-color: #cacacb;
+    padding: 1rem;
+    line-height: 1.5rem;
+    border-radius: 10px;
+    margin: 0em 0em 1em 0em; 
+    box-shadow: 3px 3px 6px rgba(0, 0, 0, 0.685);
 }
 
+.grupo-card :hover {
+    transform: translateY(-2px); /* Efeito de "levantar" */
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+}
 h2 {
     text-align: center;
     font-family: system-ui, -apple-system, 'BlinkMacSystemFont', 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
@@ -95,38 +109,51 @@ h3 {
     position: relative;
     width: 100%;
     max-width: 380px;
-    margin: 0 auto
+    margin: 0 auto;
+    animation: var(--transicao-padrao);
 }
 
 .filtro-controles {
     justify-content: center; /* Centraliza os itens horizontalmente dentro do container flex */
     gap: 1rem;
-    text-align: center;
     border-radius: 10px;
     padding: 5px;
-    background-color: var(--corfundodiv);
+    background-color: var(--cordestaque);
+    transition: var(--transicao-padrao);
 }   
+
+.filtro-controles :focus {
+    border: 1px solid var(--cordestaque);
+}
+
+.filtro-controles h2 {
+    font-size: 1.7em;
+    margin-bottom: 0.2em;
+}
+
+.filtro-grupo {
+    display: flex;
+    flex-direction: column;
+    gap: 0.3rem;
+    flex: 1;
+    min-width: 180px;
+}
 
 option {
     color: black;
 }
-.resumo-totais h2 {
-    font-size: 1.5em;
-}
-
-.resumo-totais h3 {
-    font-size: 1.3em;
-    text-align: left;
-}
 
 label {
-    background-color: var(--corfundodiv);
-    padding: 3px;
+    margin: 12px 0px 0px 12px;
+    padding: 0px;
     border-radius: 5px;
+    text-align: left;
+    font-weight: 600;
+
 }
 select {
     border-radius: 10px;
-    padding: 3px;
+    padding: 8px;
 }
 
 #aplicar-filtros-btn{
@@ -137,8 +164,34 @@ select {
 }
 
 .resumo-totais {
-    text-align: left;
+    text-align: center;
+    margin: auto;
+    background-color: #868686;
+    padding: 1rem;
+    line-height: 1.5rem;
+    border-radius: 10px;
+    margin: 3em 0em 1em 0em;
+    box-shadow: 3px 3px 6px rgba(0, 0, 0, 0.685);
+
 }
+
+.resumo-totais h3 {
+    font-size: 1.5em;
+    margin-bottom: 0.2em;
+
+}
+
+.resumo-totais p {
+    line-height: 1.2em;
+    border-bottom: 1px dashed rgba(0, 0, 0, 0.1);
+    font-family: var(--fontepadrao);
+}
+
+.resumo-totais p:last-child {
+    margin-bottom: 0;
+    border-bottom: none; /* Remove a linha do último item */
+}
+
 @media (min-width: 600px) {
     .grupo-card {
         justify-content: space-between;
