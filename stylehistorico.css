@@ -73,7 +73,7 @@ hr {
     margin-bottom: 10px;
     background-color: var(--corcard);
     padding: 1rem;
-    line-height: 1.5rem;
+    line-height: 2rem;
     border-radius: 10px;
     margin: 0em 0em 1em 0em; 
     box-shadow: 3px 3px 6px rgba(0, 0, 0, 0.685);
@@ -85,6 +85,7 @@ h2 {
     font-size: 1.3em;
     padding: 0px;
     color: var(--corbotão);
+    text-align: left;
     text-shadow: 1px 2px 1px rgba(0, 0, 0, 0.527);
     /*background-color: var(--corfundoletra);*/
     border-radius: 7px 7px 0px 0px;
@@ -95,13 +96,12 @@ h3 {
     font-size: 0.9em;
     color: var(--corbotão);
     text-shadow: 1px 2px 1px rgba(0, 0, 0, 0.212);
-    padding: 0px;
+    padding-bottom: 2em;
     border-radius: 0px 0px 7px 7px;
     /*background-color: var(--corfundoletra);*/
 }
 
 #filtro-resumo-painel {
-
     flex-wrap: wrap;
     gap: 1rem;
     background-color: var(--corfundo);
@@ -169,7 +169,6 @@ select {
 
 .resumo-totais {
     text-align: center;
-    margin: auto;
     background-color: var(--corcard);
     padding: 1rem;
     line-height: 1.5rem;
@@ -236,14 +235,15 @@ p {
     .item-card {
         width: 100%;
         padding: 8px;
+        margin-bottom: 1.5em;
     }
 
     h2 {
-        font-size: 1em;
+        font-size: 1.5em;
     }
 
     h3 {
-        font-size: 0.8em;
+        font-size: 1em;
     }
 }
 
@@ -253,13 +253,12 @@ button {
     color: white;
     border-radius: 10px;
     cursor: pointer;
-    box-shadow: 3px 1px 3px rgba(0, 0, 0, 0.685);
+    box-shadow: 3px 2px 3px rgba(0, 0, 0, 0.349);
 }
 
 .limpar-btn {
     background-color: var(--corbotão);
     color: white;
-    box-shadow: 3px 1px 3px rgba(0, 0, 0, 0.685);
     position: relative;
     margin: 0 auto;
     display: flex;
@@ -283,8 +282,7 @@ button:hover {
 
 .edit-item-btn {
     background-color: var(--corfundoletra);
-    padding: 5px 110px;
-    box-shadow: 3px 1px 3px rgba(0, 0, 0, 0.685);
+    padding: 4px 38%;
     position: relative;
     /*left: 75pt;*/
     margin: 0 auto;
