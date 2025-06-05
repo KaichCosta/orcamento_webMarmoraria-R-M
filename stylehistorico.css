@@ -1,7 +1,8 @@
 :root{
     --corfundoletra: #868686;
+    --corcard: #fafafa;
     --corfundo: #cacacb;
-    --corfundodiv: #f5f5f5;
+    --corfundodiv: #e9e8e8;
     --corcontraste: black;
     --cordestaque: rgb(129, 0, 0);
     --corbotão: rgb(241, 2, 2);
@@ -61,11 +62,16 @@ hr {
     min-width: 280px; /* Largura mínima para o card não ficar muito apertado */
 }
 
+.item-card :hover {
+    transform: translateY(-2px); /* Efeito de "levantar" */
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+}
+
 .item-card {
     position: relative;
     padding: 10px; /* Um padding para dar espaço dentro do item */
     margin-bottom: 10px;
-    background-color: #cacacb;
+    background-color: var(--corcard);
     padding: 1rem;
     line-height: 1.5rem;
     border-radius: 10px;
@@ -73,10 +79,6 @@ hr {
     box-shadow: 3px 3px 6px rgba(0, 0, 0, 0.685);
 }
 
-.grupo-card :hover {
-    transform: translateY(-2px); /* Efeito de "levantar" */
-    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
-}
 h2 {
     text-align: center;
     font-family: system-ui, -apple-system, 'BlinkMacSystemFont', 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
@@ -118,7 +120,7 @@ h3 {
     gap: 1rem;
     border-radius: 10px;
     padding: 5px;
-    background-color: var(--cordestaque);
+    background-color: var(--corfundodiv);
     transition: var(--transicao-padrao);
 }   
 
@@ -145,6 +147,7 @@ option {
 
 label {
     margin: 12px 0px 0px 12px;
+    font-size: 20px;
     padding: 0px;
     border-radius: 5px;
     text-align: left;
@@ -153,7 +156,8 @@ label {
 }
 select {
     border-radius: 10px;
-    padding: 8px;
+    padding: 1em;
+    font-size: 1em;
 }
 
 #aplicar-filtros-btn{
@@ -166,7 +170,7 @@ select {
 .resumo-totais {
     text-align: center;
     margin: auto;
-    background-color: #868686;
+    background-color: var(--corcard);
     padding: 1rem;
     line-height: 1.5rem;
     border-radius: 10px;
@@ -175,13 +179,23 @@ select {
 
 }
 
+.resumo-totais :hover {
+    transform: translateY(-2px); /* Efeito de "levantar" */
+    box-shadow: 0 6px 12px rgba(0, 0, 0);
+}
+
 .resumo-totais h3 {
     font-size: 1.5em;
     margin-bottom: 0.2em;
 
 }
 
+p {
+    font-size: 20px;
+}
+
 .resumo-totais p {
+    
     line-height: 1.2em;
     border-bottom: 1px dashed rgba(0, 0, 0, 0.1);
     font-family: var(--fontepadrao);
@@ -258,22 +272,21 @@ button:hover {
 
 .remove-btn {
     position: absolute;
-    right: 0px;
+    right: 10px;
     background-color: var(--corbotão);
     color: white;
     border: none;
-    padding: 1px 5px;
-    border-radius: 4px;
+    padding: 4px 6px;
+    border-radius: 50%;
     z-index: 10;
 }
 
 .edit-item-btn {
     background-color: var(--corfundoletra);
-    padding: 1px 10px;
+    padding: 5px 110px;
     box-shadow: 3px 1px 3px rgba(0, 0, 0, 0.685);
     position: relative;
-    left: 70pt;
-    bottom: 4pt;
+    /*left: 75pt;*/
     margin: 0 auto;
     display: flex;
 }
