@@ -203,32 +203,33 @@ select {
 
 @media (max-width: 480px) {
     #filtro-resumo-painel { 
-        width: 95%; /* Garante que ocupe a largura da tela em mobile */
-        padding: 0.8rem; /* Ajusta o padding para telas menores */
-        gap: 0.8rem;
+        width: 95%; 
+        padding: 0.8rem; 
+        gap: 0.8rem; 
     }
     
-    #historico-container #filto-resumo-painel {
-        width: 95%; /* Garante que ocupe a largura da tela em mobile */
-        padding: 0.8rem; /* Ajusta o padding para telas menores */
+    #historico-container {
+        width: 95%;
+        padding: 0.8rem;
         gap: 0.8rem;
     }
+
     .grupo-card {
-        width: 100%; /* Garante que ocupe toda a largura disponível */
+        width: 100%;
         margin-bottom: 10px;
     }
 
     .item-card {
-        width: 100%; /* Item card ocupa 100% do grupo */
+        width: 100%;
         padding: 8px;
     }
 
     h2 {
-        font-size: 1em; /* Ajusta o tamanho da fonte do cliente */
+        font-size: 1em;
     }
 
     h3 {
-        font-size: 0.8em; /* Ajusta o tamanho da fonte da data/hora */
+        font-size: 0.8em;
     }
 }
 
