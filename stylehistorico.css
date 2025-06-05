@@ -202,6 +202,12 @@ select {
 }
 
 @media (max-width: 480px) {
+    #filtro-resumo-painel { 
+        width: 95%; /* Garante que ocupe a largura da tela em mobile */
+        padding: 0.8rem; /* Ajusta o padding para telas menores */
+        gap: 0.8rem;
+    }
+    
     #historico-container #filto-resumo-painel {
         width: 95%; /* Garante que ocupe a largura da tela em mobile */
         padding: 0.8rem; /* Ajusta o padding para telas menores */
