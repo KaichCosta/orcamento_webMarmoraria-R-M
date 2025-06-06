@@ -19,6 +19,18 @@
     box-sizing: border-box;
 }
 
+.cabecalho-principal {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 15px;
+    margin-bottom: 10px;
+    width: 100%;
+    max-width: 400px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
 h1 {
     text-align: center;
     font-size: 2em;
@@ -26,8 +38,16 @@ h1 {
     margin-bottom: 10px;
     color: var(--cordestaque);
     font-family: var(--fontedestaque);
+    line-height: 0.9em;
     text-shadow: 2px 3px 4px rgba(71, 0, 0, 0.589);
 }
+
+.cabecalho-principal img {
+    width: 140px;
+    margin-top: 1.5em;
+    display: block;
+}
+
 hr {
     height: 0px;
     background-color: var(--cordestaque);
@@ -95,7 +115,7 @@ h3 {
     font-size: 0.9em;
     color: var(--corbotão);
     text-shadow: 1px 2px 1px rgba(0, 0, 0, 0.212);
-    padding-bottom: 2em;
+    padding-bottom: 5px;
     border-radius: 0px 0px 7px 7px;
     /*background-color: var(--corfundoletra);*/
 }
@@ -158,6 +178,10 @@ select {
     font-size: 1em;
 }
 
+select :last-child {
+    margin-bottom: 2em;
+}
+
 #aplicar-filtros-btn{
     padding: 3px;
     text-align: right;
@@ -204,11 +228,27 @@ p {
 }
 
 @media (min-width: 699px) {
+    h1 {
+        font-size: 3em;
+    }
+
+    .cabecalho-principal img {
+        width: 210px;
+        margin-top: 1.8em;
+        display: block;
+    }
 
     #filtro-resumo-painel { 
         width: 700px; 
         padding: 0.8rem; 
         gap: 0.8rem; 
+    }
+
+    .resumo-totais {
+        width: 90%;
+        justify-content: space-between;
+        align-items: flex-start;
+        margin: 0 auto;
     }
     
     #historico-container {
@@ -217,8 +257,16 @@ p {
         gap: 0.8rem;
     }
 
+    .filtro-controles {
+        width: 90%;
+        margin-bottom: 10px;
+        justify-content: space-between;
+        align-items: flex-start;
+        margin: 0 auto;
+    }
+
     .grupo-card {
-        width: 100%;
+        width: 90%;
         margin-bottom: 10px;
         justify-content: space-between;
         align-items: flex-start;
@@ -235,6 +283,10 @@ p {
 }
 
 @media (max-width: 480px) {
+    .cabecalho-principal img {
+        margin-right: 0.5em;
+
+    }
     #filtro-resumo-painel { 
         width: 95%; 
         padding: 0.8rem; 

@@ -23,8 +23,6 @@ body {
     font-family: sans-serif;
     background-color: rgb(167, 167, 167);
     padding: 1rem;
-    background-image: url(imagens/logo-marmoraria-fundo-transparente.png);
-    background-repeat: no-repeat;
     background-position: left left;
     background-size: 178px;
 }
@@ -46,14 +44,30 @@ body {
     min-width: 375px;
     min-height: 500px;
     width: 500px;
+}
 
+.cabecalho-principal {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 15px;
+    margin-bottom: 10px;
+    width: 100%;
+    max-width: 400px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.cabecalho-principal img {
+    width: 80px;
+    margin-top: 2em;
+    display: block;
 }
 
 h1 {
     text-align: center;
-    font-size: 32px;
+    font-size: 2em;
     padding: 35px 0px 0px 0px;
-    margin-bottom: 10px;
     color: var(--cordestaque);
     font-family: var(--fontedestaque);
     text-shadow: 2px 3px 4px black;
@@ -182,7 +196,16 @@ h2{
     position: relative;
 }
 
-@media (min-width: 600px) {
+@media (min-width: 699px) {
+    h1 {
+        font-size: 3em;
+    }
+
+    .cabecalho-principal img {
+        width: 110px;
+        margin-top: 2em;
+        display: block;
+    }
     .grupo-card {
         align-items: center;
         margin: 0 auto;
