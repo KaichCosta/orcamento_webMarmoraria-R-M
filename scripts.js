@@ -17,7 +17,6 @@ function calcularTotal() {
 
 function adicionarAoGrupo() {
     const cliente = document.getElementById('cliente').value.trim();
-    const clienteID = cliente.replace(/\s+/g, "_");
     const produto = document.getElementById('produto').value;
     const material = document.getElementById('material').value;
     const valor = parseFloat(document.getElementById('valor').value) || 0;
@@ -167,16 +166,17 @@ function atualizarGrupoVisual(grupo) {
         const card = document.createElement('div');
         card.className = 'item-card';
 
-        //card.dataset.index = index;
-        //card.dataset.cliente = grupo.cliente;
         card.dataset.item = JSON.stringify(item);
 
         card.innerHTML = `
             <button class="remove-btn" data-cliente="${grupo.cliente}" data-index="${index}" onclick="removerItemBtn(this)">X</button>
             <button class="edit-btn" data-cliente="${grupo.cliente}" data-index="${index}" onclick="editarItemBtn(this)">Editar</button>
             <p><strong>Produto:</strong> ${item.produto}</p>
+            <p><strong>Valor do M²:</strong> ${item.valor.toFixed(2)}</p>
             <p><strong>Material:</strong> ${item.material}</p>
             <p><strong>M²:</strong> ${item.m2.toFixed(2)}</p>
+            <p><strong>Mão de Obra:</strong> R$ ${item.mao_obra ? item.mao_obra.toFixed(2) : '0.00'}</p>
+            <p><strong>Quantidade:</strong> ${item.quantidade}</p>  
             <p><strong>Total a prazo:</strong> R$ ${item.totalAprazo.toFixed(2)}</p>
             <p><strong>Total à vista:</strong> R$ ${item.totalAvista.toFixed(2)}</p>
         `;

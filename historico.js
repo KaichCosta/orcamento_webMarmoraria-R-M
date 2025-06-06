@@ -122,7 +122,9 @@ function popularFiltros() {
  */
 function calcularEExibirTotais(dados) {
     console.log("--- calcularEExibirTotais: Iniciando com", dados.length, "grupos ---");
+    let totalMlinear = 0;
     let totalM2 = 0;
+    let totalFrete = 0;
     let totalAprazo = 0;
     let totalAvista = 0;
 
@@ -131,23 +133,29 @@ function calcularEExibirTotais(dados) {
         if (grupo && Array.isArray(grupo.itens)) {
             grupo.itens.forEach((item, itemIdx) => {
                 console.log(`Grupo ${grupoIdx}, Item ${itemIdx}: item.m2 =`, item.m2, `(Tipo: ${typeof item.m2})`);
+                totalMlinear += parseFloat(item.comprimento || 0); // Converta para número e some
                 totalM2 += parseFloat(item.m2 || 0); // Converta para número e some
-                totalAprazo += parseFloat(item.totalAprazo || 0);
-                totalAvista += parseFloat(item.totalAvista || 0);
+                totalFrete += parseFloat(item.frete || 0); // Converta para número e some
+                totalAprazo += parseFloat(item.totalAprazo || 0); // Converta para número e some
+                totalAvista += parseFloat(item.totalAvista || 0); // Converta para número e some
             });
         } else {
             console.warn(`Grupo ${grupoIdx} não tem 'itens' ou 'itens' não é um array. Grupo:`, grupo);
         }
     });
 
+    const totalMlinearEl = document.getElementById("total-mlinear");
     const totalM2El = document.getElementById("total-m2");
+    const totalFreteEl = document.getElementById("total-frete");
     const totalAprazoEl = document.getElementById("total-aprazo");
     const totalAvistaEl = document.getElementById("total-avista");
 
+    if (totalMlinearEl) totalMlinearEl.textContent = totalMlinear.toFixed(2);
     if (totalM2El) totalM2El.textContent = totalM2.toFixed(2);
+    if (totalFreteEl) totalFreteEl.textContent = totalFrete.toFixed(2);
     if (totalAprazoEl) totalAprazoEl.textContent = totalAprazo.toFixed(2);
     if (totalAvistaEl) totalAvistaEl.textContent = totalAvista.toFixed(2);
-    console.log("Totais calculados:", { totalM2, totalAprazo, totalAvista });
+    console.log("Totais calculados:", { totalMlinear, totalM2, totalFrete, totalAprazo, totalAvista });
     console.log("--- calcularEExibirTotais: Finalizado ---");
 }
 
@@ -214,7 +222,6 @@ function aplicarFiltros() {
     calcularEExibirTotais(grupos);
     console.log("--- aplicarFiltros: Finalizado ---");
 }
-
 
 // função para renderizar os grupos (melhor para organizar o código)
 // Agora recebe o array de grupos a ser renderizado como parâmetro
