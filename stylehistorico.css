@@ -218,7 +218,7 @@ p {
 .resumo-totais p {
     
     line-height: 1.2em;
-    border-bottom: 1px dashed rgba(0, 0, 0, 0.1);
+    border-bottom: 2px dashed rgba(0, 0, 0, 0.425);
     font-family: var(--fontepadrao);
 }
 
