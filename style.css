@@ -222,7 +222,7 @@ h2{
     margin: 0;
     flex: 1;
 }
-@media (max-width: 430px) {
+@media (max-width: 480px) {
     .grupo-card {
         min-width: 324px;
         max-width: 350px;
@@ -231,12 +231,6 @@ h2{
         align-items: center;
         margin: 0 auto 10px auto;
     }
-
-    /*.itens-grupo {
-
-        width: 160px;
-    }*/
-    
 
     .item-card {
         width: 140px;
