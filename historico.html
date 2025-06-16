@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
+
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -7,11 +8,13 @@
     <link rel="stylesheet" href="stylehistorico.css">
     <link rel="shortcut icon" href="imagens/iconehistorico.png" type="image/x-icon">
 </head>
+
 <body>
-    <div  class="cabecalho-principal">
+    <div class="cabecalho-principal">
         <h1>Histórico de Orçamentos</h1>
         <img src="imagens/logo-marmoraria-fundo-transparente.png" alt="logo">
     </div>
+
     <h2>fazer o m2 aumentar de acordo com a quantidade de material</h2>
     <div id="filtro-resumo-painel">
         <div class="filtro-controles">
@@ -36,7 +39,7 @@
                     <option value="todos">Todos os Produtos</option>
                 </select>
             </div>
-                <!--<button id="aplicar-filtros-btn">Aplicar Filtros</button>-->
+            <!--<button id="aplicar-filtros-btn">Aplicar Filtros</button>-->
             <div class="resumo-totais">
                 <h3>Totais Agregados:</h3>
                 <p><strong>Total de Metro linear:</strong> <span id="total-mlinear">0.00</span></p>
@@ -44,15 +47,17 @@
                 <p><strong>Total de Frete:</strong> <span id="total-frete">0.00</span></p>
                 <p><strong>Total a Prazo:</strong> R$ <span id="total-aprazo">0.00</span></p>
                 <p><strong>Total à Vista:</strong> R$ <span id="total-avista">0.00</span></p>
-            </div>    
+            </div>
         </div>
 
     </div>
 
     <div id="historico-container">
-        <button class="limpar-btn" onclick="localStorage.removeItem('gruposOrcamento'); location.reload();">Limpar histórico</button>
+        <button class="limpar-btn" onclick="localStorage.removeItem('gruposOrcamento'); location.reload();">Limpar
+            histórico</button>
     </div>
     <script src="historico.js"></script>
 
 </body>
+
 </html>

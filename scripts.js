@@ -28,12 +28,13 @@ function adicionarAoGrupo() {
     const quantidade = parseInt(document.getElementById('quantidade').value) || 1;
     const desconto = parseFloat(document.getElementById('desconto').value) || 0;
 
+    // O cálculo para UM item
     const m2 = comprimento * largura;
-    const totalAprazo = ((valor * m2 + mao_obra + cuba) * quantidade) + frete;
+    const totalM2 = m2 * quantidade; // Total de m² para esta adição
+    const totalAprazo = ((valor * totalM2 + mao_obra + cuba)) + frete;
     const descontoValor = totalAprazo * (desconto / 100);
     const totalAvista = totalAprazo - descontoValor;
 
-    // Atualiza campos na interface metro
     document.getElementById('total').value = `R$ ${totalAprazo.toFixed(2)}`;
     document.getElementById('total_vista').value = `R$ ${totalAvista.toFixed(2)}`;
 
@@ -42,7 +43,7 @@ function adicionarAoGrupo() {
         produto,
         material,
         valor,
-        m2,
+        m2: totalM2,
         comprimento,
         largura,
         quantidade,
@@ -58,11 +59,27 @@ function adicionarAoGrupo() {
     if (!grupo) {
         grupo = { cliente: cliente, itens: [] };
         grupos.push(grupo);
-        criarGrupoVisual(grupo); // Só cria se for novo
+        criarGrupoVisual(grupo);
     }
 
-    grupo.itens.push(novoItem);
-    atualizarGrupoVisual(grupo); // Sempre atualiza
+    const itemExistente = grupo.itens.find(item => 
+        item.produto === novoItem.produto && item.material === novoItem.material
+    );
+
+    if (itemExistente) {
+        itemExistente.quantidade += novoItem.quantidade;
+        itemExistente.m2 += novoItem.m2; // Soma a nova metragem quadrada
+        itemExistente.totalAprazo += novoItem.totalAprazo; // Soma o novo total
+        itemExistente.totalAvista += novoItem.totalAvista; // Soma o novo total com desconto
+
+    } else {
+        // 3. SE O ITEM É NOVO (não foi encontrado na lista):
+        //    Aí sim, adicionamos ele ao grupo.
+        grupo.itens.push(novoItem);
+    }
+
+    // Por fim, atualizamos a visualização do grupo na tela.
+    atualizarGrupoVisual(grupo);
 }
 
 let materiais = {};
