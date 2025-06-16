@@ -82,6 +82,37 @@ function adicionarAoGrupo() {
     atualizarGrupoVisual(grupo);
 }
 
+let produtos = {};
+
+fetch('produtos.json')
+    .then(response => response.json())
+    .then(data => {
+        produtos = data;
+    
+        const datalist = document.getElementById('lista-produtos');
+        Object.keys(produtos).forEach(nome => {
+            const option = document.createElement('option');
+            option.value = nome;
+            datalist.appendChild(option);
+        })
+    })
+    .catch(error => console.error('Erro ao carregar produtos:', error));
+
+    // Atualiza o valor da MÃO DE OBRA automaticamente ao selecionar um produto
+    document.getElementById('produto').addEventListener('change', function () {
+    const produtoSelecionado = this.value;
+    const valormao_obra = produtos[produtoSelecionado];
+
+    const inputMao_obra = document.getElementById('mao_obra');
+    if (valormao_obra !== null && valormao_obra !== undefined) {
+        inputMao_obra.value = valormao_obra;
+    } else {
+        inputMao_obra.value = '';
+    }
+
+    calcularTotal();
+});
+
 let materiais = {};
 
 fetch('materiais.json')
