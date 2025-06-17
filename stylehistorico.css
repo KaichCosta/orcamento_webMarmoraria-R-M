@@ -103,6 +103,7 @@ h2 {
     font-family: system-ui, -apple-system, 'BlinkMacSystemFont', 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
     font-size: 1.3em;
     padding: 0px;
+    margin-top: 14px;
     color: var(--corbotão);
     text-align: left;
     text-shadow: 1px 2px 1px rgba(0, 0, 0, 0.527);
@@ -137,7 +138,8 @@ h3 {
     justify-content: center; /* Centraliza os itens horizontalmente dentro do container flex */
     gap: 1rem;
     border-radius: 10px;
-    padding: 5px;
+    padding: 10px;
+    margin-top: 1em;
     background-color: var(--corfundodiv);
     transition: var(--transicao-padrao);
 }   
@@ -178,7 +180,7 @@ select {
     font-size: 1em;
 }
 
-select :last-child {
+.filtro-grupo select:last-child {
     margin-bottom: 2em;
 }
 
@@ -282,7 +284,7 @@ p {
 
 }
 
-@media (max-width: 480px) {
+@media (max-width: 698px) {
     .cabecalho-principal img {
         margin-right: 0.5em;
 
