@@ -38,7 +38,7 @@
                     <option value="todos">Todos os Produtos</option>
                 </select>
             </div>
-            <!--<button id="aplicar-filtros-btn">Aplicar Filtros</button>-->
+
             <div class="resumo-totais">
                 <h3>Totais Agregados:</h3>
                 <p><strong>Total de Metro linear:</strong> <span id="total-mlinear">0.00</span></p>
@@ -51,10 +51,13 @@
 
     </div>
 
+    <button onclick="gerarPdfPreview()">teste</button>
     <div id="historico-container">
         <button class="limpar-btn" onclick="localStorage.removeItem('gruposOrcamento'); location.reload();">Limpar
             histórico</button>
     </div>
+
+    <script src="https://unpkg.com/pdf-lib/dist/pdf-lib.min.js"></script>
     <script src="historico.js"></script>
 
 </body>

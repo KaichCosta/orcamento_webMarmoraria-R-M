@@ -128,10 +128,25 @@ function calcularEExibirTotais(dados) {
     let totalAprazo = 0;
     let totalAvista = 0;
 
+    const containerDeHistorico = document.getElementById('historico-container');
+    containerDeHistorico.innerHTML = '';
+
     dados.forEach((grupo, grupoIdx) => {
         // Adicionado verificação para garantir que grupo.itens existe e é um array
         if (grupo && Array.isArray(grupo.itens)) {
+            // 1. CRIA O ELEMENTO HTML PARA O CARD DO GRUPO
+            const cardDoGrupo = document.createElement('div');
+            cardDoGrupo.className = 'grupo-card'; // Usa a classe CSS que você já tem
+            cardDoGrupo.id = `grupo-${grupoIdx}`; // Cria um ID único para o card, se precisar
+
+            // 2. PREENCHE O CARD COM AS INFORMAÇÕES DO GRUPO (ex: nome do cliente)
+            const nomeClienteElemento = document.createElement('h2');
+            nomeClienteElemento.textContent = `Cliente: ${grupo.cliente}`;
+            cardDoGrupo.appendChild(nomeClienteElemento);
+
+            // 3. FAZ O LOOP NOS ITENS PARA MOSTRAR OS DETALHES (e calcular totais)
             grupo.itens.forEach((item, itemIdx) => {
+                grupo.itens.forEach((item, itemIdx) => {
                 console.log(`Grupo ${grupoIdx}, Item ${itemIdx}: item.m2 =`, item.m2, `(Tipo: ${typeof item.m2})`);
                 totalMlinear += parseFloat(item.comprimento || 0); // Converta para número e some
                 totalM2 += parseFloat(item.m2 || 0); // Converta para número e some
@@ -139,24 +154,42 @@ function calcularEExibirTotais(dados) {
                 totalAprazo += parseFloat(item.totalAprazo || 0); // Converta para número e some
                 totalAvista += parseFloat(item.totalAvista || 0); // Converta para número e some
             });
-        } else {
+
+            const totalMlinearEl = document.getElementById("total-mlinear");
+            const totalM2El = document.getElementById("total-m2");
+            const totalFreteEl = document.getElementById("total-frete");
+            const totalAprazoEl = document.getElementById("total-aprazo");
+            const totalAvistaEl = document.getElementById("total-avista");
+
+            if (totalMlinearEl) totalMlinearEl.textContent = totalMlinear.toFixed(2);
+            if (totalM2El) totalM2El.textContent = totalM2.toFixed(2);
+            if (totalFreteEl) totalFreteEl.textContent = totalFrete.toFixed(2);
+            if (totalAprazoEl) totalAprazoEl.textContent = totalAprazo.toFixed(2);
+            if (totalAvistaEl) totalAvistaEl.textContent = totalAvista.toFixed(2);
+            console.log("Totais calculados:", { totalMlinear, totalM2, totalFrete, totalAprazo, totalAvista });
+            console.log("--- calcularEExibirTotais: Finalizado ---");
+
+            // 4. CRIA E CONFIGURA O BOTÃO DE PDF
+            const botaoPDF = document.createElement('button');
+            botaoPDF.innerText = 'Gerar PDF do Orçamento';
+            
+            // CORREÇÃO: Usar 'grupoIdx' que é o índice do seu loop atual
+            // A mágica de passar o índice correto para a função de gerar o PDF
+            botaoPDF.onclick = () => gerarPdfPreview(grupoIdx); 
+
+            // 5. ANEXA O BOTÃO AO CARD QUE ACABAMOS DE CRIAR
+            cardDoGrupo.appendChild(botaoPDF);
+
+            // 6. ANEXA O CARD COMPLETO (com nome, itens, botão, etc.) AO CONTÊINER DA PÁGINA
+            containerDeHistorico.appendChild(cardDoGrupo);
+        }
+
+        else {
             console.warn(`Grupo ${grupoIdx} não tem 'itens' ou 'itens' não é um array. Grupo:`, grupo);
         }
+    
     });
 
-    const totalMlinearEl = document.getElementById("total-mlinear");
-    const totalM2El = document.getElementById("total-m2");
-    const totalFreteEl = document.getElementById("total-frete");
-    const totalAprazoEl = document.getElementById("total-aprazo");
-    const totalAvistaEl = document.getElementById("total-avista");
-
-    if (totalMlinearEl) totalMlinearEl.textContent = totalMlinear.toFixed(2);
-    if (totalM2El) totalM2El.textContent = totalM2.toFixed(2);
-    if (totalFreteEl) totalFreteEl.textContent = totalFrete.toFixed(2);
-    if (totalAprazoEl) totalAprazoEl.textContent = totalAprazo.toFixed(2);
-    if (totalAvistaEl) totalAvistaEl.textContent = totalAvista.toFixed(2);
-    console.log("Totais calculados:", { totalMlinear, totalM2, totalFrete, totalAprazo, totalAvista });
-    console.log("--- calcularEExibirTotais: Finalizado ---");
 }
 
 /**
@@ -235,15 +268,12 @@ function renderizarGrupos(gruposParaRenderizar) {
         return;
     }
 
-    // Limpa o conteúdo atual do container, mantendo o botão de limpar
     container.innerHTML = '';
     if (limparBtn) {
-        container.appendChild(limparBtn); // Adiciona o botão de volta
-    } else {
+        container.appendChild(limparBtn);
         console.warn("Botão 'limpar-btn' não encontrado para ser re-adicionado.");
     }
 
-    // AQUI ESTÁ A VERIFICAÇÃO PRINCIPAL PARA EVITAR O ERRO 'length'
     if (!Array.isArray(gruposParaRenderizar) || gruposParaRenderizar.length === 0) {
         container.innerHTML += "<p>Nenhum orçamento salvo.</p>";
         console.log("Nenhum orçamento para renderizar ou 'gruposParaRenderizar' não é um array.");
@@ -348,4 +378,63 @@ function removerItemBtn(botao) {
     aplicarFiltros();
     popularFiltros(); // Atualiza os filtros caso algum cliente/material/produto tenha sumido
     console.log("--- removerItemBtn: Finalizado ---");
+}
+
+async function gerarPdfPreview() {
+    // Desestruturando as funções que vamos usar da biblioteca
+    const { PDFDocument, rgb, StandardFonts } = PDFLib;
+
+    // --- Passo 1 e 2: Carregar os dados e o PDF de fundo ---
+    const urlTemplate = 'pdf/Orcamento-definido.pdf';
+    const existingPdfBytes = await fetch(urlTemplate).then(res => res.arrayBuffer());
+
+    const nomeCliente = document.getElementById('cliente').value;
+    const totalGeral = document.getElementById('total').value;
+    const dataAtual = new Date().toLocaleDateString('pt-BR'); // Pega a data atual formatada
+
+    // Carrega o documento na biblioteca
+    const pdfDoc = await PDFDocument.load(existingPdfBytes);
+    
+    // Pega a primeira página do documento
+    const pages = pdfDoc.getPages();
+    const firstPage = pages[0];
+
+    // --- Passo 3: "Escrever" os dados na página ---
+    // O truque aqui são as coordenadas X e Y. Você vai precisar de um pouco
+    // de tentativa e erro para achar as posições exatas para cada campo.
+    // A contagem começa do canto inferior esquerdo da página.
+    firstPage.drawText(nomeCliente, {
+        x: 120, // Distância da borda esquerda
+        y: 705, // Distância da borda inferior
+        font: await pdfDoc.embedFont(StandardFonts.HelveticaBold),
+        size: 14,
+        color: rgb(0, 0, 0), // Preto
+    });
+
+    firstPage.drawText(dataAtual, {
+        x: 480,
+        y: 705,
+        font: await pdfDoc.embedFont(StandardFonts.Helvetica),
+        size: 12,
+    });
+
+    firstPage.drawText(totalGeral, {
+        x: 480,
+        y: 150,
+        font: await pdfDoc.embedFont(StandardFonts.HelveticaBold),
+        size: 18,
+        color: rgb(0, 0, 0), // Um verde escuro
+    });
+
+    // ... adicione um `drawText` para cada campo que você precisar ...
+
+    // --- Passo 4: Gerar e exibir o PDF ---
+    const pdfBytes = await pdfDoc.save();
+
+    // Cria um "Blob" e uma URL temporária para o PDF gerado
+    const blob = new Blob([pdfBytes], { type: 'application/pdf' });
+    const pdfUrl = URL.createObjectURL(blob);
+
+    // Abre a URL em uma nova aba, criando a pré-visualização
+    window.open(pdfUrl, '_blank');
 }
