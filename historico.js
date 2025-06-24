@@ -308,23 +308,31 @@ function renderizarGrupos(gruposParaRenderizar) {
                 const itemCardDiv = document.createElement("div");
                 itemCardDiv.className = "item-card"; // Classe para estilizar o item
 
-                itemCardDiv.innerHTML = `
-                    <button class="remove-btn" data-grupo-index="${grupoIndex}" data-item-index="${itemIndex}" onclick="removerItemBtn(this)">X</button>
-                    <p><strong>Produto:</strong> ${item.produto}</p>
-                    <p><strong>Material:</strong> ${item.material}</p>
-                    <p><strong>M²:</strong> ${item.m2 ? item.m2.toFixed(2) : 'N/A'}</p> <!-- Adicionado M² aqui -->
-                    <p><strong>Total a prazo:</strong> R$ ${item.totalAprazo.toFixed(2)}</p>
-                    <p><strong>Total à vista:</strong> R$ ${item.totalAvista.toFixed(2)}</p>
-                    <button class="edit-item-btn" onclick='editarItemHistorico(${JSON.stringify(item)}, "${grupo.cliente}")'>Editar Item</button>
-                    <hr/>
-                `;
+        itemCardDiv.innerHTML = `
+            <button class="remove-btn" data-grupo-index="${grupoIndex}" data-item-index="${itemIndex}" onclick="removerItemBtn(this)">X</button>
+            <p><strong>Produto:</strong> ${item.produto}</p>
+            <p><strong>Material:</strong> ${item.material}</p>
+            <p><strong>M²:</strong> ${item.m2 ? parseFloat(item.m2).toFixed(2) : 'N/A'}</p>
+            <p><strong>Total a prazo:</strong> R$ ${parseFloat(item.totalAprazo || 0).toFixed(2)}</p>
+            <p><strong>Total à vista:</strong> R$ ${parseFloat(item.totalAvista || 0).toFixed(2)}</p>
+            <button class="edit-item-btn" onclick='editarItemHistorico(${JSON.stringify(item)}, "${grupo.cliente}")'>Editar Item</button>
+            <hr/>
+        `;
                 grupoDiv.appendChild(itemCardDiv); // Adiciona o card do item dentro do grupoDiv
             });
         } else {
             console.warn(`Grupo ${grupo.cliente} não tem 'itens' ou 'itens' não é um array ao renderizar.`);
         }
 
-        container.appendChild(grupoDiv); // Adiciona o grupoDiv (com seus itens) ao container principal
+        const botaoPDF = document.createElement('button');
+        botaoPDF.className = 'gerar-pdf-btn'; // Dando uma classe para você poder estilizar depois
+        botaoPDF.innerText = 'Gerar PDF do Orçamento';
+
+        botaoPDF.onclick = () => gerarPdfPreview(grupoIndex); 
+
+        grupoDiv.appendChild(botaoPDF);
+
+        container.appendChild(grupoDiv);
     });
     console.log("--- renderizarGrupos: Finalizado ---");
 }
