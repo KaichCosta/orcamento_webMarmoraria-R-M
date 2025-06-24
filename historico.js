@@ -120,88 +120,37 @@ function popularFiltros() {
  * Função para calcular e exibir os totais agregados (m², a prazo, à vista).
  * @param {Array} dados - O array de grupos de orçamento a ser usado para o cálculo.
  */
-function calcularEExibirTotais(dados) {
-    console.log("--- calcularEExibirTotais: Iniciando com", dados.length, "grupos ---");
-    
-    // As variáveis de totais continuam aqui no início, isso está correto.
-    let totalMlinear = 0;
-    let totalM2 = 0;
-    let totalFrete = 0;
-    let totalAprazo = 0;
-    let totalAvista = 0;
+// Renomeada para ter um nome mais preciso
+function calcularTotaisGerais(dados) {
+    console.log("--- calcularTotaisGerais: Iniciando cálculos ---");
 
-    const containerDeHistorico = document.getElementById('historico-container');
-    containerDeHistorico.innerHTML = ''; // Limpa a tela antes de redesenhar. Correto.
+    // 1. Cria um objeto para guardar os totais
+    let totais = {
+        mlinear: 0,
+        m2: 0,
+        frete: 0,
+        aprazo: 0,
+        avista: 0
+    };
 
-    // Inicia o loop principal para cada grupo/orçamento
-    dados.forEach((grupo, grupoIdx) => {
+    // 2. Faz o loop nos dados APENAS para somar os valores
+    dados.forEach((grupo) => {
         if (grupo && Array.isArray(grupo.itens)) {
-            // 1. CRIA O CARD e adiciona o nome do cliente. Correto.
-            const cardDoGrupo = document.createElement('div');
-            cardDoGrupo.className = 'grupo-card';
-            const nomeClienteElemento = document.createElement('h2');
-            nomeClienteElemento.textContent = `Cliente: ${grupo.cliente}`;
-            cardDoGrupo.appendChild(nomeClienteElemento);
-
-
             grupo.itens.forEach((item) => {
-                // --- Parte A: Adiciona os totais para o resumo geral ---
-                totalMlinear += parseFloat(item.comprimento || 0);
-                totalM2 += parseFloat(item.m2 || 0);
-                totalFrete += parseFloat(item.frete || 0);
-                totalAprazo += parseFloat(item.totalAprazo || 0);
-                totalAvista += parseFloat(item.totalAvista || 0);
-
-                // --- Parte B: Cria o elemento visual para ESTE item ---
-                const itemCard = document.createElement('div');
-                itemCard.className = 'item-card'; // Supondo que você tenha uma classe para isso
-                itemCard.innerHTML = `
-                    <p><strong>Produto:</strong> ${item.produto} - ${item.material}</p>
-                    <p><strong>Medidas:</strong> ${item.comprimento} x ${item.largura} | <strong>m²:</strong> ${parseFloat(item.m2 || 0).toFixed(2)} | <strong>Qtde:</strong> ${item.quantidade}</p>
-                    <p><strong>Valor:</strong> R$ ${parseFloat(item.totalAprazo || 0).toFixed(2)}</p>
-                `;
-                // Anexa o card do item ao card do grupo
-                cardDoGrupo.appendChild(itemCard);
+                totais.mlinear += parseFloat(item.comprimento || 0);
+                totais.m2 += parseFloat(item.m2 || 0);
+                totais.frete += parseFloat(item.frete || 0);
+                totais.aprazo += parseFloat(item.totalAprazo || 0);
+                totais.avista += parseFloat(item.totalAvista || 0);
             });
-
-            // 3. CRIA E CONFIGURA O BOTÃO DE PDF. Correto.
-            const botaoPDF = document.createElement('button');
-            botaoPDF.innerText = 'Gerar PDF do Orçamento';
-
-            console.log(`[CRIANDO BOTÃO] O índice para este botão é: ${grupoIdx} (Tipo: ${typeof grupoIdx})`);
-            
-            botaoPDF.onclick = () => {
-            // LOG 2: VAMOS VER O VALOR DE 'grupoIdx' NO MOMENTO DO CLIQUE
-                console.log(`[BOTÃO CLICADO] A função gerarPdfPreview será chamada com o índice: ${grupoIdx}`);
-                gerarPdfPreview(grupoIdx); 
-            }; 
-            
-            cardDoGrupo.appendChild(botaoPDF);
-
-            // 4. ANEXA O CARD DO GRUPO COMPLETO AO CONTÊINER. Correto.
-            containerDeHistorico.appendChild(cardDoGrupo);
-
-        } else {
-            console.warn(`Grupo ${grupoIdx} não tem 'itens' ou 'itens' não é um array.`, grupo);
         }
-    }); // <-- FIM DO LOOP PRINCIPAL 'dados.forEach'
+    });
 
-    // 5. ATUALIZA OS TOTAIS GERAIS NA TELA (AGORA NO LUGAR CERTO!)
-    // Este código agora roda UMA VEZ SÓ, depois que tudo foi calculado.
-    const totalMlinearEl = document.getElementById("total-mlinear");
-    const totalM2El = document.getElementById("total-m2");
-    const totalFreteEl = document.getElementById("total-frete");
-    const totalAprazoEl = document.getElementById("total-aprazo");
-    const totalAvistaEl = document.getElementById("total-avista");
+    console.log("--- calcularTotaisGerais: Finalizado ---");
+    console.log("Objeto de totais calculado:", totais);
 
-    if (totalMlinearEl) totalMlinearEl.textContent = totalMlinear.toFixed(2);
-    if (totalM2El) totalM2El.textContent = totalM2.toFixed(2);
-    if (totalFreteEl) totalFreteEl.textContent = totalFrete.toFixed(2);
-    if (totalAprazoEl) totalAprazoEl.textContent = `R$ ${totalAprazo.toFixed(2)}`;
-    if (totalAvistaEl) totalAvistaEl.textContent = `R$ ${totalAvista.toFixed(2)}`;
-
-    console.log("--- calcularEExibirTotais: Finalizado ---");
-    console.log("Totais FINAIS calculados:", { totalMlinear, totalM2, totalFrete, totalAprazo, totalAvista });
+    // 3. RETORNA o objeto com os resultados prontos
+    return totais;
 }
 
 /**
@@ -335,6 +284,20 @@ function renderizarGrupos(gruposParaRenderizar) {
         container.appendChild(grupoDiv);
     });
     console.log("--- renderizarGrupos: Finalizado ---");
+}
+
+function exibirResumo(totais) {
+    const totalMlinearEl = document.getElementById("total-mlinear");
+    const totalM2El = document.getElementById("total-m2");
+    const totalFreteEl = document.getElementById("total-frete");
+    const totalAprazoEl = document.getElementById("total-aprazo");
+    const totalAvistaEl = document.getElementById("total-avista");
+
+    if (totalMlinearEl) totalMlinearEl.textContent = totais.mlinear.toFixed(2);
+    if (totalM2El) totalM2El.textContent = totais.m2.toFixed(2);
+    if (totalFreteEl) totalFreteEl.textContent = totais.frete.toFixed(2);
+    if (totalAprazoEl) totalAprazoEl.textContent = `R$ ${totais.aprazo.toFixed(2)}`;
+    if (totalAvistaEl) totalAvistaEl.textContent = `R$ ${totais.avista.toFixed(2)}`;
 }
 
 function editarItemHistorico(item, cliente) {
