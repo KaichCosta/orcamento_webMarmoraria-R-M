@@ -24,7 +24,7 @@ window.onload = function () {
             return;
         }
 
-        // 1. Popula os dropdowns de filtro, como antes.
+        // 1. Popula os dropdowns de filtro, como antes. local
         popularFiltros();
 
         // 2. Chama a função que DESENHA OS CARDS na tela.
@@ -259,20 +259,37 @@ function renderizarGrupos(gruposParaRenderizar) {
         if (grupo && Array.isArray(grupo.itens)) {
             grupo.itens.forEach((item, itemIndex) => {
                 const itemCardDiv = document.createElement("div");
-                itemCardDiv.className = "item-card"; // Classe para estilizar o item
+                itemCardDiv.className = "item-card";
 
-        itemCardDiv.innerHTML = `
-            <button class="remove-btn" data-grupo-index="${grupoIndex}" data-item-index="${itemIndex}" onclick="removerItemBtn(this)">X</button>
-            <p><strong>Produto:</strong> ${item.produto}</p>
-            <p><strong>Material:</strong> ${item.material}</p>
-            <p><strong>M²:</strong> ${item.m2 ? parseFloat(item.m2).toFixed(2) : 'N/A'}</p>
-            <p><strong>Total a prazo:</strong> R$ ${parseFloat(item.totalAprazo || 0).toFixed(2)}</p>
-            <p><strong>Total à vista:</strong> R$ ${parseFloat(item.totalAvista || 0).toFixed(2)}</p>
-            <button class="edit-item-btn" onclick='editarItemHistorico(${JSON.stringify(item)}, "${grupo.cliente}")'>Editar Item</button>
-            <hr/>
-        `;
-                grupoDiv.appendChild(itemCardDiv); // Adiciona o card do item dentro do grupoDiv
+                // HTML dos dados do item
+                itemCardDiv.innerHTML = `
+                    <button class="remove-btn" data-grupo-index="${grupoIndex}" data-item-index="${itemIndex}" onclick="removerItemBtn(this)">X</button>
+                    <p><strong>Produto:</strong> ${item.produto}</p>
+                    <p><strong>Material:</strong> ${item.material}</p>
+                    <p><strong>M²:</strong> ${item.m2 ? parseFloat(item.m2).toFixed(2) : 'N/A'}</p>
+                    <p><strong>Total a prazo:</strong> R$ ${parseFloat(item.totalAprazo || 0).toFixed(2)}</p>
+                    <p><strong>Total à vista:</strong> R$ ${parseFloat(item.totalAvista || 0).toFixed(2)}</p>
+                    <hr/>
+                `;
+
+            const botaoEditar = document.createElement("button");
+            botaoEditar.className = "edit-item-btn";
+            botaoEditar.innerText = "Editar Item";
+
+            botaoEditar.onclick = () => {
+                localStorage.setItem("grupoIndexEditando", grupoIndex);
+                localStorage.setItem("itemIndexEditando", itemIndex);
+                localStorage.setItem("grupoEditando", JSON.stringify(grupo));
+                window.location.href = "index.html";
+            };
+
+                // Adiciona o botão ao card
+            itemCardDiv.appendChild(botaoEditar);
+
+                // Adiciona o card do item ao grupo
+            grupoDiv.appendChild(itemCardDiv);
             });
+
         } else {
             console.warn(`Grupo ${grupo.cliente} não tem 'itens' ou 'itens' não é um array ao renderizar.`);
         }

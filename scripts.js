@@ -290,7 +290,7 @@ function salvarOrcamento(cliente) {
         return;
     }
 
-    // Carrega grupos existentes
+    // Carrega grupos existentes DOM
     let gruposSalvos = JSON.parse(localStorage.getItem('gruposOrcamento')) || [];
 
     // Verifica se o grupo já existe
