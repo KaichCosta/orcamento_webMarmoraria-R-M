@@ -24,12 +24,18 @@ window.onload = function () {
             return;
         }
 
-        // Popula os dropdowns de filtro com os dados existentes
+        // 1. Popula os dropdowns de filtro, como antes.
         popularFiltros();
-        // Calcula e exibe os totais iniciais (sem filtro aplicado)
-        calcularEExibirTotais(grupos);
-        // Renderiza os cards iniciais
+
+        // 2. Chama a função que DESENHA OS CARDS na tela.
+        //    (Essa é a sua renderizarGrupos, agora com a lógica completa e corrigida).
         renderizarGrupos(grupos);
+
+        // 3. Chama a função que SÓ CALCULA os totais e retorna os números.
+        const totaisGerais = calcularTotaisGerais(grupos);
+
+        // 4. Chama a função que SÓ EXIBE o resumo na tela, usando os números calculados.
+        exibirResumo(totaisGerais);
 
     } else {
         container.innerHTML = "<p>Nenhum orçamento salvo.</p>";
@@ -217,15 +223,13 @@ function aplicarFiltros() {
     console.log("--- aplicarFiltros: Finalizado ---");
 }
 
-// função para renderizar os grupos (melhor para organizar o código)
-// Agora recebe o array de grupos a ser renderizado como parâmetro
 function renderizarGrupos(gruposParaRenderizar) {
     console.log("--- renderizarGrupos: Iniciando com", gruposParaRenderizar.length, "grupos ---");
     const container = document.getElementById("historico-container");
     const limparBtn = container.querySelector('.limpar-btn'); // Pega o botão existente
 
     if (!container) {
-        console.error("Erro: Container 'historico-container' não encontrado.");
+        console.error("ERRO GRAVE: Container 'historico-container' não encontrado.");
         return;
     }
 
@@ -237,7 +241,7 @@ function renderizarGrupos(gruposParaRenderizar) {
 
     if (!Array.isArray(gruposParaRenderizar) || gruposParaRenderizar.length === 0) {
         container.innerHTML += "<p>Nenhum orçamento salvo.</p>";
-        console.log("Nenhum orçamento para renderizar ou 'gruposParaRenderizar' não é um array.");
+        console.error("BUG ENCONTRADO AQUI: A condição para 'lista vazia' foi ativada. Parando a renderização.");
         return;
     }
 
@@ -311,12 +315,10 @@ function editarItemHistorico(item, cliente) {
 }
 
 function mostrarAlerta(mensagem) {
-    // Implemente sua lógica de alerta customizado aqui, se necessário
     console.log("Alerta: " + mensagem);
 }
 
 function fecharAlerta() {
-    // Implemente sua lógica para fechar alerta customizado aqui
     console.log("Alerta fechado.");
 }
 
@@ -331,7 +333,6 @@ function removerItemBtn(botao) {
     const grupoIndex = parseInt(botao.dataset.grupoIndex);
     const itemIndex = parseInt(botao.dataset.itemIndex);
 
-    // Validação básica
     if (!gruposOriginais[grupoIndex] || !gruposOriginais[grupoIndex].itens || !gruposOriginais[grupoIndex].itens[itemIndex]) {
         console.error("Erro: Ícone de remoção clicado para um item/grupo que não existe mais no array original.");
         // Se o item/grupo já foi removido, apenas reaplica os filtros para atualizar a UI
@@ -348,14 +349,13 @@ function removerItemBtn(botao) {
 
     // Se o grupo não tiver mais itens, remove o grupo inteiro do original
     if (grupo.itens.length === 0) {
-        // Não precisamos de findIndex aqui, já temos o grupoIndex
         gruposOriginais.splice(grupoIndex, 1);
         console.log(`Grupo ${grupo.cliente} removido por estar vazio.`);
     }
 
     salvarGruposNoStorage(); // Salva as alterações no localStorage (dos dados originais)
 
-    // Após remover, reaplica os filtros e renderiza tudo novamente
+
     aplicarFiltros();
     popularFiltros(); // Atualiza os filtros caso algum cliente/material/produto tenha sumido
     console.log("--- removerItemBtn: Finalizado ---");
@@ -379,13 +379,13 @@ async function gerarPdfPreview(indiceDoGrupo) {
 
     let totalGeral = 0;
     grupoParaImprimir.itens.forEach(item => {
-        // <-- CORREÇÃO 1: Garante que a soma seja matemática
         totalGeral += parseFloat(item.totalAprazo || 0); 
     });
-    // Agora 'totalGeral' é um número e podemos usar .toFixed() nele
     const totalFormatado = `R$ ${totalGeral.toFixed(2)}`;
 
     const urlTemplate = 'pdf/orcamento.pdf'; // Verifique se o nome do arquivo está correto
+    console.log("O fetch está tentando acessar esta URL:", new URL(urlTemplate, window.location.href).href);
+
     const existingPdfBytes = await fetch(urlTemplate).then(res => res.arrayBuffer());
     const pdfDoc = await PDFDocument.load(existingPdfBytes);
     const pages = pdfDoc.getPages();

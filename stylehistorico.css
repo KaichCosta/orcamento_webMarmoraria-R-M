@@ -332,7 +332,6 @@ button {
 
 .limpar-btn {
     background-color: var(--corbotão);
-    color: white;
     position: relative;
     margin: 0 auto;
     display: flex;
@@ -365,4 +364,11 @@ button:hover {
 
 alert {
     color: whitesmoke;
+}
+
+.gerar-pdf-btn {
+    color: var(--cordestaque);
+    position: relative;
+    margin: 0 auto;
+    display: flex;
 }
