@@ -320,25 +320,66 @@ function salvarOrcamento(cliente) {
     mostrarAlerta(`Orçamento de ${cliente} salvo com sucesso!`);
 }
 
-window.onload = function () {
-    fecharAlerta();
-    const itemSalvo = localStorage.getItem('itemEmEdicao');
-    if (itemSalvo) {
-        const dados = JSON.parse(itemSalvo);
+let modoEdicao = false;
+let indiceGrupoEditando = -1;
+let indiceItemEditando = -1;
 
-        document.getElementById('cliente').value = dados.cliente || '';
-        document.getElementById('produto').value = dados.produto || '';
-        document.getElementById('material').value = dados.material || '';
-        document.getElementById('valor').value = dados.valor || '';
-        document.getElementById('comprimento').value = dados.comprimento || '';
-        document.getElementById('largura').value = dados.largura || '';
-        document.getElementById('mao_obra').value = dados.mao_obra || '';
-        document.getElementById('cuba').value = dados.cuba || '';
-        document.getElementById('frete').value = dados.frete || '';
-        document.getElementById('quantidade').value = dados.quantidade || '';
-        document.getElementById('desconto').value = dados.desconto || '';
+window.onload = function() {
+    fecharAlerta(); 
+    
+    const grupoIndexSalvo = localStorage.getItem("grupoIndexEditando");
+    const itemIndexSalvo = localStorage.getItem("itemIndexEditando");
+    const grupoSalvoString = localStorage.getItem("grupoEditando");
 
-        localStorage.removeItem('itemEmEdicao');
+    if (grupoIndexSalvo !== null && itemIndexSalvo !== null && grupoSalvoString !== null) {
+        
+        console.log("--- INICIANDO MODO DE EDIÇÃO (DEPURAÇÃO) ---");
+        
+        // CÂMERA 1: Vamos ver os dados brutos que vieram do localStorage
+        console.log("Índice do grupo recuperado:", grupoIndexSalvo);
+        console.log("Índice do item recuperado:", itemIndexSalvo);
+        
+        const grupo = JSON.parse(grupoSalvoString);
+        // CÂMERA 2: Vamos ver o objeto do grupo depois de convertido
+        console.log("Objeto 'grupo' recuperado:", grupo);
+        
+        // CÂMERA 3: Vamos ver o array de itens que está dentro do grupo
+        console.log("Array de itens dentro do grupo:", grupo.itens);
+
+        indiceItemEditando = parseInt(itemIndexSalvo);
+        const itemParaEditar = grupo.itens[indiceItemEditando];
+
+        // CÂMERA 4: A PROVA FINAL! Vamos ver se conseguimos pegar o item.
+        console.log("Item específico que tentamos pegar ('itemParaEditar'):", itemParaEditar);
+
+        // Se o item foi encontrado, o código continua
+        if (itemParaEditar) {
+            console.log("Sucesso! Preenchendo o formulário...");
+            modoEdicao = true;
+            indiceGrupoEditando = parseInt(grupoIndexSalvo);
+
+            document.getElementById('cliente').value = grupo.cliente || '';
+            document.getElementById('produto').value = itemParaEditar.produto || '';
+            document.getElementById('material').value = itemParaEditar.material || '';
+            document.getElementById('valor').value = itemParaEditar.valor || '';
+            document.getElementById('comprimento').value = itemParaEditar.comprimento || '';
+            document.getElementById('largura').value = itemParaEditar.largura || '';
+            document.getElementById('mao_obra').value = itemParaEditar.mao_obra || '';
+            document.getElementById('cuba').value = itemParaEditar.cuba || '';
+            document.getElementById('frete').value = itemParaEditar.frete || '';
+            document.getElementById('quantidade').value = itemParaEditar.quantidade || '';
+            document.getElementById('desconto').value = itemParaEditar.desconto || '';
+
+            document.getElementById('btn-adicionar').innerText = "Salvar Alterações";
+
+        } else {
+            console.error("ERRO CRÍTICO: Não foi possível encontrar o item com o índice", indiceItemEditando, "dentro do grupo.");
+        }
+
+        // Limpa os dados para não entrar em loop de edição
+        localStorage.removeItem("grupoIndexEditando");
+        localStorage.removeItem("itemIndexEditando");
+        localStorage.removeItem("grupoEditando");
     }
 };
 
