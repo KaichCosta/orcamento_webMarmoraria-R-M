@@ -163,63 +163,37 @@ function calcularTotaisGerais(dados) {
  * Função principal para aplicar os filtros selecionados.
  */
 function aplicarFiltros() {
-    console.log("--- aplicarFiltros: Iniciando ---");
+    console.log("--- aplicarFiltros (VERSÃO CORRIGIDA): Iniciando ---");
     const filtroCliente = document.getElementById("filtro-cliente")?.value || "todos";
     const filtroMaterial = document.getElementById("filtro-material")?.value || "todos";
     const filtroProduto = document.getElementById("filtro-produto")?.value || "todos";
 
-    console.log("Valores dos filtros:", { filtroCliente, filtroMaterial, filtroProduto });
-    console.log("Grupos originais antes da filtragem:", gruposOriginais.length);
+    let gruposFiltrados = [...gruposOriginais]; 
 
-    let gruposFiltrados = [...gruposOriginais]; // Começa com todos os dados originais
-
-    // Filtra por cliente
     if (filtroCliente !== "todos") {
         gruposFiltrados = gruposFiltrados.filter(grupo => grupo.cliente === filtroCliente);
-        console.log("Grupos após filtro de cliente:", gruposFiltrados.length);
     }
 
-    // Filtra por material e produto (precisa iterar pelos itens dentro dos grupos)
     if (filtroMaterial !== "todos" || filtroProduto !== "todos") {
         gruposFiltrados = gruposFiltrados.map(grupo => {
-            // Garante que grupo.itens exista antes de tentar filtrar
             const itensFiltrados = grupo.itens ? grupo.itens.filter(item => {
                 const materialCorresponde = (filtroMaterial === "todos" || item.material === filtroMaterial);
                 const produtoCorresponde = (filtroProduto === "todos" || item.produto === filtroProduto);
                 return materialCorresponde && produtoCorresponde;
-            }) : []; // Se não tiver itens, retorna um array vazio
-            
+            }) : [];
             return { ...grupo, itens: itensFiltrados };
-        }).filter(grupo => grupo.itens.length > 0); // Remove grupos que ficaram sem itens após o filtro
-        console.log("Grupos após filtro de material/produto:", gruposFiltrados.length);
+        }).filter(grupo => grupo.itens.length > 0);
     }
 
-    // Garante que 'grupos' seja sempre um array, mesmo que vazio
-    grupos = gruposFiltrados || []; 
+    console.log(`Encontrados ${gruposFiltrados.length} orçamentos após o filtro.`);
 
-    // Se não houver orçamentos após o filtro, exibe mensagem e esconde os cards
-    const container = document.getElementById("historico-container");
-    const limparBtn = container.querySelector('.limpar-btn'); // Pega o botão existente
+    renderizarGrupos(gruposFiltrados);
 
-    if (container) {
-        container.innerHTML = ''; // Limpa o conteúdo
-        if (limparBtn) {
-            container.appendChild(limparBtn); // Adiciona o botão de volta
-        }
-    }
+    const totaisFiltrados = calcularTotaisGerais(gruposFiltrados);
 
-    if (grupos.length === 0) {
-        if (container) {
-            container.innerHTML += "<p>Nenhum orçamento encontrado com os filtros aplicados.</p>";
-        }
-        console.log("Nenhum orçamento encontrado com os filtros aplicados.");
-    } else {
-        renderizarGrupos(grupos); // Renderiza os cards com os dados filtrados
-        console.log("Renderizando", grupos.length, "grupos filtrados.");
-    }
+    // Exibe o resumo com os totais atualizados
+    exibirResumo(totaisFiltrados);
 
-    // Recalcula e exibe os totais com base nos dados filtrados
-    calcularEExibirTotais(grupos);
     console.log("--- aplicarFiltros: Finalizado ---");
 }
 
