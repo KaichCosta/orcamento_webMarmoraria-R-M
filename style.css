@@ -27,22 +27,11 @@ body {
     background-size: 178px;
 }
 
-#creditos {
-    position: absolute;
-    padding-top: 5px;
-    color: var(--cordestaque);
-    text-align: center;
-    font-size: 0.6rem;
-    font-weight: 400;
-    width: 90%;
-}
-
 .fundo {
     background-color: var(--corfundo);
     box-shadow: 3px 3px 6px rgba(0, 0, 0, 0.685);
     border-radius: 10px;
     min-width: 375px;
-    min-height: 500px;
     width: 500px;
 }
 
@@ -60,14 +49,14 @@ body {
 
 .cabecalho-principal img {
     width: 80px;
-    margin-top: 2em;
+    margin-top: 0.6em;
     display: block;
 }
 
 h1 {
     text-align: center;
     font-size: 2em;
-    padding: 35px 0px 0px 0px;
+    padding-top: 10px;
     color: var(--cordestaque);
     font-family: var(--fontedestaque);
     text-shadow: 2px 3px 4px black;
@@ -178,6 +167,15 @@ button:hover {
     background-color: var(--cordestaque);
 }    
 
+#creditos {
+
+    padding: 5px 0px 15px;
+    color: var(--cordestaque);
+    text-align: center;
+    font-size: 0.77rem;
+    font-weight: 400;
+}
+
 h2{
     font-size: 1em;
     padding: 0px;
@@ -203,7 +201,8 @@ h2{
 
     .cabecalho-principal img {
         width: 110px;
-        margin-top: 2em;
+        margin-top: 0.65em;
+        padding-left: 5px;
         display: block;
     }
     .grupo-card {
@@ -246,6 +245,10 @@ h2{
     flex: 1;
 }
 @media (max-width: 480px) {
+    #creditos {
+        font-size: 0.6rem;
+    }
+
     .grupo-card {
         min-width: 324px;
         max-width: 350px;
@@ -291,10 +294,6 @@ h2{
     border: none;
     border-radius: 4px;
 
-}
-.vai-sumir {
-    position: absolute;
-    font-size: 1em;
 }
 
 .alert-hide {

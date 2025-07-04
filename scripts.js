@@ -28,58 +28,101 @@ function adicionarAoGrupo() {
     const quantidade = parseInt(document.getElementById('quantidade').value) || 1;
     const desconto = parseFloat(document.getElementById('desconto').value) || 0;
 
-    // O cálculo para UM item
-    const m2 = comprimento * largura;
-    const totalM2 = m2 * quantidade; // Total de m² para esta adição
-    const totalAprazo = ((valor * totalM2 + mao_obra + cuba)) + frete;
-    const descontoValor = totalAprazo * (desconto / 100);
-    const totalAvista = totalAprazo - descontoValor;
+    if (modoEdicao) {
+        // --- BLOCO DE LÓGICA PARA ATUALIZAR UM ITEM ---
+        console.log(`MODO EDIÇÃO: Atualizando item ${indiceItemEditando} do grupo ${indiceGrupoEditando}...`);
 
-    document.getElementById('total').value = `R$ ${totalAprazo.toFixed(2)}`;
-    document.getElementById('total_vista').value = `R$ ${totalAvista.toFixed(2)}`;
+        // Pega a lista completa de grupos do localStorage
+        let todosOsGrupos = JSON.parse(localStorage.getItem("gruposOrcamento")) || [];
 
-    const novoItem = {
-        cliente,
-        produto,
-        material,
-        valor,
-        m2: totalM2,
-        comprimento,
-        largura,
-        quantidade,
-        mao_obra,
-        cuba,
-        frete,
-        desconto,
-        totalAprazo,
-        totalAvista
-    };
+        // Encontra o item exato que precisa ser atualizado
+        const itemParaAtualizar = todosOsGrupos[indiceGrupoEditando].itens[indiceItemEditando];
 
-    let grupo = grupos.find(g => g.cliente === cliente);
-    if (!grupo) {
-        grupo = { cliente: cliente, itens: [] };
-        grupos.push(grupo);
-        criarGrupoVisual(grupo);
-    }
+        // Atualiza as propriedades do item com os novos valores dos campos
+        itemParaAtualizar.produto = produto;
+        itemParaAtualizar.material = material;
+        itemParaAtualizar.valor = valor;
+        itemParaAtualizar.comprimento = comprimento;
+        itemParaAtualizar.largura = largura;
+        itemParaAtualizar.quantidade = quantidade;
+        itemParaAtualizar.mao_obra = mao_obra;
+        itemParaAtualizar.cuba = cuba;
+        itemParaAtualizar.frete = frete;
+        itemParaAtualizar.desconto = desconto;
+        
+        // Recalcula os totais para ESTE item
+        const m2 = itemParaAtualizar.comprimento * itemParaAtualizar.largura;
+        itemParaAtualizar.m2 = m2 * itemParaAtualizar.quantidade;
+        
+        const totalAprazo = ((itemParaAtualizar.valor * itemParaAtualizar.m2 + itemParaAtualizar.mao_obra + itemParaAtualizar.cuba)) + itemParaAtualizar.frete;
+        const descontoValor = totalAprazo * (itemParaAtualizar.desconto / 100);
+        
+        itemParaAtualizar.totalAprazo = totalAprazo;
+        itemParaAtualizar.totalAvista = totalAprazo - descontoValor;
 
-    const itemExistente = grupo.itens.find(item => 
-        item.produto === novoItem.produto && item.material === novoItem.material
-    );
+        // Salva a lista inteira (com o item modificado) de volta no localStorage
+        localStorage.setItem("gruposOrcamento", JSON.stringify(todosOsGrupos));
 
-    if (itemExistente) {
-        itemExistente.quantidade += novoItem.quantidade;
-        itemExistente.m2 += novoItem.m2; // Soma a nova metragem quadrada
-        itemExistente.totalAprazo += novoItem.totalAprazo; // Soma o novo total
-        itemExistente.totalAvista += novoItem.totalAvista; // Soma o novo total com desconto
+        // Avisa o usuário e volta para o histórico
+        alert("Item atualizado com sucesso!");
+        modoEdicao = false; // Desativa o modo de edição
+        window.location.href = "historico.html";
 
     } else {
-        // 3. SE O ITEM É NOVO (não foi encontrado na lista):
-        //    Aí sim, adicionamos ele ao grupo.
-        grupo.itens.push(novoItem);
+        console.log("MODO ADIÇÃO: Adicionando novo item...");
+        // O cálculo para UM item
+        const m2 = comprimento * largura;
+        const totalM2 = m2 * quantidade; // Total de m² para esta adição
+        const totalAprazo = ((valor * totalM2 + mao_obra + cuba)) + frete;
+        const descontoValor = totalAprazo * (desconto / 100);
+        const totalAvista = totalAprazo - descontoValor;
+
+        document.getElementById('total').value = `R$ ${totalAprazo.toFixed(2)}`;
+        document.getElementById('total_vista').value = `R$ ${totalAvista.toFixed(2)}`;
+
+        const novoItem = {
+            cliente,
+            produto,
+            material,
+            valor,
+            m2: totalM2,
+            comprimento,
+            largura,
+            quantidade,
+            mao_obra,
+            cuba,
+            frete,
+            desconto,
+            totalAprazo,
+            totalAvista
+        };
+
+        let grupos = JSON.parse(localStorage.getItem("gruposOrcamento")) || [];
+        let grupo = grupos.find(g => g.cliente === cliente);
+
+        if (!grupo) {
+            grupo = { cliente: cliente, itens: [], dataHora: new Date().toLocaleString('pt-BR') };
+            grupos.push(grupo);
+        }
+
+        const itemExistente = grupo.itens.find(item => item.produto === novoItem.produto && item.material === novoItem.material);
+
+        if (itemExistente) {
+            itemExistente.quantidade += novoItem.quantidade;
+            itemExistente.m2 += novoItem.m2; // Soma a nova metragem quadrada
+            itemExistente.totalAprazo += novoItem.totalAprazo; // Soma o novo total
+            itemExistente.totalAvista += novoItem.totalAvista; // Soma o novo total com desconto
+
+        } else {
+        // SE O ITEM É NOVO (não foi encontrado na lista):
+        // adiciona ele ao grupo.
+            grupo.itens.push(novoItem);
+        }
+
+        localStorage.setItem("gruposOrcamento", JSON.stringify(grupos));
+        alert("Item adicionado ao orçamento!");
     }
 
-    // Por fim, atualizamos a visualização do grupo na tela.
-    atualizarGrupoVisual(grupo);
 }
 
 let produtos = {};
@@ -177,60 +220,6 @@ function editarItem(botao) {
 
 
 let grupos = [];
-
-function criarGrupoVisual(grupo) {
-    const container = document.getElementById('grupo-orcamentos');
-    const clienteID = grupo.cliente.replace(/\s+/g, "_");
-    let grupoDiv = document.getElementById(`grupo-${clienteID}`);
-
-
-    if (!grupoDiv) {
-        grupoDiv = document.createElement('div');
-        grupoDiv.className = 'grupo-card';
-        grupoDiv.id = `grupo-${grupo.cliente.replace(/\s+/g, "_")}`;
-
-        grupoDiv.innerHTML = `
-            <h2>Orçamento de: ${grupo.cliente}</h2>
-            <button class="remove-btn" onclick="removerGrupo('${grupo.cliente}')">X</button>
-            <div class="itens-grupo"></div>
-            <button class="save-btn" onclick="salvarOrcamento('${grupo.cliente}')">Salvar Orçamento</button>
-        `;
-
-
-        container.appendChild(grupoDiv);
-        setTimeout(() => atualizarGrupoVisual(grupo), 0);
-    } else {
-        atualizarGrupoVisual(grupo);
-    }
-}
-
-function atualizarGrupoVisual(grupo) {
-    const clienteID = grupo.cliente.replace(/\s+/g, "_");
-    const grupoDiv = document.querySelector(`#grupo-${clienteID} .itens-grupo`);
-    console.log(grupoDiv)
-    grupoDiv.innerHTML = ''; 
-
-    grupo.itens.forEach((item, index) => {
-        const card = document.createElement('div');
-        card.className = 'item-card';
-
-        card.dataset.item = JSON.stringify(item);
-
-        card.innerHTML = `
-            <button class="remove-btn" data-cliente="${grupo.cliente}" data-index="${index}" onclick="removerItemBtn(this)">X</button>
-            <button class="edit-btn" data-cliente="${grupo.cliente}" data-index="${index}" onclick="editarItemBtn(this)">Editar</button>
-            <p><strong>Produto:</strong> ${item.produto}</p>
-            <p><strong>Valor do M²:</strong> ${item.valor.toFixed(2)}</p>
-            <p><strong>Material:</strong> ${item.material}</p>
-            <p><strong>M²:</strong> ${item.m2.toFixed(2)}</p>
-            <p><strong>Mão de Obra:</strong> R$ ${item.mao_obra ? item.mao_obra.toFixed(2) : '0.00'}</p>
-            <p><strong>Quantidade:</strong> ${item.quantidade}</p>  
-            <p><strong>Total a prazo:</strong> R$ ${item.totalAprazo.toFixed(2)}</p>
-            <p><strong>Total à vista:</strong> R$ ${item.totalAvista.toFixed(2)}</p>
-        `;
-        grupoDiv.appendChild(card);
-    });
-}
 
 function removerItem(cliente, index) {
     // Acha o grupo no array
