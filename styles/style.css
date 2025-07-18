@@ -232,8 +232,11 @@ h2{
 }
 
 footer {
+    margin-top: 70px;
     background-color: rgb(107, 107, 107);
+    height: calc(8vh - 21px);
 }
+
 @media (min-width: 699px) {
     h1 {
         font-size: 2em;
