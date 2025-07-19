@@ -127,7 +127,7 @@ function adicionarAoGrupo() {
 
 let produtos = {};
 
-fetch('produtos.json')
+fetch('../data/produtos.json')
     .then(response => response.json())
     .then(data => {
         produtos = data;
@@ -158,7 +158,7 @@ fetch('produtos.json')
 
 let materiais = {};
 
-fetch('materiais.json')
+fetch('../data/materiais.json')
     .then(response => response.json())
     .then(data => {
         materiais = data;
