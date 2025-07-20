@@ -123,9 +123,15 @@ nav > a:hover:last-child {
     font-family: var(--fontepadrao);
 }
 
+.linha:last-child {
+    margin-bottom: 0;
+}
+
 .campo {
     display: flex;
     flex-direction: column;
+    flex-grow: 1;
+    flex-basis: 120px;
 }
 
 .campo label {
@@ -138,7 +144,6 @@ input, select {
     padding: 7px;
     border: 2px solid var(--cordestaque);
     border-radius: 10px;
-    margin: 0px;
     font-size: 13px;
 }
 
