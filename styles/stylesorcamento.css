@@ -15,27 +15,17 @@
     box-sizing: border-box;
 }
 
-body {
-    display: flex;
-    justify-content: center;
-    align-items: flex-start;
+html, body {
+    height: 100%;
     font-family: sans-serif;
-    background-position: left left;
-    background-size: 178px;
 }
 
 .fundo {
     background-color: var(--corfundo);
-    box-shadow: 3px 3px 6px rgba(0, 0, 0, 0.685);
-    border-radius: 10px;
-    min-width: 375px;
     width: 100%;
+    min-height: 100%;
     display: flex;
     flex-direction: column;
-    height: 100vh;
-    flex-grow: 1;
-    justify-content: center;
-    
 }
 
 header {
@@ -104,6 +94,13 @@ nav > a:hover:last-child {
 
 }
 
+main {
+    flex-grow: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
 .formulario {
     display: flex;
     align-items: center;
@@ -114,9 +111,7 @@ nav > a:hover:last-child {
     min-width: 324px;
     max-width: 350px;
     width: 100%;
-    margin: 0px auto 0px auto;
     box-shadow: 3px 3px 6px rgba(0, 0, 0, 0.685);
-    flex-grow: 1;
 }
 
 .linha {
@@ -214,7 +209,6 @@ button:hover {
 
 footer {
     background-color: rgb(107, 107, 107);
-    margin-top: 30vh;
 }
 
 #creditos {
@@ -269,94 +263,12 @@ footer {
         padding-right: 50px;
     }
 
-    .grupo-card {
-        align-items: center;
-        margin: 0 auto;
-    }
 }
 
-.itens-grupo {/*isso aqui é onde fica os produtos, valores (item-card) cor vermelha*/
-    box-sizing: border-box;
-    display: flex;
-    flex-wrap: wrap;
-    max-width: 468px;
-    gap: 1rem;
-    background-color: var(--cordestaque);
-    padding: 1rem;
-    margin-bottom: 15px;
-    border-radius: 10px;
-    box-shadow: 3px 3px 6px rgba(0, 0, 0, 0.685);
-}
-
-
-.item-card {
-    word-break: break-word;
-    overflow-wrap: break-word;
-    background-color: #fff;
-    padding: 1rem;
-    border-radius: 10px;
-    box-shadow: 3px 3px 6px rgba(0, 0, 0, 0.685);
-    position: relative;
-    max-width: 330px;
-    gap: 0.5rem;
-    width: 210px;
-    font-size: 0.9rem;
-    padding: 6px 5px;
-}
-
-.item-cards p {
-    margin: 0;
-    flex: 1;
-}
 @media (max-width: 480px) {
     #creditos {
         font-size: 0.6rem;
     }
-
-    .grupo-card {
-        min-width: 324px;
-        max-width: 350px;
-        width: 100%;
-        margin: 0 auto;
-        align-items: center;
-        margin: 0 auto 10px auto;
-    }
-
-    .item-card {
-        width: 140px;
-        max-width: 100%;
-    }
-}
-
-.remove-btn {
-    position: absolute;
-    top: 3px;
-    right: 10px;
-    background: var(--corbotão);
-    color: white;
-    border: none;
-    padding: 1px 5px;
-    border-radius: 4px;
-}
-
-.edit-btn {
-    position: absolute;
-    right: 10px;
-    background: var(--corbotão);
-    color: white;
-    border: none;
-    padding: 4px 8px;
-    border-radius: 4px;
-    bottom: 0;
-    margin-bottom: 3px;
-}
-
-.save-btn {
-    position: relative;
-    background: var(--corbotão);
-    color: white;
-    border: none;
-    border-radius: 4px;
 
 }
 
