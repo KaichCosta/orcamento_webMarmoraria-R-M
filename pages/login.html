@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../styles/stylecriarconta-login.css">
+    <title>Document</title>
+</head>
+<body>
+    <main id="pagina">
+        <section class="design">
+            <img src="../assets/login.svg" alt="imagem de enfeite">
+        </section>
+
+        <section class="direita">
+            <div id="card-criar-conta">    
+                <h1>Bem vindo, entre<br>na sua conta</h1>
+                <h2>Não possui registro?<a href="../pages/criarconta.html">Criar Conta</a></h2>
+                <!--qualquer amolação colocar o h1 e h2 dentro do form-->
+                <form action="#">
+                    <div class="campo">
+                        <label for="nome">Nome</label>
+                        <input type="text" name="nome" placeholder="Digite aqui">
+                    </div>
+
+                    <div class="campo">
+                        <label for="senha">Senha</label>
+                        <input type="password" name="senha" maxlength="8" placeholder="Digite 8 caracteres">
+                    </div>
+                    
+                    <button id="btn">Entrar</button>
+                </form>    
+                <a href="#">Esqueceu a senha?</a>
+            </div>     
+        </section>
+    </main>
+
+    <footer>
+        <p id="creditos">Feito por © 2025 <a href="https://www.linkedin.com/in/kaíchcosta/" target="_blank" rel="Link para instagram">Kaích Costa</a> para Marmoraria R&M CNPJ - 32.504.738/0001-82</p>
+    </footer>
+    
+    <script src="criarconta.js"></script>
+</body>
+</html>

@@ -1,0 +1,148 @@
+:root {
+    --corfundo: #868383;
+    --corfundodiv: #f5f5f5;
+    --corcontraste: black;
+    --cordestaque: rgb(129, 0, 0);
+    --corbotão: rgb(241, 2, 2); 
+}
+* {
+    margin: 0 ;
+    padding: 0;
+    color: var(--cordestaque);
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+}
+
+main {
+    background-image: linear-gradient(to right, rgb(185, 0, 0), var(--cordestaque), #646464, #868383);
+    width: 100vw;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+section {
+    width: 50vw;
+    height: 96vh;
+}
+
+.design img {
+    width: 50vw;
+    height: 100%;
+}
+/*section do login*/
+.direita {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#card-criar-conta {
+    padding: 2em;
+    border-radius: 20px;
+    background-color: var(--corfundodiv);
+    box-shadow: 6px 10px 10px rgba(0, 0, 0, 0.377);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+h1 {
+    font-size: 4vw;
+    text-align: center;
+    line-height: 1em;
+    color: var(--cordestaque);
+}
+
+h2 {
+    font-size: 1em;
+    text-align: center;
+    margin: 0.7em 0em 2em;
+}
+
+a {
+    color: var(--corbotão);
+}
+a :hover {
+    background-color: var(--corbotão);
+    color: white;
+}
+
+.campo {
+    display: flex;
+    flex-direction: column;
+}
+
+.campo label {
+    font-size: 1em;
+    width: 30vw;
+    margin: 2px;
+}
+
+.campo input{
+    padding: 10px;
+    margin-bottom: 1em;
+    font-size: 1.2em;
+    border-radius: 10px;
+    box-shadow: 2px 3px 2px rgba(0, 0, 0, 0.473);
+}
+
+button {
+    width: 15vw;
+    background-color: var(--corbotão);
+    color: white;
+    padding: 10px;
+    display: flex;
+    justify-content: center;
+    margin: 0 auto;
+    border-radius: 10px;
+    box-shadow: 2px 3px 2px rgba(0, 0, 0, 0.473);
+}
+
+footer {
+    bottom: 0;
+    height: 4vh;
+    background-image: linear-gradient(to right, rgb(185, 0, 0), var(--cordestaque), #646464, #868383);
+}
+
+#creditos {
+    color: white;
+    text-align: center;
+    font-size: 14px;
+}
+
+footer a {
+    color: white;
+}
+
+@media only screen and (max-width:600px) {
+    main {
+        flex-direction: column;
+        background-image: linear-gradient(rgb(185, 0, 0), var(--cordestaque), #646464, #868383);
+    }
+
+    .design {
+        height: 20vh;
+    }
+
+    .design img {
+
+        height: 25vh;
+    }
+
+    .direita {
+        height: 80vh;
+    }
+    /*#card-criar-conta {
+
+    }*/
+
+    h1 {
+        font-size: 1.7em;
+    }
+
+    buttom {
+        width: 20vw;
+    }
+}
