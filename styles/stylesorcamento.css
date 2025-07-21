@@ -30,7 +30,12 @@ body {
     border-radius: 10px;
     min-width: 375px;
     width: 100%;
+    display: flex;
+    flex-direction: column;
     height: 100vh;
+    flex-grow: 1;
+    justify-content: center;
+    
 }
 
 header {
@@ -109,8 +114,9 @@ nav > a:hover:last-child {
     min-width: 324px;
     max-width: 350px;
     width: 100%;
-    margin: 50px auto 10px auto;
+    margin: 0px auto 0px auto;
     box-shadow: 3px 3px 6px rgba(0, 0, 0, 0.685);
+    flex-grow: 1;
 }
 
 .linha {
@@ -123,15 +129,12 @@ nav > a:hover:last-child {
     font-family: var(--fontepadrao);
 }
 
-.linha:last-child {
-    margin-bottom: 0;
-}
+
 
 .campo {
     display: flex;
     flex-direction: column;
-    flex-grow: 1;
-    flex-basis: 120px;
+
 }
 
 .campo label {
@@ -151,12 +154,12 @@ input:hover {
     border-color: var(--corcontraste);
 }
 
-#cliente, #material, #produto{
+#cliente, #material, #produto {
     width: 135px;
 }
 
 #valor, #comprimento, #largura, #mao_obra, #cuba, #frete, #quantidade, #desconto{
-    width: 60px;
+    width: 67px;
 }
 
 #total, #total_vista{
@@ -209,37 +212,17 @@ button:hover {
     background-color: var(--cordestaque);
 }    
 
-#creditos {
+footer {
+    background-color: rgb(107, 107, 107);
+    margin-top: 30vh;
+}
 
-    padding: 5px 0px 15px;
+#creditos {
+    font-weight:900;
+    padding: 10px;
     color: var(--cordestaque);
     text-align: center;
     font-size: 0.77rem;
-    font-weight: 400;
-}
-
-h2{
-    font-size: 1em;
-    padding: 0px;
-}
-.grupo-card {/*grupo maior onde fica o botão de salvar e o h2*/
-    max-width: 500px;
-    width: 100%;
-    display: flex;
-    flex-direction: column;
-    background-color: var(--corfundodiv);
-    padding: 10px;
-    margin-bottom: 15px;
-    border-radius: 10px;
-    box-sizing: border-box;
-    box-shadow: 3px 3px 6px rgba(0, 0, 0, 0.685);
-    position: relative;
-}
-
-footer {
-    margin-top: 70px;
-    background-color: rgb(107, 107, 107);
-    height: calc(8vh - 21px);
 }
 
 @media (min-width: 699px) {
@@ -255,10 +238,37 @@ footer {
     }
 
     .formulario {
-        max-width: 700px;
+        max-width: 500px;
         width: 100%;
 
     }
+
+    input, select {
+    padding: 9px;
+    font-size: 16px;
+    }
+
+    #cliente, #material, #produto {
+    width: 200px;
+    }
+
+    #valor, #comprimento, #largura, #mao_obra, #cuba, #frete, #quantidade, #desconto{
+    width: 90px;
+    }
+
+    #total, #total_vista{
+    width: 180px;
+    }
+
+    .add-group-btn {
+        width: 190px;
+    }
+
+    .historico-link {
+        padding-left: 50px;
+        padding-right: 50px;
+    }
+
     .grupo-card {
         align-items: center;
         margin: 0 auto;
