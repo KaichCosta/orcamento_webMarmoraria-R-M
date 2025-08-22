@@ -13,6 +13,7 @@
     margin: 0;
     padding: 0;
     box-sizing: border-box;
+    font-family: var(--fontepadrao);
 }
 
 html, body {
@@ -34,27 +35,22 @@ header {
     align-items: center;
     background-color: rgb(107, 107, 107);
     width: 100%;
+    padding: 0 20px;
+    height: 80px;
 }
 
 .cabecalho-principal {
     display: flex;
     align-items: center;
-    justify-content: center;
     gap: 15px;
-    margin-bottom: 10px;
-    width: 100%;
-    max-width: 400px;
-    margin-right: auto;
 }
 
 .cabecalho-principal img {
-    width: 80px;
-    margin-top: 0.6em;
-    display: block;
+    width: 60px;
+    height: auto;
 }
 
 h1 {
-    text-align: center;
     font-size: 2em;
     padding-top: 10px;
     color: var(--corfundo);
@@ -62,36 +58,85 @@ h1 {
     text-shadow: 2px 3px 4px black;
 }
 
-nav {
-    opacity: 100%;
+nav.desktop-nav {
+    display: none; /* Escondido por padrão, aparecerá em telas grandes */
 }
-
-nav > a {
-    margin-right: 10px;
+nav.desktop-nav > a {
+    margin-left: 20px; /* Trocado para margin-left */
     color: var(--corfundodiv);
     text-decoration: none;
     font-weight: 600;
-
-}
-
-nav > a:last-child {
-    background-color: rgb(219, 1, 1);
-    padding: 8px;
-    border-radius: 10px;
-    margin-right: 29px;
-}
-
-nav > a:hover {
-    background-color: var(--cordestaque);
-    padding: 2px;
+    padding: 5px;
     border-radius: 5px;
+    transition: background-color 0.3s;
 }
 
-nav > a:hover:last-child {
+nav.desktop-nav > a:hover {
     background-color: var(--cordestaque);
-    padding: 8px;
-    border-radius: 10px;
+}
 
+nav.desktop-nav > a:last-child {
+    background-color: rgb(219, 1, 1);
+    padding: 8px 12px;
+}
+
+nav.desktop-nav > a:hover:last-child {
+    background-color: var(--cordestaque);
+}
+
+/* --- MENU HAMBÚRGUER (para mobile) --- */
+#menu-btn {
+    display: block; /* Visível por padrão, será escondido em telas grandes */
+    background: none;
+    border: none;
+    cursor: pointer;
+}
+
+#menu-btn .bar {
+    display: block;
+    width: 25px;
+    height: 3px;
+    margin: 5px auto;
+    background-color: var(--corfundodiv);
+    transition: all 0.3s ease-in-out;
+}
+
+/* (escondido por padrão) */
+#mobile-menu {
+    display: none; /* Começa escondido */
+    position: absolute;
+    top: 80px; /* Aparece logo abaixo do header */
+    left: 0;
+    width: 100%;
+    background-color: rgb(107, 107, 107);
+    border-top: 1px solid var(--corfundo);
+    z-index: 10;
+}
+
+#mobile-menu a {
+    display: block;
+    padding: 15px 20px;
+    color: var(--corfundodiv);
+    text-decoration: none;
+    font-weight: 600;
+}
+
+#mobile-menu a:hover {
+    background-color: var(--cordestaque);
+}
+
+@media (min-width: 699px) {
+    #menu-btn {
+        display: none; /* Esconde o botão hambúrguer */
+    }
+    nav.desktop-nav {
+        display: flex; /* Mostra a navegação de desktop */
+        align-items: center;
+    }
+
+    #mobile-menu {
+        display: none !important; /* Garante que o menu mobile esteja SEMPRE escondido em telas grandes */
+    }
 }
 
 main {
@@ -220,17 +265,6 @@ footer {
 }
 
 @media (min-width: 699px) {
-    h1 {
-        font-size: 2em;
-    }
-
-    .cabecalho-principal img {
-        width: 110px;
-        margin-top: 0.65em;
-        padding-left: 5px;
-        display: block;
-    }
-
     .formulario {
         max-width: 500px;
         width: 100%;

@@ -1,14 +1,18 @@
 // --- LÓGICA DO MENU HAMBÚRGUER ---
-const menuBtn = document.getElementById('menu-btn');
-const mobileMenu = document.getElementById('mobile-menu');
+document.addEventListener('DOMContentLoaded', () => {
+    const menuBtn = document.getElementById('menu-btn');
+    const mobileMenu = document.getElementById('mobile-menu');
 
-menuBtn.addEventListener('click', () => {
-    // Alterna a visibilidade do menu mobile
-    if (mobileMenu.style.display === 'block') {
-        mobileMenu.style.display = 'none';
-    } else {
-        // CORREÇÃO: O nome da variável estava errado (mobile-menu em vez de mobileMenu)
-        mobileMenu.style.display = 'block';
+    // Verifica se os elementos realmente existem antes de adicionar o evento
+    if (menuBtn && mobileMenu) {
+        menuBtn.addEventListener('click', () => {
+            // Alterna a visibilidade do menu mobile
+            if (mobileMenu.style.display === 'block') {
+                mobileMenu.style.display = 'none';
+            } else {
+                mobileMenu.style.display = 'block';
+            }
+        });
     }
 });
 
