@@ -19,33 +19,117 @@
     box-sizing: border-box;
 }
 
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: rgb(107, 107, 107);
+    width: 100%;
+    padding: 0 20px;
+    height: 80px;
+    margin-bottom: 20px;
+}
+
 .cabecalho-principal {
     display: flex;
     align-items: center;
-    justify-content: center;
     gap: 15px;
-    margin-bottom: 10px;
-    width: 100%;
-    max-width: 400px;
-    margin-left: auto;
-    margin-right: auto;
-}
-
-h1 {
-    text-align: center;
-    font-size: 2em;
-    padding: 35px 0px 0px 0px;
-    margin-bottom: 10px;
-    color: var(--cordestaque);
-    font-family: var(--fontedestaque);
-    line-height: 0.9em;
-    text-shadow: 2px 3px 4px rgba(71, 0, 0, 0.589);
 }
 
 .cabecalho-principal img {
-    width: 140px;
-    margin-top: 1.5em;
+    width: 70px;
+    height: auto;
+    margin-top: 10px;
+}
+
+h1 {
+    font-size: 2em;
+    padding-top: 10px;
+    color: var(--corfundo);
+    font-family: var(--fontedestaque);
+    text-shadow: 2px 3px 4px black;
+    height: auto;
+}
+
+nav.desktop-nav {
+    display: none; /* Escondido por padrão, aparecerá em telas grandes */
+}
+nav.desktop-nav > a {
+    margin-left: 20px; /* Trocado para margin-left */
+    color: var(--corfundodiv);
+    text-decoration: none;
+    font-weight: 600;
+    padding: 5px;
+    border-radius: 5px;
+    transition: background-color 0.3s;
+}
+
+nav.desktop-nav > a:hover {
+    background-color: var(--cordestaque);
+}
+
+nav.desktop-nav > a:last-child {
+    background-color: rgb(219, 1, 1);
+    padding: 8px 12px;
+}
+
+nav.desktop-nav > a:hover:last-child {
+    background-color: var(--cordestaque);
+}
+
+/* --- MENU HAMBÚRGUER (para mobile) --- */
+#menu-btn {
+    display: block; /* Visível por padrão, será escondido em telas grandes */
+    background: none;
+    border: none;
+    cursor: pointer;
+}
+
+#menu-btn .bar {
     display: block;
+    width: 25px;
+    height: 3px;
+    margin: 5px auto;
+    background-color: var(--corfundodiv);
+    transition: all 0.3s ease-in-out;
+}
+
+/* (escondido por padrão) */
+#mobile-menu {
+    display: none; /* Começa escondido */
+    position: absolute;
+    top: 80px; /* Aparece logo abaixo do header */
+    left: 0;
+    width: 100%;
+    background-color: rgb(107, 107, 107);
+    border-top: 1px solid var(--corfundo);
+    z-index: 10;
+}
+
+#mobile-menu a {
+    display: block;
+    padding: 15px 20px;
+    color: var(--corfundodiv);
+    text-decoration: none;
+    font-weight: 600;
+}
+
+#mobile-menu a:hover {
+    background-color: var(--cordestaque);
+}
+
+@media (min-width: 699px) {
+    #menu-btn {
+        display: none; /* Esconde o botão hambúrguer */
+    }
+    nav.desktop-nav {
+        display: flex; /* Mostra a navegação de desktop */
+        align-items: center;
+    }
+
+    #mobile-menu {
+        display: none !important; /* Garante que o menu mobile esteja SEMPRE escondido em telas grandes */
+    }
 }
 
 hr {
@@ -65,8 +149,9 @@ hr {
     box-shadow: 3px 3px 6px rgba(0, 0, 0, 0.685);
     position: relative;
     width: 100%;
-    margin: 0 auto
+    margin: 0 auto;
 }
+
 .grupo-card {/*grupo onde está o produto, material*/
     display: flex;
     flex-direction: column;
@@ -230,15 +315,6 @@ p {
 }
 
 @media (min-width: 699px) {
-    h1 {
-        font-size: 3em;
-    }
-
-    .cabecalho-principal img {
-        width: 210px;
-        margin-top: 1.8em;
-        display: block;
-    }
 
     #filtro-resumo-painel { 
         width: 700px; 
