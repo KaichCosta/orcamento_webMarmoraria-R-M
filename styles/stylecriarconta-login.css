@@ -48,7 +48,7 @@ h1 {
     padding-top: 10px;
     color: var(--corfundodiv);
     font-family: var(--fontedestaque);
-    text-shadow: 2px 3px 4px black;
+    text-shadow: 2px 2px 2px black;
     height: auto;
 }
 
@@ -213,8 +213,6 @@ button {
 }
 
 footer {
-    bottom: 0;
-    height: 4vh;
     background-color: rgb(107, 107, 107);
 
 }

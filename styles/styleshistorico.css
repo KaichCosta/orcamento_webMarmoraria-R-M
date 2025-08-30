@@ -150,6 +150,7 @@ hr {
     position: relative;
     width: 100%;
     margin: 0 auto;
+    margin-bottom: 25px;
 }
 
 .grupo-card {/*grupo onde está o produto, material*/
@@ -447,4 +448,21 @@ alert {
     position: relative;
     margin: 0 auto;
     display: flex;
+}
+
+footer {
+    background-color: rgb(107, 107, 107);
+}
+
+#creditos {
+    font-weight:900;
+    padding: 10px;
+    color: var(--cordestaque);
+    text-align: center;
+    font-size: 0.77rem;
+}
+
+footer a {
+    color: var(--corfundodiv);
+    text-decoration: none;
 }

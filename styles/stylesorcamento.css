@@ -265,6 +265,11 @@ footer {
     font-size: 0.77rem;
 }
 
+footer a {
+    color: var(--corfundodiv);
+    text-decoration: none;
+}
+
 @media (min-width: 699px) {
     .formulario {
         max-width: 500px;
