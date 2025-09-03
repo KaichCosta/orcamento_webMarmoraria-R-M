@@ -1,0 +1,114 @@
+body {
+    margin: 0;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+    background-color: #111827; /* Azul-petróleo bem escuro */
+    color: #d1d5db; /* Cinza claro para o texto */
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 1.5rem;
+}
+
+/* --- HEADER (TEMA ESCURO) --- */
+.main-header {
+    background-color: #1f2937; /* Azul-petróleo um pouco mais claro */
+    padding: 1rem 2rem;
+    border-bottom: 1px solid #374151; /* Borda sutil */
+}
+.main-header .container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0;
+}
+.header-logo a {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: #f9fafb; /* Branco */
+    text-decoration: none;
+}
+.header-nav a {
+    color: #9ca3af; /* Cinza médio */
+    text-decoration: none;
+    margin-left: 1.5rem;
+    transition: color 0.3s ease;
+}
+.header-nav a:hover {
+    color: #f9fafb;
+}
+
+/* --- ESTILOS DO DASHBOARD (TEMA ESCURO) --- */
+.dashboard-metrics {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 1.5rem;
+    margin-bottom: 1.5rem;
+}
+
+.card {
+    background-color: #1f2937;
+    padding: 1.5rem;
+    border-radius: 8px;
+    border: 1px solid #374151;
+}
+
+.card h2 {
+    margin-top: 0;
+    font-size: 1.2rem;
+    color: #f9fafb;
+    margin-bottom: 1.5rem;
+}
+
+/* Estilos para os cards de Métricas */
+.metric-card .value {
+    font-size: 2.5rem;
+    font-weight: 700;
+    color: #38bdf8; /* Azul claro para destaque */
+}
+.metric-card .label {
+    font-size: 0.9rem;
+    color: #9ca3af;
+    margin-top: 0.25rem;
+}
+
+/* Estilos para Ações e Atividades */
+.action-list a {
+    display: block;
+    padding: 1rem 1.5rem;
+    background-color: #374151;
+    color: #f9fafb;
+    font-weight: 600;
+    text-decoration: none;
+    border-radius: 6px;
+    margin-bottom: 1rem;
+    transition: background-color 0.3s ease;
+}
+.action-list a:hover {
+    background-color: #4b5563;
+}
+.action-list a:last-child {
+    margin-bottom: 0;
+}
+
+.recent-activity-list ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+.recent-activity-list li {
+    padding: 1rem 0;
+    border-bottom: 1px solid #374151;
+}
+.recent-activity-list li:last-child {
+    border-bottom: none;
+}
+.recent-activity-list a {
+    text-decoration: none;
+    color: #d1d5db;
+    display: block;
+}
+.recent-activity-list a:hover {
+    color: #38bdf8;
+}
