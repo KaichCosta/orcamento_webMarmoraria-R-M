@@ -2,7 +2,7 @@
     --corfundo: #cacacb;
     --corfundodiv: #f5f5f5;
     --corcontraste: black;
-    --cordestaque: rgb(129, 0, 0);
+    --cordestaque: rgb(51, 16, 16);
     --corbotão: rgb(241, 2, 2);
 
     --fontepadrao:, Arial, Verdana, sans-serif;
@@ -18,7 +18,7 @@
 
 html, body {
     height: 100%;
-    font-family: sans-serif;
+    font-family: Arial, sans-serif;
 }
 
 .fundo {
@@ -48,12 +48,11 @@ header {
 .cabecalho-principal img {
     width: 70px;
     height: auto;
-    margin-top: 10px;
+    margin-top: 4px;
 }
 
 h1 {
     font-size: 2em;
-    padding-top: 10px;
     color: var(--corfundo);
     font-family: var(--fontedestaque);
     text-shadow: 2px 3px 4px black;

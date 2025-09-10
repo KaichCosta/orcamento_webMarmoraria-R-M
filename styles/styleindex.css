@@ -1,8 +1,25 @@
-body {
-    margin: 0;
-    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
-    background-color: #111827; /* Azul-petróleo bem escuro */
-    color: #d1d5db; /* Cinza claro para o texto */
+:root { /* aqui no index, as cores fundo, div serão trocadas*/
+    --corfundodiv: #cacacb;
+    --corfundo: rgb(107, 107, 107);
+    --corfundocard: rgb(133, 133, 133);
+    --corcontraste: black;
+    --cordestaque: rgb(129, 0, 0);
+    --corbotão: rgb(241, 2, 2);
+
+    --fontepadrao:, Arial, Verdana, sans-serif;
+    --fontedestaque: Verdana, sans-serif;
+}
+* {
+    margin: 0 ;
+    padding: 0;
+    font-family: var(--fontepadrao);
+    box-sizing: border-box;
+}
+
+
+html, body {
+    height: 100%;
+    background-color: var(--corfundo);
 }
 
 .container {
@@ -11,36 +28,128 @@ body {
     padding: 1.5rem;
 }
 
-/* --- HEADER (TEMA ESCURO) --- */
-.main-header {
-    background-color: #1f2937; /* Azul-petróleo um pouco mais claro */
-    padding: 1rem 2rem;
-    border-bottom: 1px solid #374151; /* Borda sutil */
-}
-.main-header .container {
+/* --- HEADER --- */
+header {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 0;
-}
-.header-logo a {
-    font-size: 1.5rem;
-    font-weight: 700;
-    color: #f9fafb; /* Branco */
-    text-decoration: none;
-}
-.header-nav a {
-    color: #9ca3af; /* Cinza médio */
-    text-decoration: none;
-    margin-left: 1.5rem;
-    transition: color 0.3s ease;
-}
-.header-nav a:hover {
-    color: #f9fafb;
+    background-color: rgb(133, 133, 133);
+    width: 100%;
+    padding: 0 20px;
+    height: 80px;
 }
 
-/* --- ESTILOS DO DASHBOARD (TEMA ESCURO) --- */
-.dashboard-metrics {
+.cabecalho-principal {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+.cabecalho-principal img {
+    width: 70px;
+    height: auto;
+    margin-top: 4px;
+}
+
+h1 {
+    font-size: 2em;
+    color: #e9e8e8;
+    font-family: var(--fontedestaque);
+    text-shadow: 2px 3px 4px black;
+}
+
+nav.desktop-nav {
+    display: none; /* Escondido por padrão, aparecerá em telas grandes */
+}
+nav.desktop-nav > a {
+    margin-left: 20px; /* Trocado para margin-left */
+    color: #f5f5f5;
+    text-decoration: none;
+    font-weight: 600;
+    padding: 5px;
+    border-radius: 5px;
+    font-family: var(--fontedestaque);
+    transition: background-color 0.3s;
+}
+
+nav.desktop-nav > a:hover {
+    background-color: var(--cordestaque);
+}
+
+nav.desktop-nav > a:last-child {
+    background-color: rgb(219, 1, 1);
+    padding: 8px 12px;
+}
+
+nav.desktop-nav > a:hover:last-child {
+    background-color: var(--cordestaque);
+}
+
+/* --- MENU HAMBÚRGUER (para mobile) --- */
+#menu-btn {
+    display: block; /* Visível por padrão, será escondido em telas grandes */
+    background: none;
+    border: none;
+    cursor: pointer;
+}
+
+#menu-btn .bar {
+    display: block;
+    width: 25px;
+    height: 3px;
+    margin: 5px auto;
+    background-color: var(--corfundodiv);
+    transition: all 0.3s ease-in-out;
+}
+
+/* (escondido por padrão) */
+#mobile-menu {
+    display: none; /* Começa escondido */
+    position: absolute;
+    top: 80px; /* Aparece logo abaixo do header */
+    left: 0;
+    width: 100%;
+    background-color: var(--corfundo);
+    border-top: 1px solid var(--corfundo);
+    z-index: 10;
+}
+
+#mobile-menu a {
+    display: block;
+    padding: 15px 20px;
+    color: var(--corfundodiv);
+    text-decoration: none;
+    font-weight: 600;
+}
+
+#mobile-menu a:hover {
+    background-color: var(--cordestaque);
+}
+
+@media (min-width: 699px) {
+    #menu-btn {
+        display: none; /* Esconde o botão hambúrguer */
+    }
+    nav.desktop-nav {
+        display: flex; /* Mostra a navegação de desktop */
+        align-items: center;
+    }
+
+    #mobile-menu {
+        display: none !important; /* Garante que o menu mobile esteja SEMPRE escondido em telas grandes */
+    }
+}    
+
+h2 {
+    font-size: 1.8rem;
+    font-family: var(--fontedestaque);
+    color: var(--corbotão);
+    margin-bottom: 1rem;
+    padding-bottom: 0.5rem;
+}
+
+/* --- ESTILOS DO DASHBOARD --- */
+#metricas-dashboard {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
     gap: 1.5rem;
@@ -48,12 +157,25 @@ body {
 }
 
 .card {
-    background-color: #1f2937;
+    background-color: var(--corfundocard);
     padding: 1.5rem;
     border-radius: 8px;
-    border: 1px solid #374151;
+    border: 1px solid var(--corfundodiv);
 }
 
+/* Estilos para os cards de Métricas */
+.card-metricas .value {
+    font-size: 2.5rem;
+    font-weight: 700;
+    color: var(--corbotão);
+}
+.card-metricas .label {
+    font-size: 0.9rem;
+    color: #f5f5f5;
+    margin-top: 0.25rem;
+}
+
+/*Estilos para cards que possuem h2*/
 .card h2 {
     margin-top: 0;
     font-size: 1.2rem;
@@ -61,54 +183,61 @@ body {
     margin-bottom: 1.5rem;
 }
 
-/* Estilos para os cards de Métricas */
-.metric-card .value {
-    font-size: 2.5rem;
-    font-weight: 700;
-    color: #38bdf8; /* Azul claro para destaque */
-}
-.metric-card .label {
-    font-size: 0.9rem;
-    color: #9ca3af;
-    margin-top: 0.25rem;
-}
-
 /* Estilos para Ações e Atividades */
-.action-list a {
+.lista-acoes a {
     display: block;
     padding: 1rem 1.5rem;
-    background-color: #374151;
-    color: #f9fafb;
+    background-color: var(--corfundodiv);
+    color: var(--corbotão);
     font-weight: 600;
     text-decoration: none;
     border-radius: 6px;
     margin-bottom: 1rem;
     transition: background-color 0.3s ease;
 }
-.action-list a:hover {
-    background-color: #4b5563;
+.lista-acoes a:hover {
+    background-color: var(--cordestaque);
+    color: #f5f5f5;
 }
-.action-list a:last-child {
+.lista-acoes a:last-child {
     margin-bottom: 0;
 }
 
-.recent-activity-list ul {
+.lista-atividades-recentes ul {
     list-style: none;
     padding: 0;
     margin: 0;
 }
-.recent-activity-list li {
+.lista-atividades-recentes li {
     padding: 1rem 0;
-    border-bottom: 1px solid #374151;
+    border-bottom: 1px solid #000000;
 }
-.recent-activity-list li:last-child {
+.lista-atividades-recentes li:last-child {
     border-bottom: none;
 }
-.recent-activity-list a {
+.lista-atividades-recentes a {
     text-decoration: none;
-    color: #d1d5db;
+    color: var(--corbotão);
     display: block;
 }
-.recent-activity-list a:hover {
-    color: #38bdf8;
+.lista-atividades-recentes a:hover {
+    color: #f5f5f5;
+}
+
+/* --- FOOTER --- */
+footer {
+    background-color: rgb(133, 133, 133);
+}
+
+#creditos {
+    font-weight:900;
+    padding: 10px;
+    color: var(--cordestaque);
+    text-align: center;
+    font-size: 0.77rem;
+}
+
+footer a {
+    color: var(--corfundodiv);
+    text-decoration: none;
 }
