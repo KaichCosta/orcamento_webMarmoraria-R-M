@@ -16,7 +16,6 @@
     box-sizing: border-box;
 }
 
-
 html, body {
     height: 100%;
     background-color: var(--corfundo);
@@ -109,6 +108,7 @@ nav.desktop-nav > a:hover:last-child {
     top: 80px; /* Aparece logo abaixo do header */
     left: 0;
     width: 100%;
+    box-shadow: rgba(0, 0, 0, 0.747) 2px 2px 10px;
     background-color: var(--corfundo);
     border-top: 1px solid var(--corfundo);
     z-index: 10;
