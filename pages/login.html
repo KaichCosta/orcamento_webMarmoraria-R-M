@@ -7,77 +7,25 @@
     <title>Document</title>
 </head>
 <body>
-
-    <header>
-        <div class="cabecalho-principal">
-            <img src="../assets/logo-marmoraria-fundo-transparente.png" alt="logo">
-            <h1>FAZER LOGIN</h1>    
-        </div>
+    <section id="card-criar-conta">    
         
-        <nav class="desktop-nav">
-            <a href="../index.html" target="_blank" rel="inicio">Home</a>
-            <a href="../pages/orcamento.html" target="_blank" rel="orcamento">Novo Orçamento</a>
-            <a href="../pages/historico.html" target="_blank" rel="historico">Histórico</a>
-            <a href="#" target="_blank" rel="gerenciar">Gerenciar</a>
-            <!--uma pagina so
-            pra gerenciar onde 
-            fica os links pra todas
-            as gerenciar os produtos
-            e materiais do json-->
-            <!--uma pagina so
-            pra gerenciar onde 
-            fica os links pra todos
-            os serviços a confirmar
-            e serviços fechados e 
-            Lista de Tarefas-->
-            <a href="../pages/login.html" target="_blank" rel="login">Login</a>
+        <form action="#">
+            <h1 id="titulo" >Bem vindo, entre<br>na sua conta</h1>
+            <h2>Não possui registro?<a href="../pages/criarconta.html">Criar Conta</a></h2>
+            <div class="campo">
+                <label for="nome">Nome</label>
+                <input type="text" name="nome" placeholder="Digite aqui">
+            </div>
 
-        </nav>
-
-        <button id="menu-btn">
-            <span class="bar"></span>
-            <span class="bar"></span>
-            <span class="bar"></span>
-        </button>
-
-    </header>
-
-    <nav id="mobile-menu">
-        <a href="../index.html" target="_blank" rel="inicio">Home</a>
-        <a href="../pages/orcamento.html" target="_blank" rel="orcamento">Novo Orçamento</a>
-        <a href="../pages/historico.html" target="_blank" rel="historico">Histórico</a>
-        <a href="#" target="_blank" rel="gerenciar">Gerenciar</a>
-        <a href="../pages/login.html" target="_blank" rel="login">Login</a>
-
-    </nav>    
-
-    <main id="pagina">        
-        <section class="design">
-            <img src="../assets/login.svg" alt="imagem de enfeite">
-        </section>
-
-        <section class="direita">
-            <div id="card-criar-conta">    
-                <h1 id="titulo" >Bem vindo, entre<br>na sua conta</h1>
-                <h2>Não possui registro?<a href="../pages/criarconta.html">Criar Conta</a></h2>
-                <!--qualquer amolação colocar o h1 e h2 dentro do form-->
-                <form action="#">
-                    <div class="campo">
-                        <label for="nome">Nome</label>
-                        <input type="text" name="nome" placeholder="Digite aqui">
-                    </div>
-
-                    <div class="campo">
-                        <label for="senha">Senha</label>
-                        <input type="password" name="senha" maxlength="8" placeholder="Digite 8 caracteres">
-                    </div>
-                    
-                    <button id="btn">Entrar</button>
-                </form>    
-                <a href="#">Esqueceu a senha?</a>
-            </div>     
-        </section>
-    </main>
+            <div class="campo">
+                <label for="senha">Senha</label>
+                <input type="password" name="senha" maxlength="8" placeholder="Digite 8 caracteres">
+            </div>
+            
+            <button id="btn">Entrar</button>
+        </form>    
+        <a href="#">Esqueceu a senha?</a>
+    </section>     
 
     <footer>
         <p id="creditos">Feito por © 2025 <a href="https://www.linkedin.com/in/kaich-h-costa/" target="_blank" rel="Link para instagram">Kaích Costa</a> para Marmoraria R&M CNPJ - 32.504.738/0001-82</p>
