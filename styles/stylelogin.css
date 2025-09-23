@@ -18,8 +18,14 @@ body {
 
 }
 
-#card-criar-conta {
-    margin: 50px auto;
+section {
+    justify-content: center;
+    align-items: center;
+    display: flex;
+    height: 100vh;
+}
+
+#card-fazer-login {
     padding: 20px;
     border-radius: 20px;
     background-color: var(--corfundodiv);
@@ -32,10 +38,16 @@ body {
 }
 
 #titulo {
-    font-size: 2.1em;
+    font-size: 2em;
     text-align: center;
     line-height: 1em;
     color: var(--cordestaque);
+}
+
+img {
+    width: 40%;
+    margin: 15px auto 5px;
+    display: block;
 }
 
 h2 {
@@ -105,30 +117,11 @@ button:hover {
     margin-top: 1em;
 }
 
-footer {
-    background-color: rgb(107, 107, 107);
 
-}
+@media (max-width:450px) {
 
-#creditos {
-    font-weight:900;
-    padding: 10px;
-    color: var(--corfundodiv);
-    text-align: center;
-    font-size: 0.77rem;
-}
-
-footer a {
-    color: var(--cordestaque);
-}
-
-@media only screen and (max-width:600px) {
-
-    h1 {
-        font-size: 1.7em;
+    #card-fazer-login {
+        width: 90%;
     }
 
-    buttom {
-        width: 20vw;
-    }
 }
