@@ -238,6 +238,11 @@ footer {
 }
 
 footer a {
-    color: var(--corfundodiv);
+    color: #F5F5F5;
     text-decoration: none;
+}
+
+footer a:hover {
+    color: var(--corbotão);
+    text-decoration: underline;
 }
