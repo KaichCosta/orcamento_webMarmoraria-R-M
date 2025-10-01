@@ -1,0 +1,283 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gerenciador - Marmoraria</title>
+    <!-- Tailwind CSS para estilização rápida e responsiva -->
+    <link rel="stylesheet" href="../styles/stylegerenciamento.css">
+</head>
+<body class="text-gray-800">
+
+    <header>
+        <div class="cabecalho-principal">
+            <img src="../assets/logo-marmoraria-fundo-transparente.png" alt="logo">
+            <h1>GERENCIAMENTO</h1>    
+        </div>
+        
+        <nav class="desktop-nav">
+            <a href="../index.html" target="_blank" rel="inicio">Home</a>
+            <a href="../pages/orcamento.html" target="_blank" rel="orcamento">Novo Orçamento</a>
+            <a href="../pages/historico.html" target="_blank" rel="historico">Histórico</a>
+            <a href="../pages/gerenciamento.html" target="_blank" rel="gerenciar">Gerenciar</a>
+            <!--uma pagina so
+            pra gerenciar onde 
+            fica os links pra todas
+            as gerenciar os produtos
+        
+            Lista de Tarefas-->
+            <a href="../pages/login.html" target="_blank" rel="login">Login</a>
+
+        </nav>
+
+        <button id="menu-btn">
+            <span class="bar"></span>
+            <span class="bar"></span>
+            <span class="bar"></span>
+        </button>
+
+    </header>
+
+    <nav id="mobile-menu">
+        <a href="../index.html" target="_blank" rel="inicio">Home</a>
+        <a href="../pages/orcamento.html" target="_blank" rel="orcamento">Novo Orçamento</a>
+        <a href="../pages/historico.html" target="_blank" rel="historico">Histórico</a>
+        <a href="../pages/gerenciamento.html" target="_blank" rel="gerenciar">Gerenciar</a>
+        <a href="../pages/login.html" target="_blank" rel="login">Login</a>
+    </nav>
+
+    <main class="container mx-auto p-4 md:p-8 space-y-8">
+
+        <!-- Seção de Inclusão de Entradas e Saídas -->
+        <section id="financeiro">
+            <h2 class="text-2xl font-bold mb-4" style="color: var(--cor-primaria);">Financeiro</h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                
+                <!-- Card de Inclusão de Entradas -->
+                <div class="p-6 rounded-lg shadow-lg" style="background-color: var(--cor-card);">
+                    <h3 class="text-xl font-semibold mb-4 text-green-700">Inclusão de Entradas</h3>
+                    <form id="formulario-entradas" class="space-y-4">
+                        <!--TENHO QUE CRIAR
+                        .Selects para metodo de pagamento
+                        .Selects para quem recebeu (nome dos funcionarios que trabalham na empresa)
+                        .Botão abaixo de adicionar que manda para um historico onde estarão
+                            todas as saidas e entradas com filtro de semana 1, 2 ou mês AGO/SET/OUT.
+                        .Arredondar mais os inputs-->
+                        <input type="date" id="entrada-data" class="w-full p-2 border rounded" style="border-color: var(--cor-borda-suave);" required>
+                        <input type="number" id="entrada-valor" placeholder="Valor (R$)" step="0.01" class="w-full p-2 border rounded" style="border-color: var(--cor-borda-suave);" required>
+                        <input type="text" id="entrada-descricao" placeholder="Descrição" class="w-full p-2 border rounded" style="border-color: var(--cor-borda-suave);" required>
+                        <input type="text" id="entrada-metodo-pagamento" placeholder="Método de Pagamento" class="w-full p-2 border rounded" style="border-color: var(--cor-borda-suave);">
+                        <input type="text" id="entrada-quem-recebeu" placeholder="Quem recebeu?" class="w-full p-2 border rounded" style="border-color: var(--cor-borda-suave);">
+                        <button type="submit" class="w-full text-white font-bold py-2 px-4 rounded transition-transform transform hover:scale-105" style="background-color: var(--cor-primaria);">Adicionar Entrada</button>
+                    </form>
+                </div>
+
+                <!-- Card de Inclusão de Saídas -->
+                <div class="p-6 rounded-lg shadow-lg" style="background-color: var(--cor-card);">
+                    <h3 class="text-xl font-semibold mb-4" style="color: var(--cor-destaque);">Inclusão de Saídas</h3>
+                    <form id="formulario-saidas" class="space-y-4">
+                        <!--TENHO QUE CRIAR
+                        .Botão abaixo de adicionar que manda para um historico onde estarão
+                            todas as saidas e entradas com filtro de semana 1, 2 ou mês AGO/SET/OUT.
+                        .Arredondar mais os inputs-->
+                        <input type="date" id="saida-data" class="w-full p-2 border rounded" style="border-color: var(--cor-borda-suave);" required>
+                        <input type="text" id="saida-descricao" placeholder="Descrição" class="w-full p-2 border rounded" style="border-color: var(--cor-borda-suave);" required>
+                        <input type="number" id="saida-valor" placeholder="Valor (R$)" step="0.01" class="w-full p-2 border rounded" style="border-color: var(--cor-borda-suave);" required>
+                        <button type="submit" class="w-full text-white font-bold py-2 px-4 rounded transition-transform transform hover:scale-105" style="background-color: var(--cor-destaque);">Adicionar Saída</button>
+                    </form>
+                </div>
+
+            </div>
+        </section>
+
+        <!-- Seção de Programação de Execução / Serviços -->
+        <section id="servicos">
+            <h2 class="text-2xl font-bold mb-4" style="color: var(--cor-primaria);">Programação de Execução</h2>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+
+                <!-- Coluna: Serviços a Confirmar -->
+                <div class="p-4 rounded-lg shadow-lg" style="background-color: var(--cor-card);">
+                    <h3 class="font-bold text-lg text-center mb-4 pb-2 border-b-2" style="border-color: var(--cor-texto-cinza);">Serviços a Confirmar</h3>
+                    <div id="coluna-confirmar" class="coluna-kanban space-y-3 p-2 rounded bg-gray-100">
+                        <!-- Cards de serviço serão adicionados aqui pelo JS -->
+                        <div class="cartao-servico p-4 rounded-md shadow bg-white border-l-4 border-amber-500" draggable="true" data-id="1">
+                            <p class="font-semibold">Projeto Cozinha Branca</p>
+                            <p class="text-sm text-gray-600 mt-1">Cliente: Sra. Helena</p>
+                        </div>
+                        <div class="cartao-servico p-4 rounded-md shadow bg-white border-l-4 border-amber-500" draggable="true" data-id="2">
+                            <p class="font-semibold">Bancada Banheiro Social</p>
+                            <p class="text-sm text-gray-600 mt-1">Cliente: Condomínio Praças</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Coluna: Serviços Fechados -->
+                <div class="p-4 rounded-lg shadow-lg" style="background-color: var(--cor-card);">
+                    <h3 class="font-bold text-lg text-center mb-4 pb-2 border-b-2" style="border-color: var(--cor-texto-cinza);">Serviços Fechados</h3>
+                    <div id="coluna-fechados" class="coluna-kanban space-y-3 p-2 rounded bg-gray-100">
+                        <div class="cartao-servico p-4 rounded-md shadow bg-white border-l-4 border-blue-500" draggable="true" data-id="3">
+                            <p class="font-semibold">Soleiras Apartamento 201</p>
+                            <p class="text-sm text-gray-600 mt-1">Cliente: Sr. Ricardo</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Coluna: Serviços em Execução -->
+                <div class="p-4 rounded-lg shadow-lg" style="background-color: var(--cor-card);">
+                    <h3 class="font-bold text-lg text-center mb-4 pb-2 border-b-2" style="border-color: var(--cor-texto-cinza);">Serviços em Execução</h3>
+                    <div id="coluna-execucao" class="coluna-kanban space-y-3 p-2 rounded bg-gray-100">
+                        <div class="cartao-servico p-4 rounded-md shadow bg-white border-l-4 border-green-500" draggable="true" data-id="4">
+                            <p class="font-semibold">Área Gourmet Mármore Carrara</p>
+                            <p class="text-sm text-gray-600 mt-1">Cliente: Sr. Fernando</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+</body>
+<script src="https://cdn.tailwindcss.com"></script>
+<script>
+    // --- LÓGICA DO MENU HAMBÚRGUER ---
+    document.addEventListener('DOMContentLoaded', () => {
+        const menuBtn = document.getElementById('menu-btn');
+        const mobileMenu = document.getElementById('mobile-menu');
+
+        // Verifica se os elementos realmente existem antes de adicionar o evento
+        if (menuBtn && mobileMenu) {
+            menuBtn.addEventListener('click', () => {
+                // Alterna a visibilidade do menu mobile
+                if (mobileMenu.style.display === 'block') {
+                    mobileMenu.style.display = 'none';
+                } else {
+                    mobileMenu.style.display = 'block';
+                }
+            });
+        }
+    });
+
+    // --- LÓGICA PARA O QUADRO KANBAN (ARRASTAR E SOLTAR) ---
+    
+    // Seleciona todos os elementos que têm a classe 'cartao-servico' e 'coluna-kanban'
+    const todosOsCartoes = document.querySelectorAll('.cartao-servico');
+    const todasAsColunas = document.querySelectorAll('.coluna-kanban');
+
+    // Para cada cartão encontrado, adiciona os "ouvintes" de eventos de arrastar
+    todosOsCartoes.forEach(cartao => {
+        // Evento disparado quando o usuário começa a arrastar o cartão
+        cartao.addEventListener('dragstart', () => {
+            // Adiciona uma classe CSS para dar um feedback visual (ex: deixar transparente)
+            cartao.classList.add('arrastando');
+        });
+
+        // Evento disparado quando o usuário solta o cartão (termina de arrastar)
+        cartao.addEventListener('dragend', () => {
+            // Remove a classe CSS de feedback visual
+            cartao.classList.remove('arrastando');
+        });
+    });
+
+    // Para cada coluna encontrada, adiciona os "ouvintes" de eventos de área de soltar
+    todasAsColunas.forEach(coluna => {
+        // Evento disparado continuamente enquanto um cartão é arrastado SOBRE a coluna
+        coluna.addEventListener('dragover', evento => {
+            // O comportamento padrão do navegador é NÃO permitir soltar elementos.
+            // Usamos preventDefault() para "desbloquear" e permitir que o evento 'drop' (soltar) funcione.
+            evento.preventDefault();
+            // Adiciona uma classe para destacar a coluna que pode receber o cartão
+            coluna.classList.add('sobre-area-alvo');
+
+            // Pega o cartão que está sendo arrastado no momento
+            const cartaoSendoArrastado = document.querySelector('.arrastando');
+            // Descobre qual é o próximo "irmão" (cartão) na lista, para inserir o arrastado antes dele
+            const cartaoVizinho = encontrarCartaoVizinho(coluna, evento.clientY);
+
+            // Se não houver nenhum vizinho (estamos soltando no final da lista), apenas adiciona.
+            if (cartaoVizinho == null) {
+                coluna.appendChild(cartaoSendoArrastado);
+            } else {
+                // Senão, insere o cartão arrastado ANTES do vizinho que encontramos
+                coluna.insertBefore(cartaoSendoArrastado, cartaoVizinho);
+            }
+        });
+        
+        // Evento disparado quando o cartão arrastado SAI da área da coluna
+        coluna.addEventListener('dragleave', () => {
+            coluna.classList.remove('sobre-area-alvo');
+        });
+        
+        // Evento disparado quando o cartão é EFETIVAMENTE SOLTO na coluna
+        coluna.addEventListener('drop', () => {
+            coluna.classList.remove('sobre-area-alvo');
+            console.log(`Cartão movido para a coluna: ${coluna.id}`);
+        });
+    });
+
+    // Função auxiliar para descobrir a posição correta de inserção na coluna,
+    // permitindo reordenar os cartões enquanto arrasta.
+    function encontrarCartaoVizinho(coluna, posicaoYdoMouse) {
+        // Pega todos os cartões da coluna, exceto o que está sendo arrastado
+        const cartoesDaColuna = [...coluna.querySelectorAll('.cartao-servico:not(.arrastando)')];
+
+        // O 'reduce' vai "reduzir" a lista de cartões a um único valor: o cartão mais próximo
+        return cartoesDaColuna.reduce((maisProximo, cartaoFilho) => {
+            const box = cartaoFilho.getBoundingClientRect(); // Pega as dimensões e posição do cartão
+            // Calcula a distância vertical do mouse para o centro do cartão
+            const offset = posicaoYdoMouse - box.top - box.height / 2;
+
+            // Se o mouse está ACIMA do centro do cartão (offset negativo) e
+            // mais perto do que o "maisProximo" já encontrado, então este é o novo "maisProximo"
+            if (offset < 0 && offset > maisProximo.offset) {
+                return { offset: offset, element: cartaoFilho };
+            } else {
+                // Senão, continua com o que já tínhamos
+                return maisProximo;
+            }
+        }, { offset: Number.NEGATIVE_INFINITY }).element; // O valor inicial é o mais longe possível
+    }
+
+
+    // --- LÓGICA PARA OS FORMULÁRIOS FINANCEIROS ---
+    
+    const formularioEntradas = document.getElementById('formulario-entradas');
+    const formularioSaidas = document.getElementById('formulario-saidas');
+
+    formularioEntradas.addEventListener('submit', function(evento) {
+        evento.preventDefault(); // Impede o recarregamento da página ao enviar o formulário
+
+        // Cria um objeto com todos os dados do formulário de entrada
+        const dadosEntrada = {
+            data: document.getElementById('entrada-data').value,
+            valor: document.getElementById('entrada-valor').value,
+            descricao: document.getElementById('entrada-descricao').value,
+            metodoPagamento: document.getElementById('entrada-metodo-pagamento').value,
+            recebedor: document.getElementById('entrada-quem-recebeu').value,
+        };
+
+        // Exibe os dados no console para depuração
+        console.log("Nova Entrada Adicionada:", dadosEntrada);
+        // Mostra um alerta simples para o usuário saber que funcionou
+        alert(`Entrada de R$ ${dadosEntrada.valor} adicionada!`); 
+        
+        // Limpa os campos do formulário
+        formularioEntradas.reset();
+    });
+
+    formularioSaidas.addEventListener('submit', function(evento) {
+        evento.preventDefault();
+
+        const dadosSaida = {
+            data: document.getElementById('saida-data').value,
+            descricao: document.getElementById('saida-descricao').value,
+            valor: document.getElementById('saida-valor').value,
+        };
+        
+        console.log("Nova Saída Adicionada:", dadosSaida);
+        alert(`Saída de R$ ${dadosSaida.valor} adicionada!`);
+        
+        formularioSaidas.reset();
+    });
+
+</script>
+</html>
+

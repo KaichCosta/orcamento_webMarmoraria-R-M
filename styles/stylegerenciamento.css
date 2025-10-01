@@ -1,0 +1,149 @@
+:root {
+    --cor-card: #fafafa;
+    --cor-borda-suave: #e9e8e8;
+    --cor-texto-cinza: #cacacf;
+    --cor-fundo: #cacacb; /* Um cinza bem claro para o fundo */
+    --cor-primaria: rgb(129, 0, 0);
+    --cor-destaque: rgb(241, 2, 2);
+    --cor-texto-preto: #000000;
+
+    --fontepadrao: Arial, Verdana, sans-serif;
+    --fontedestaque: Verdana, sans-serif;
+}
+body {
+    font-family: var(--fontepadrao);
+    background-color: var(--cor-fundo);
+}
+
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: rgb(107, 107, 107);
+    width: 100%;
+    padding: 0 20px;
+    height: 80px;
+    margin-bottom: 20px;
+}
+
+.cabecalho-principal {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+.cabecalho-principal img {
+    width: 70px;
+    height: auto;
+    margin-top: 4px;
+}
+
+h1 {
+    font-size: 2em;
+    color: var(--cor-card);
+    font-family: var(--fontedestaque);
+    text-shadow: 2px 3px 4px black;
+}
+
+nav.desktop-nav {
+    display: none; /* Escondido por padrão, aparecerá em telas grandes */
+}
+nav.desktop-nav > a {
+    margin-left: 20px; /* Trocado para margin-left */
+    color: var(--cor-card);
+    text-decoration: none;
+    font-weight: 600;
+    padding: 5px;
+    border-radius: 5px;
+    transition: background-color 0.3s;
+}
+
+nav.desktop-nav > a:hover {
+    background-color: var(--cor-destaque);
+}
+
+nav.desktop-nav > a:last-child {
+    background-color: rgb(219, 1, 1);
+    padding: 8px 12px;
+}
+
+nav.desktop-nav > a:hover:last-child {
+    background-color: var(--cor-destaque);
+}
+
+/* --- MENU HAMBÚRGUER (para mobile) --- */
+#menu-btn {
+    display: block; /* Visível por padrão, será escondido em telas grandes */
+    background: none;
+    border: none;
+    cursor: pointer;
+}
+
+#menu-btn .bar {
+    display: block;
+    width: 25px;
+    height: 3px;
+    margin: 5px auto;
+    background-color: rgb(107, 107, 107);
+    transition: all 0.3s ease-in-out;
+}
+
+/* (escondido por padrão) */
+#mobile-menu {
+    display: none; /* Começa escondido */
+    position: absolute;
+    top: 80px; /* Aparece logo abaixo do header */
+    left: 0;
+    width: 100%;
+    background-color: rgb(107, 107, 107);
+    border-top: 1px solid var(--cor-fundo);
+    z-index: 10;
+}
+
+#mobile-menu a {
+    display: block;
+    padding: 15px 20px;
+    color: rgb(107, 107, 107);
+    text-decoration: none;
+    font-weight: 600;
+}
+
+#mobile-menu a:hover {
+    background-color: var(--cor-destaque);
+}
+
+@media (min-width: 699px) {
+    #menu-btn {
+        display: none; /* Esconde o botão hambúrguer */
+    }
+    nav.desktop-nav {
+        display: flex; /* Mostra a navegação de desktop */
+        align-items: center;
+    }
+
+    #mobile-menu {
+        display: none !important; /* Garante que o menu mobile esteja SEMPRE escondido em telas grandes */
+    }
+}
+
+/* Classe para as colunas do quadro Kanban */
+.coluna-kanban {
+    min-height: 200px;
+}
+/* Classe para os cartões de serviço que podem ser arrastados */
+.cartao-servico {
+    cursor: grab; /* Muda o cursor para a "mãozinha" de pegar */
+    user-select: none; /* Impede que o texto do cartão seja selecionado ao arrastar */
+}
+.cartao-servico:active {
+    cursor: grabbing;
+}
+/* Classe aplicada ao cartão que está sendo arrastado */
+.arrastando {
+    opacity: 0.5;
+    border: 2px dashed var(--cor-primaria);
+}
+/* Classe aplicada na coluna por onde o cartão está passando por cima */
+.sobre-area-alvo {
+    background-color: #e0e0e0;
+}
